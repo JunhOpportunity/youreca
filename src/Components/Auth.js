@@ -1,4 +1,4 @@
-import authService from "../firebase";
+import {authService} from "../firebase.js";
 import styled from "styled-components";
 import { useState } from "react";
 
