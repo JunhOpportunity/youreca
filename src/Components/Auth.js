@@ -87,6 +87,7 @@ export default function Auth({ userInfo }) {
       if (newAccount) {
         // 새로 Email 계정을 만드는 경우
         await authService.createUserWithEmailAndPassword(email, password);
+        
       } else {
         // Login 하는 경우 (계정을 가지고 있는 경우)
         await authService.signInWithEmailAndPassword(email, password);

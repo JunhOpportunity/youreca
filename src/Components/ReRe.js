@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { dbService } from "../firebase.js";
 import styled from "styled-components";
 import { authService } from "../firebase.js";
@@ -19,7 +19,7 @@ const TextArea = styled.textarea`
   height: 200px;
 `;
 
-export default function ReRe({ userInfo }) {
+export default function ReRe() {
   const navigation = useNavigate();
   const auth = getAuth();
   onAuthStateChanged(auth, (user) => {
@@ -44,12 +44,12 @@ export default function ReRe({ userInfo }) {
   };
 
   const onSubmit = async (event) => {
-    console.log(userInfo);
+    
     event.preventDefault();
     const user = authService.currentUser;
     await dbService.collection("ReArchive").add({
       response: response,
-      userId: userInfo.userId,
+      userId: user.userId,
       createdTime: Date(),
     });
     SetResponse("");
