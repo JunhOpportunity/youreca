@@ -37,7 +37,6 @@ export default function FirstLogin() {
                 changedDisplayName: true,
               });
             }
-            console.log("이동해야되는데")
             navigation("/");
           });
         

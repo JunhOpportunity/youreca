@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { authService } from "../firebase.js";
 import { dbService } from "../firebase.js";
 import { useNavigate } from "react-router-dom";
-import FirstLogin from "../Routes/FirstLogin.js";
-import Auth from "./Auth.js";
 import Loading from "./Loading.js";
 import ReRe from "./ReRe.js";
 

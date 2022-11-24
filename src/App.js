@@ -6,7 +6,7 @@ import Profile from "./Routes/Profile.js"
 import Contact from "./Routes/Profile.js"
 import Main from "./Routes/Main.js"
 import Test from "./Routes/Test.js"
-import ReRe from "./Components/ReRe.js";
+import Upload from "./Routes/Upload.js";
 import FirstLogin from "./Routes/FirstLogin.js";
 
 
@@ -18,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />}/>
           <Route path="firstlogin" element={<FirstLogin />}/>
+          <Route path="upload" element={<Upload />}/>
           <Route path="profile" element={<Profile />}/>
           <Route path="contact" element={<Contact />}/>
           <Route path="test" element={<Test/>}/>

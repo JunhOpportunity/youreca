@@ -11,7 +11,6 @@ export default function Conatct() {
   const [isLogin, setIsLogin] = useState(false);
   useEffect(() => {
     authService.onAuthStateChanged(async (user) => {
-      console.log(user);
       if (user) {
         setIsLogin(true);
 
@@ -39,5 +38,5 @@ export default function Conatct() {
       setInit(true);
     });
   }, []);
-  return <>{init ? isLogin ? <Home/> : <Auth /> : <Loading />}</>;
+  return <>{init ? isLogin ? <Home /> : <Auth /> : <Loading />}</>;
 }
