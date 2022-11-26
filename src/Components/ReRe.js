@@ -44,7 +44,7 @@ const ResponseBox = styled.div`
 
 export default function ReRe() {
   const [responses, setResponses] = useState([]);
-
+  const user = authService.currentUser;
   useEffect(() => {
     dbService
       .collection("ReArchive")
@@ -55,7 +55,7 @@ export default function ReRe() {
         setResponses(responseArray);
       });
   }, []);
-  const user = authService.currentUser;
+  
   const navigation = useNavigate();
 
   const goUpload = () => {

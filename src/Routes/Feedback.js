@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import Header from "../Components/Header";
+import Loading from "../Components/Loading";
 import { authService, dbService } from "../firebase";
+
 
 const Wrapper = styled.div`
   display: flex;
@@ -44,11 +47,17 @@ const InputBtn = styled.input`
 export default function Feedback() {
   const [supplementation, setSupplementation] = useState("");
   const user = authService.currentUser;
-  console.log(user.uid)
+  const [init, setInit] = useState(false);
+  useEffect(() => {
+    authService.onAuthStateChanged(async (user) => {
+      setInit(true);
+    });
+  }, []);
+
   const onSubmit = async (event) => {
     event.preventDefault();
-    await dbService.collection("FeedBack").doc(user.uid).set({
-      feedback: supplementation
+    await dbService.collection("FeedBack").doc(user.displayName).set({
+      feedback: supplementation,
     });
   };
 
@@ -59,26 +68,31 @@ export default function Feedback() {
     setSupplementation(value);
   };
 
-  
-
   return (
     <>
-      <Wrapper>
-        <PageInfo>
-          <h3>개선할 점이 있다면</h3>
-          <h1>알려주세요!</h1>
-        </PageInfo>
-        <Form onSubmit={onSubmit}>
-          <TextArea
-            value={supplementation}
-            onChange={onChange}
-            type="textarea"
-            placeholder="자유롭게 작성해주세요!"
-            required
-          />
-          <InputBtn type="submit" value="제출하기" />
-        </Form>
-      </Wrapper>
+      {init ? (
+        <>
+          <Header />
+          <Wrapper>
+            <PageInfo>
+              <h3>개선할 점이 있다면</h3>
+              <h1>알려주세요!</h1>
+            </PageInfo>
+            <Form onSubmit={onSubmit}>
+              <TextArea
+                value={supplementation}
+                onChange={onChange}
+                type="textarea"
+                placeholder="자유롭게 작성해주세요!"
+                required
+              />
+              <InputBtn type="submit" value="제출하기" />
+            </Form>
+          </Wrapper>
+        </>
+      ) : (
+        <Loading />
+      )}
     </>
   );
 }
