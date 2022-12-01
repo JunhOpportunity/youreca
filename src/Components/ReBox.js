@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import styled from "styled-components";
+import { authService } from "../firebase";
 
 const ProfileImgBox = styled.div`
   width: 50px;
@@ -36,6 +38,8 @@ const ResponseBox = styled.div`
   border-radius: 10px;
   background-color: yellow;
 `;
+
+
 
 export default function ReBox({re}) {
   return (
