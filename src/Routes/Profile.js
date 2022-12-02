@@ -7,7 +7,7 @@ import Loading from "../Components/Loading";
 
 export default function Profile() {
   const [init, setInit] = useState(false);
-  const [myResponse, setMyResponse] = useState([]);
+  const [myResponse, setMyResponse] = useState(false);
   useEffect(() => {
     authService.onAuthStateChanged(async (user) => {
       setInit(true);
@@ -28,7 +28,8 @@ export default function Profile() {
         <>
           <Header />
           <ReName re={myResponse}/>
-          <ReBox re={myResponse} />
+          {myResponse ? <ReBox re={myResponse} /> : <></>}
+          
         </>
       ) : (
         <Loading />
