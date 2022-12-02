@@ -35,7 +35,7 @@ export default function ReRe() {
     <>
       <Header />
       <h1>ReRe</h1>
-      <button onClick={goUpload}>작성하러 가기</button>
+      <button onClick={goUpload}>새로 작성하러 가기</button>
       {responses.map((re) =>
         user.uid === re.userId ? (
           <ReBox re={re} isMine={true}/>
