@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   position: fixed;
-  background-color: yellow;
+  background-color: #5a9216;
   align-items: space-between;
 `;
 

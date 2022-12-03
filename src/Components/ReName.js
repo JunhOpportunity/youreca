@@ -7,9 +7,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 const Form = styled.form``;
 
-const Title = styled.div`
-  padding-top: 100px;
-`;
+const Title = styled.div``;
 
 const NameModify = styled.div``;
 
@@ -23,8 +21,13 @@ const BtnBundle = styled.div`
 `;
 
 const Btn = styled.button`
-  width: 50px;
+  cursor: pointer;
+  width: 50vw;
   height: 30px;
+  border: 0;
+  border-radius: 0.25em;
+  color: white;
+  font-weight: bolder;
 `;
 
 const TextArea = styled.textarea`
@@ -132,7 +135,7 @@ export default function ReName() {
 
   const onModifyBtnClick = () => {
     // Modify (Update Doc)
-    setToggle(true);
+    setToggle((e) => !e);
   };
 
   const onDeleteBtnClick = () => {
@@ -182,13 +185,13 @@ export default function ReName() {
             <BtnBundle>
               <Btn
                 onClick={onModifyBtnClick}
-                style={{ backgroundColor: "skyblue" }}
+                style={{ backgroundColor: "#3085D6" }}
               >
                 수정
               </Btn>
               <Btn
                 onClick={onDeleteBtnClick}
-                style={{ backgroundColor: "red" }}
+                style={{ backgroundColor: "#DC3741" }}
               >
                 삭제
               </Btn>
@@ -210,7 +213,12 @@ export default function ReName() {
                   />
                   <input type="submit" value="변경" />
                 </Form>
-                <Btn onClick={onCancleClick}>취소</Btn>
+                <Btn
+                  style={{ backgroundColor: "gray" }}
+                  onClick={onCancleClick}
+                >
+                  취소
+                </Btn>
               </>
             ) : (
               <></>

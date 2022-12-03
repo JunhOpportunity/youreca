@@ -59,7 +59,7 @@ const BottomBox = styled.div`
 `;
 
 const ResponseBox = styled.div`
-  width: 300px;
+  width: 80vw;
   height: 100px;
   border-radius: 10px;
   padding: 10px;
