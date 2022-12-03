@@ -3,9 +3,8 @@ import { dbService } from "../firebase.js";
 import styled from "styled-components";
 import { authService } from "../firebase.js";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-
 const Wrapper = styled.div``;
 
 const Input = styled.input`
@@ -54,7 +53,6 @@ export default function Upload() {
     }
   });
 
-
   const onChange = (event) => {
     const {
       target: { value, name },
@@ -67,33 +65,44 @@ export default function Upload() {
   };
 
   const onSubmit = async (event) => {
+    const date = new Date();
+    const koDate = date.toLocaleString("ko", {
+      minute: "numeric",
+      hour: "numeric",
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+      weekday: "short",
+    })
     event.preventDefault();
     Swal.fire({
-      title: '등록하시겠습니까?',
+      title: "등록하시겠습니까?",
       text: "언제든지 수정 및 삭제가 가능합니다!",
-      icon: 'success',
+      icon: "success",
       showCancelButton: false,
       showDenyButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: '등록',
-      denyButtonText: '취소',
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "등록",
+      denyButtonText: "취소",
     }).then((result) => {
       if (result.isConfirmed) {
-          dbService.collection("ReArchive").doc(user.uid).set({
-          representation: userRepresentation,
-          response: response,
-          userId: user.uid,
-          userDisplayName: user.displayName,
-          createdTime: Date.now(),
-          createdDetailTime: Date(),
-        });
-        Swal.fire('등록되었습니다!', '', 'success')
-        setTimeout(function() {navigation("/")}, 1000)
-        
+        dbService
+          .collection("ReArchive")
+          .doc(user.uid)
+          .set({
+            representation: userRepresentation,
+            response: response,
+            userId: user.uid,
+            userDisplayName: user.displayName,
+            createdTime: koDate,
+          });
+        Swal.fire("등록되었습니다!", "", "success");
+        setTimeout(() => {
+          navigation("/");
+        }, 1000);
       }
     });
-    
   };
 
   return (

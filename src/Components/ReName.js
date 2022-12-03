@@ -59,15 +59,14 @@ export default function ReName() {
         .then((snapshot) => {
           if (snapshot.exists) {
             setDocExist(true);
-            console.log("yes")
+            console.log("yes");
           } else {
             setDocExist(false);
-            console.log("no")
+            console.log("no");
           }
         });
     });
   }, []);
-
 
   // Name Exchange
   const onChange = (event) => {
@@ -82,6 +81,10 @@ export default function ReName() {
     user.updateProfile({
       displayName: newDisplayName,
     });
+    dbService
+      .collection("ReArchive")
+      .doc(user.uid)
+      .update({ userDisplayName: newDisplayName });
   };
 
   // Response Exchange
@@ -124,7 +127,7 @@ export default function ReName() {
       },
     });
     setModify("");
-    setToggle(false)
+    setToggle(false);
   };
 
   const onModifyBtnClick = () => {
@@ -148,7 +151,7 @@ export default function ReName() {
       if (result.isConfirmed) {
         await dbService.doc(`ReArchive/${user.uid}`).delete();
         Swal.fire("삭제되었습니다!", "", "success");
-        setDocExist(false)
+        setDocExist(false);
         // navigate("/")
       }
     });
@@ -156,7 +159,7 @@ export default function ReName() {
 
   const onCancleClick = () => {
     setToggle(false);
-  }
+  };
 
   return (
     <>
@@ -175,24 +178,30 @@ export default function ReName() {
               <input type="submit" value="변경" />
             </Form>
           </NameModify>
-          {docExist ? <BtnBundle>
-            <Btn
-              onClick={onModifyBtnClick}
-              style={{ backgroundColor: "skyblue" }}
-            >
-              수정
-            </Btn>
-            <Btn onClick={onDeleteBtnClick} style={{ backgroundColor: "red" }}>
-              삭제
-            </Btn>
-          </BtnBundle>: <></>}
-          <ResponseModify> 
+          {docExist ? (
+            <BtnBundle>
+              <Btn
+                onClick={onModifyBtnClick}
+                style={{ backgroundColor: "skyblue" }}
+              >
+                수정
+              </Btn>
+              <Btn
+                onClick={onDeleteBtnClick}
+                style={{ backgroundColor: "red" }}
+              >
+                삭제
+              </Btn>
+            </BtnBundle>
+          ) : (
+            <></>
+          )}
+          <ResponseModify>
             {toggle ? (
               <>
                 <Title>내용 변경</Title>
                 <Form onSubmit={onReSubmit}>
                   <TextArea
-                  
                     type="text"
                     placeholder="변경할 내용"
                     value={modify}

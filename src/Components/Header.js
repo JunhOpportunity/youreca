@@ -5,6 +5,9 @@ import Swal from "sweetalert2";
 
 const Wrapper = styled.div`
   width: 100%;
+  height: 75px;
+  display: flex;
+  justify-content: center;
   position: fixed;
   background-color: yellow;
   align-items: space-between;

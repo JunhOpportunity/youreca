@@ -6,10 +6,25 @@ import { authService, dbService } from "../firebase";
 import { useEffect, useState } from "react";
 import ReBox from "./ReBox";
 
+const EmptyBox = styled.div`
+  height: 75px;
+`;
 
+const Wrapper = styled.div`
+  padding: 10px;
+`;
 
+const NewPost = styled.div`
+  cursor: pointer;
+  width: 100%;
+  height: 50px;
+  background-color: #7bb241;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
 
-
+`;
 
 export default function ReRe() {
   const [responses, setResponses] = useState([]);
@@ -24,7 +39,7 @@ export default function ReRe() {
         setResponses(responseArray);
       });
   }, []);
-  
+
   const navigation = useNavigate();
 
   const goUpload = () => {
@@ -34,15 +49,18 @@ export default function ReRe() {
   return (
     <>
       <Header />
-      <h1>ReRe</h1>
-      <button onClick={goUpload}>새로 작성하러 가기</button>
-      {responses.map((re) =>
-        user.uid === re.userId ? (
-          <ReBox re={re} isMine={true}/>
-        ) : (
-          <ReBox re={re} isMine={false}/>
-        )
-      )}
+      <EmptyBox/>
+      <NewPost onClick={goUpload}>글 작성하러 가기</NewPost>
+      <Wrapper>
+        
+        {responses.map((re) =>
+          user.uid === re.userId ? (
+            <ReBox re={re} isMine={true} />
+          ) : (
+            <ReBox re={re} isMine={false} />
+          )
+        )}
+      </Wrapper>
     </>
   );
 }
