@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 `;
 
 const EmptyBox = styled.div`
-  height: 75px;
+  height: 50px;
 `;
 
 export default function Profile() {

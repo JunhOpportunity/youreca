@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import ReBox from "./ReBox";
 
 const EmptyBox = styled.div`
-  height: 75px;
+  height: 50px;
 `;
 
 const Wrapper = styled.div`
