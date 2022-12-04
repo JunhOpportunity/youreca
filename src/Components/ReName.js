@@ -5,11 +5,48 @@ import Swal from "sweetalert2";
 import styled from "styled-components";
 import { Navigate, useNavigate } from "react-router-dom";
 
-const Form = styled.form``;
+const Form = styled.form`
+  display: flex;
+  justify-content: center;
+`;
 
-const Title = styled.div``;
+const TitleBox = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+`;
 
-const NameModify = styled.div``;
+const Title = styled.div`
+  width: 100px;
+  border-radius: 25px;
+  background-color: #43a047;
+  color: white;
+  text-align: center;
+  padding: 5px;
+`;
+
+const NameModify = styled.div`
+  border: 1px solid green;
+  padding: 10px;
+`;
+
+const NameInput = styled.input`
+  width: 100%;
+  border: none;
+  height: 25px;
+  background-color: #c8e6c9;
+`;
+
+const Distribute = styled.div`
+  display:flex;
+  justify-content: center;
+`;
+const DistributeBar = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: gray;
+  margin: 20px 0px;
+`
 
 const ResponseModify = styled.div``;
 
@@ -17,7 +54,6 @@ const BtnBundle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
 `;
 
 const Btn = styled.button`
@@ -33,11 +69,17 @@ const Btn = styled.button`
 const TextArea = styled.textarea`
   border: none;
   background-color: beige;
-  width: 200px;
+  width: 100%;
   height: 200px;
   resize: none;
   padding: 10px;
-  background-color: #f8f8f8;
+  background-color: #c8e6c9;
+`;
+
+const SubmitInput = styled.input`
+  border: none;
+  background-color: #66bb6a;
+  color: white;
 `;
 
 export default function ReName() {
@@ -81,6 +123,11 @@ export default function ReName() {
 
   const onSubmit = (event) => {
     event.preventDefault();
+    Swal.fire(
+      '변경되었습니다!',
+      `당신의 이름: ${newDisplayName}`,
+      'success'
+    )
     user.updateProfile({
       displayName: newDisplayName,
     });
@@ -140,6 +187,7 @@ export default function ReName() {
 
   const onDeleteBtnClick = () => {
     // Delete
+    setToggle(false);
     Swal.fire({
       title: "삭제하시겠습니까?",
       text: "다시 작성하실 수 있습니다!",
@@ -169,18 +217,23 @@ export default function ReName() {
       {init ? (
         <>
           <NameModify>
-            <Title>이름 변경</Title>
+            <TitleBox>
+              <Title>이름 변경</Title>
+            </TitleBox>
             <Form onSubmit={onSubmit}>
-              <input
+              <NameInput
                 type="text"
                 placeholder={user.displayName}
                 value={newDisplayName}
                 onChange={onChange}
                 required
               />
-              <input type="submit" value="변경" />
+              <SubmitInput type="submit" value="변경" />
             </Form>
           </NameModify>
+          <Distribute>
+            <DistributeBar></DistributeBar>
+          </Distribute>
           {docExist ? (
             <BtnBundle>
               <Btn
@@ -202,19 +255,18 @@ export default function ReName() {
           <ResponseModify>
             {toggle ? (
               <>
-                <Title>내용 변경</Title>
                 <Form onSubmit={onReSubmit}>
                   <TextArea
                     type="text"
-                    placeholder="변경할 내용"
+                    placeholder=""
                     value={modify}
                     onChange={onReChange}
                     required
                   />
-                  <input type="submit" value="변경" />
+                  <SubmitInput type="submit" value="변경" />
                 </Form>
                 <Btn
-                  style={{ backgroundColor: "gray" }}
+                  style={{ backgroundColor: "gray", width: "100%" }}
                   onClick={onCancleClick}
                 >
                   취소

@@ -23,7 +23,6 @@ const NewPost = styled.div`
   justify-content: center;
   align-items: center;
   color: white;
-
 `;
 
 export default function ReRe() {

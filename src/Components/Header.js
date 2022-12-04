@@ -55,15 +55,19 @@ export default function Header() {
       },
     });
     setTimeout(() => {
-      navigation("");
+      navigation("/");
     }, 1500);
+  };
+
+  const logoClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <>
       <Wrapper>
         <Nav>
-          <Logo>Logo</Logo>
+          <Logo onClick={logoClick}>Logo</Logo>
           <Bundle>
             <Category>
               <Anchor href="/">Main</Anchor>
