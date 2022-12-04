@@ -15,7 +15,6 @@ const Wrapper = styled.div`
 
 const PageInfo = styled.div`
   text-align: center;
-  margin-bottom: 100px;
   padding: 50px;
 `;
 
@@ -28,18 +27,20 @@ const Form = styled.form`
 const TextArea = styled.textarea`
   border: none;
   background-color: beige;
-  width: 200px;
+  width: 70vw;
   height: 200px;
   resize: none;
   padding: 10px;
-  background-color: #444444;
-  margin-bottom: 10px;
+  background-color: #c8e6c9;
 `;
 
 const InputBtn = styled.input`
+  cursor: pointer;
   width: 100%;
-  border-radius: 10px;
-  background-color: #696969;
+  border-radius: 0.25em;
+  color: white;
+  font-weight: bolder;
+  background-color: #66bb6a;
   border: none;
   padding: 10px;
 `;

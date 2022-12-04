@@ -38,7 +38,7 @@ const NameInput = styled.input`
 `;
 
 const Distribute = styled.div`
-  display:flex;
+  display: flex;
   justify-content: center;
 `;
 const DistributeBar = styled.div`
@@ -46,7 +46,7 @@ const DistributeBar = styled.div`
   height: 1px;
   background-color: gray;
   margin: 20px 0px;
-`
+`;
 
 const ResponseModify = styled.div``;
 
@@ -123,11 +123,7 @@ export default function ReName() {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    Swal.fire(
-      '변경되었습니다!',
-      `당신의 이름: ${newDisplayName}`,
-      'success'
-    )
+    Swal.fire("변경되었습니다!", `당신의 이름: ${newDisplayName}`, "success");
     user.updateProfile({
       displayName: newDisplayName,
     });
@@ -231,24 +227,27 @@ export default function ReName() {
               <SubmitInput type="submit" value="변경" />
             </Form>
           </NameModify>
-          <Distribute>
-            <DistributeBar></DistributeBar>
-          </Distribute>
+
           {docExist ? (
-            <BtnBundle>
-              <Btn
-                onClick={onModifyBtnClick}
-                style={{ backgroundColor: "#3085D6" }}
-              >
-                수정
-              </Btn>
-              <Btn
-                onClick={onDeleteBtnClick}
-                style={{ backgroundColor: "#DC3741" }}
-              >
-                삭제
-              </Btn>
-            </BtnBundle>
+            <>
+              <Distribute>
+                <DistributeBar></DistributeBar>
+              </Distribute>
+              <BtnBundle>
+                <Btn
+                  onClick={onModifyBtnClick}
+                  style={{ backgroundColor: "#3085D6" }}
+                >
+                  수정
+                </Btn>
+                <Btn
+                  onClick={onDeleteBtnClick}
+                  style={{ backgroundColor: "#DC3741" }}
+                >
+                  삭제
+                </Btn>
+              </BtnBundle>
+            </>
           ) : (
             <></>
           )}
