@@ -5,36 +5,46 @@ import { authService } from "../firebase.js";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Navigate, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-const Wrapper = styled.div``;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
 
 const Input = styled.input`
   border: none;
-  border-radius: 50px;
-  background-color: beige;
-  width: 300px;
+  background-color: #c8e6c9;
+  width: 100%;
+  padding: 0px;
+  height: 50px;
 `;
 
 const InputSubmit = styled.input`
   border: none;
-  background-color: #696969;
+  background-color: #66bb6a;
   color: white;
-  border-radius: 5px;
-  width: 100px;
+  height: 20px;
 `;
 
 const Form = styled.form`
+  height: 100%;
+  width: 95vw;
   display: flex;
   flex-direction: column;
+  padding: 10px;
 `;
 
 const TextArea = styled.textarea`
   border: none;
   background-color: beige;
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 70%;
   resize: none;
-  padding: 10px;
-  background-color: #f8f8f8;
+  background-color: #c8e6c9;
+  padding: 0px;
 `;
 
 export default function Upload() {

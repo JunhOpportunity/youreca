@@ -1,9 +1,9 @@
 import Loading from "../Components/Loading";
+import FirstLogin from "./FirstLogin";
 
 export default function Profile() {
   return (
   <>
-    <h1>TEST PAGE</h1>
-    <Loading/>
+    <FirstLogin/>
   </>);
 }
