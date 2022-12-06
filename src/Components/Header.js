@@ -41,14 +41,32 @@ const NavigationBox = styled(motion.div)`
   width: 100%;
   background-color: #5a9216;
 `;
-const Bundle = styled.ul`
-  height: 100%;
+const Bundle = styled(motion.ul)`
+
+
   display: flex;
   flex-direction: column;
   gap: 10px;
   text-align: center;
   padding: 0px;
 `;
+
+const bundleVar = {
+  open: {
+    opacity: 1,
+    visibility: "visible",
+    transition: {
+      delayChildren: 0.5,
+    },
+  },
+  close: {
+    opacity: 0,
+    visibility: "hidden",
+    transition: {
+      staggerChildren: 1,
+    },
+  },
+};
 
 const Category = styled.li``;
 
@@ -73,10 +91,6 @@ const container = {
   },
 };
 
-const item = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1 },
-};
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -103,26 +117,6 @@ export default function Header() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const sidebar = {
-    open: (height = 1000) => ({
-      clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
-      transition: {
-        type: "spring",
-        stiffness: 20,
-        restDelta: 2,
-      },
-    }),
-    closed: {
-      clipPath: "circle(30px at 40px 40px)",
-      transition: {
-        delay: 0.5,
-        type: "spring",
-        stiffness: 400,
-        damping: 40,
-      },
-    },
-  };
-
   return (
     <>
       <Wrapper>
@@ -142,20 +136,33 @@ export default function Header() {
             />
           </NavigateIcon>
           <NavigationBox
-            initial={{ height: "0", transition: "ease-in" }}
-            animate={{
-              height: isOpen ? "100vh" : "0",
-              transition: "ease-in",
-            }}
+          initial={false}
+            animate={
+              isOpen
+                ? {
+                    height: "100vh",
+                    transition: {
+                      stiffness: 400,
+                      damping: 40,
+                    },
+                  }
+                : {
+                    height: "0",
+                    transition: {
+                      stiffness: 400,
+                      damping: 40,
+                    },
+                  }
+            }
           >
-            <Bundle variants={container} initial="hidden" animate="show">
-              <Category variants={item}>
+            <Bundle variants={bundleVar} initial={false} animate={isOpen ? "open" : "close"}>
+              <Category>
                 <Anchor href="/">Main</Anchor>
-              </Category >
-              <Category variants={item}>
+              </Category>
+              <Category>
                 <Anchor href="/profile">Profile</Anchor>
               </Category>
-              <Category variants={item}>
+              <Category>
                 <Anchor href="/feedback">Feedback</Anchor>
               </Category>
               <Category onClick={onLogOutClick}>LogOut</Category>

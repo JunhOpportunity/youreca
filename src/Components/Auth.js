@@ -104,12 +104,12 @@ const SocialLoginBtn = styled.button`
   height: 50px;
   background-color: white;
   display:flex;
-justify-content: center;
-align-items: center;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Title = styled.div`
-display:flex;
+display: flex;
 justify-content: center;
 padding: 10px;
 color: #696969;
