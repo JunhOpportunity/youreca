@@ -5,13 +5,25 @@ import { authService } from "../firebase.js";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Navigate, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import Header from "../Components/Header.js";
+
+const EmptyBox = styled.div`
+  height: 50px;
+  width: 100%;
+`;
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 5px;
 `;
 
 const Input = styled.input`
@@ -26,22 +38,17 @@ const InputSubmit = styled.input`
   border: none;
   background-color: #66bb6a;
   color: white;
-  height: 20px;
-`;
-
-const Form = styled.form`
-  height: 100%;
-  width: 95vw;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
+  height: 50px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 `;
 
 const TextArea = styled.textarea`
   border: none;
   background-color: beige;
   width: 100%;
-  height: 70%;
+  height: 800px;
   resize: none;
   background-color: #c8e6c9;
   padding: 0px;
@@ -83,7 +90,7 @@ export default function Upload() {
       month: "numeric",
       year: "numeric",
       weekday: "short",
-    })
+    });
     event.preventDefault();
     Swal.fire({
       title: "등록하시겠습니까?",
@@ -97,16 +104,13 @@ export default function Upload() {
       denyButtonText: "취소",
     }).then((result) => {
       if (result.isConfirmed) {
-        dbService
-          .collection("ReArchive")
-          .doc(user.uid)
-          .set({
-            representation: userRepresentation,
-            response: response,
-            userId: user.uid,
-            userDisplayName: user.displayName,
-            createdTime: koDate,
-          });
+        dbService.collection("ReArchive").doc(user.uid).set({
+          representation: userRepresentation,
+          response: response,
+          userId: user.uid,
+          userDisplayName: user.displayName,
+          createdTime: koDate,
+        });
         Swal.fire("등록되었습니다!", "", "success");
         setTimeout(() => {
           navigation("/");
@@ -117,7 +121,10 @@ export default function Upload() {
 
   return (
     <>
+      <Header />
+
       <Wrapper>
+        <EmptyBox />
         <Form onSubmit={onSubmit}>
           <Input
             type="text"
