@@ -41,9 +41,7 @@ const NavigationBox = styled(motion.div)`
   width: 100%;
   background-color: #5a9216;
 `;
-const Bundle = styled(motion.ul)`
-
-
+const Bundle = styled(motion.ol)`
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -55,24 +53,40 @@ const bundleVar = {
   open: {
     opacity: 1,
     visibility: "visible",
-    transition: {
-      delayChildren: 0.5,
-    },
   },
   close: {
     opacity: 0,
     visibility: "hidden",
     transition: {
-      staggerChildren: 1,
+      delay: 0.5,
     },
+    
   },
 };
 
-const Category = styled.li``;
+const variants = {
+  open: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.5,
+    },
+  },
+  close: {
+    opacity: 0,
+    y: 10,
+  },
+};
 
-const Anchor = styled.a`
+
+const Category = styled(motion.li)`
+  color: #003d00;
+  font-weight: bolder;
+`;
+
+const Anchor = styled(motion.a)`
   text-decoration: none;
-  color: red;
+  color: #003d00;
 `;
 
 const Svg = styled.svg`
@@ -80,16 +94,6 @@ const Svg = styled.svg`
   height: 25px;
   fill: #003d00;
 `;
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.5,
-    },
-  },
-};
 
 
 export default function Header() {
@@ -136,36 +140,27 @@ export default function Header() {
             />
           </NavigateIcon>
           <NavigationBox
-          initial={false}
-            animate={
-              isOpen
-                ? {
-                    height: "100vh",
-                    transition: {
-                      stiffness: 400,
-                      damping: 40,
-                    },
-                  }
-                : {
-                    height: "0",
-                    transition: {
-                      stiffness: 400,
-                      damping: 40,
-                    },
-                  }
-            }
+            variants={bundleVar}
+            initial={false}
+            animate={isOpen ? "open" : "close"}
           >
-            <Bundle variants={bundleVar} initial={false} animate={isOpen ? "open" : "close"}>
-              <Category>
+            <Bundle>
+              <Category variants={variants}>
                 <Anchor href="/">Main</Anchor>
               </Category>
-              <Category>
+              <Category variants={variants}>
                 <Anchor href="/profile">Profile</Anchor>
               </Category>
-              <Category>
+              <Category variants={variants}>
                 <Anchor href="/feedback">Feedback</Anchor>
               </Category>
-              <Category onClick={onLogOutClick}>LogOut</Category>
+              <Category
+                variants={variants}
+                style={{ cursor: "pointer" }}
+                onClick={onLogOutClick}
+              >
+                LogOut
+              </Category>
             </Bundle>
           </NavigationBox>
         </Nav>

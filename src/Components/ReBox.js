@@ -1,6 +1,4 @@
-import { useEffect } from "react";
 import styled from "styled-components";
-import { authService } from "../firebase";
 
 const ProfileImgBox = styled.div`
   overflow: hidden;
@@ -10,7 +8,6 @@ const ProfileImgBox = styled.div`
   border-radius: 50%;
   border: 1px solid #7bb241;
   background-color: #7bb241;
-  
 `;
 
 const RereBox = styled.div`
@@ -55,7 +52,6 @@ const BottomBox = styled.div`
   padding: 10px;
   font-size: 15px;
   color: #aeaeae;
-  
 `;
 
 const ResponseBox = styled.div`
@@ -63,7 +59,7 @@ const ResponseBox = styled.div`
   height: 100px;
   border-radius: 10px;
   padding: 10px;
-  
+  overflow-y: auto;
   background-color: #e8f5e9;
 `;
 
@@ -84,7 +80,14 @@ export default function ReBox({ re }) {
         </TopRight>
       </TopBox>
       <MiddleBox>
-        <ResponseBox>{re.response}</ResponseBox>
+        <ResponseBox>
+          {re.response.split("\n").map((text) => (
+            <>
+              {text}
+              <br />
+            </>
+          ))}
+        </ResponseBox>
       </MiddleBox>
       <BottomBox>{re.createdTime}</BottomBox>
     </RereBox>
