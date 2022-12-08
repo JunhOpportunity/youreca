@@ -51,39 +51,21 @@ const variants = {
 };
 
 export default function Profile() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [value, setValue] = useState(5);
+
+  const onChange = (event) => {
+    const {
+      target: { value},
+    } = event;
+      setValue(value);
+  };
 
   
 
   return (
     <>
-      <div
-        onClick={() => {
-          setIsOpen((e) => !e);
-        }}
-      >
-        toggle
-      </div>
-      <AnimatePresence>
-        <ListBundle
-          variants={bundleVar}
-          initial={false}
-          animate={isOpen ? "open" : "close"}
-        >
-          <List variants={variants} animate={isOpen ? "open" : "close"}>
-            A
-          </List>
-          <List variants={variants} animate={isOpen ? "open" : "close"}>
-            B
-          </List>
-          <List variants={variants} animate={isOpen ? "open" : "close"}>
-            C
-          </List>
-          <List variants={variants} animate={isOpen ? "open" : "close"}>
-            D
-          </List>
-        </ListBundle>
-      </AnimatePresence>
+      <input value={value} onChange={onChange} type="range" min="0" max="10"/>
+      {value}
     </>
   );
 }
