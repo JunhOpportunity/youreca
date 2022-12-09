@@ -34,7 +34,6 @@ const bundleVar = {
   },
 };
 
-
 const variants = {
   open: {
     y: 20,
@@ -50,21 +49,59 @@ const variants = {
   },
 };
 
+const RangeInput = styled.input`
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  ::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #04aa6d;
+    cursor: pointer;
+  }
+  ::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #04aa6d;
+    cursor: pointer;
+  }
+`;
+
 export default function Profile() {
-  const [value, setValue] = useState(5);
+  const [value, setValue] = useState(1);
 
   const onChange = (event) => {
     const {
-      target: { value},
+      target: { value },
     } = event;
-      setValue(value);
+    setValue(value);
   };
-
-  
 
   return (
     <>
-      <input value={value} onChange={onChange} type="range" min="0" max="10"/>
+      <RangeInput
+        list="tickmarks"
+        value={value}
+        onChange={onChange}
+        type="range"
+        min="0"
+        max="2"
+      />
+      <datalist id="tickmarks">
+        <option value="0"></option>
+        <option value="1"></option>
+        <option value="2"></option>
+      </datalist>
       {value}
     </>
   );

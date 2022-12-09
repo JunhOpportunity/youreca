@@ -75,8 +75,8 @@ export default function ReBox({ re }) {
           </ProfileImgBox>
         </TopLeft>
         <TopRight>
-          <Name>{re.userDisplayName || "NAME"}</Name>
-          <Representation>{re.representation}</Representation>
+          <Name>{re.userDisplayName || "NAME"} </Name>
+          <Representation>{re.representation} ({re.userEmail || "Email"})</Representation>
         </TopRight>
       </TopBox>
       <MiddleBox>

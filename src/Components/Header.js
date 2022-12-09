@@ -52,15 +52,20 @@ const Bundle = styled(motion.ol)`
 const bundleVar = {
   open: {
     opacity: 1,
+    height: "200px",
     visibility: "visible",
+    transition: {
+      duration: 0.5,
+    },
   },
   close: {
     opacity: 0,
     visibility: "hidden",
+    height: "0px",
     transition: {
       delay: 0.5,
+      duration: 10,
     },
-    
   },
 };
 
@@ -74,10 +79,9 @@ const variants = {
   },
   close: {
     opacity: 0,
-    y: 10,
+    y: -10,
   },
 };
-
 
 const Category = styled(motion.li)`
   color: #003d00;
@@ -94,7 +98,6 @@ const Svg = styled.svg`
   height: 25px;
   fill: #003d00;
 `;
-
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);

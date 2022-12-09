@@ -32,6 +32,17 @@ const Input = styled.input`
   width: 100%;
   padding: 0px;
   height: 50px;
+  text-align: center;
+  transition-duration: 1s;
+  color: white;
+  :focus {
+    background-color: #43a047;
+    transition-duration: 1s;
+    ::placeholder {
+      color: white;
+      transition-duration: 1s;
+    }
+  }
 `;
 
 const InputSubmit = styled.input`
@@ -52,6 +63,18 @@ const TextArea = styled.textarea`
   resize: none;
   background-color: #c8e6c9;
   padding: 0px;
+  transition-duration: 1s;
+  color: white;
+  font-size: 20px;
+  font-weight: bolder;
+  :focus {
+    background-color: #43a047;
+    transition-duration: 1s;
+    ::placeholder {
+      color: white;
+      transition-duration: 1s;
+    }
+  }
 `;
 
 export default function Upload() {
@@ -110,6 +133,7 @@ export default function Upload() {
           userId: user.uid,
           userDisplayName: user.displayName,
           createdTime: koDate,
+          userEmail: user.email,
         });
         Swal.fire("등록되었습니다!", "", "success");
         setTimeout(() => {
@@ -136,7 +160,7 @@ export default function Upload() {
           />
           <TextArea
             type="text"
-            placeholder="어떤 사람이었는지, 어떤 생활을 해왔는지 자유롭게 적어주세요!"
+            placeholder="개발자는 어떤 사람이었는지, 어떤 생활을 해왔는지 함께 지내며 보았던 것들(공부시간, 독서습관, 인간관계 등)을 바탕으로 자유롭게 적어주세요! (추후 포트폴리오에 첨부될 예정이니 최대한 정성스럽게 작성해주세요!)"
             value={response}
             name="response"
             onChange={onChange}
