@@ -134,6 +134,7 @@ export default function Upload() {
           userDisplayName: user.displayName,
           createdTime: koDate,
           userEmail: user.email,
+          created: Date.now()
         });
         Swal.fire("등록되었습니다!", "", "success");
         setTimeout(() => {

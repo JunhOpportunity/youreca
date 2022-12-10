@@ -81,6 +81,7 @@ const Question = styled.div`
   font-size: 10px;
   font-weight: bolder;
   padding: 10px;
+  cursor: pointer;
 `;
 
 const SocialLogin = styled.div``;

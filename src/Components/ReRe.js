@@ -31,7 +31,7 @@ export default function ReRe() {
   useEffect(() => {
     dbService
       .collection("ReArchive")
-      .orderBy("createdTime", "desc")
+      .orderBy("created", "desc")
       .onSnapshot((snapshot) => {
         console.log(snapshot);
         const responseArray = snapshot.docs.map((doc) => ({ ...doc.data() }));
