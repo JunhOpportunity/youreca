@@ -116,7 +116,7 @@ export default function FirstLogin() {
                 changedDisplayName: true,
               });
             }
-            navigation("/");
+            navigation("/Responses-Chat");
           });
       }
     }

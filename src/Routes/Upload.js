@@ -28,7 +28,7 @@ const Form = styled.form`
 
 const Input = styled.input`
   border: none;
-  background-color: #c8e6c9;
+  background-color: #b2fab4;
   width: 100%;
   padding: 0px;
   height: 50px;
@@ -36,7 +36,7 @@ const Input = styled.input`
   transition-duration: 1s;
   color: white;
   :focus {
-    background-color: #43a047;
+    background-color: #c8e6c9;
     transition-duration: 1s;
     ::placeholder {
       color: white;
@@ -61,14 +61,14 @@ const TextArea = styled.textarea`
   width: 100%;
   height: 800px;
   resize: none;
-  background-color: #c8e6c9;
+  background-color: #b2fab4;
   padding: 0px;
   transition-duration: 1s;
   color: white;
   font-size: 20px;
   font-weight: bolder;
   :focus {
-    background-color: #43a047;
+    background-color: #c8e6c9;
     transition-duration: 1s;
     ::placeholder {
       color: white;
@@ -89,7 +89,7 @@ export default function Upload() {
       const created = user.metadata.createdAt;
       const last = user.metadata.lastLoginAt;
     } else {
-      navigation("/");
+      navigation("/Responses-Chat");
     }
   });
 
@@ -138,7 +138,7 @@ export default function Upload() {
         });
         Swal.fire("등록되었습니다!", "", "success");
         setTimeout(() => {
-          navigation("/");
+          navigation("/Responses-Chat");
         }, 1000);
       }
     });

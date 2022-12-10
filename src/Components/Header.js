@@ -88,9 +88,10 @@ const Category = styled(motion.li)`
   font-weight: bolder;
 `;
 
-const Anchor = styled(motion.a)`
-  text-decoration: none;
+const Anchor = styled(motion.div)`
+  text-align: center;
   color: #003d00;
+  cursor: pointer;
 `;
 
 const Svg = styled.svg`
@@ -116,9 +117,21 @@ export default function Header() {
       },
     });
     setTimeout(() => {
-      navigation("/");
+      navigation("/Responses-Chat");
     }, 1500);
   };
+
+  const onMainClick = () => {
+    navigation("/Responses-Chat");
+  }
+
+  const onFeedbackClick = () => {
+    navigation("/Responses-Chat/feedback");
+  }
+
+  const onProfileClick = () => {
+    navigation("/Responses-Chat/profile");
+  }
 
   const logoClick = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -149,13 +162,13 @@ export default function Header() {
           >
             <Bundle>
               <Category variants={variants}>
-                <Anchor href="/">Main</Anchor>
+                <Anchor onClick={onMainClick} href="/Responses-Chat/">Main</Anchor>
               </Category>
               <Category variants={variants}>
-                <Anchor href="/profile">Profile</Anchor>
+                <Anchor onClick={onProfileClick} href="/Responses-Chat/profile">Profile</Anchor>
               </Category>
-              <Category variants={variants}>
-                <Anchor href="/feedback">Feedback</Anchor>
+              <Category  variants={variants}>
+                <Anchor onClick={onFeedbackClick} href="/Responses-Chat/feedback">Feedback</Anchor>
               </Category>
               <Category
                 variants={variants}

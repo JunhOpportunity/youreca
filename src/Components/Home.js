@@ -24,5 +24,5 @@ export default function Home() {
     
   }, []);
 
-  return <>{init ? (isChanged ? <ReRe /> : navigation("/firstlogin")) : <Loading/>}</>;
+  return <>{init ? (isChanged ? <ReRe /> : navigation("/Responses-Chat/firstlogin")) : <Loading/>}</>;
 }

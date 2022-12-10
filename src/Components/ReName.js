@@ -199,7 +199,6 @@ export default function ReName() {
         await dbService.doc(`ReArchive/${user.uid}`).delete();
         Swal.fire("삭제되었습니다!", "", "success");
         setDocExist(false);
-        // navigate("/")
       }
     });
   };

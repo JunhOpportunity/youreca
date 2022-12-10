@@ -42,7 +42,7 @@ export default function ReRe() {
   const navigation = useNavigate();
 
   const goUpload = () => {
-    navigation("upload");
+    navigation("/Responses-Chat/upload");
   };
 
   return (
