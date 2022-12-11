@@ -5,7 +5,7 @@
 ##### 현재 한 명, 즉 저에 대한 평판만 작성이 가능하지만, 약간의 기능을 더 추가하면 다양한 사람들의 평판을 작성할 수 있도록 만들 수 있습니다.
 
 ## Preview
-[Site](https://junhopportunity.github.io/Responses-Chat/)
+[Site Enter](https://junhopportunity.github.io/Responses-Chat/)
 #### Login Page
 ![image](https://user-images.githubusercontent.com/89464762/206898906-2c2cb5ab-d506-477b-a946-7258f0943ebc.png)
 
