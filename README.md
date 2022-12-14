@@ -4,22 +4,14 @@
 ##### 이 프로젝트는 저에 대한 주변 사람들의 반응, 평판 등을 작성할 수 있는 프로젝트입니다.
 ##### 현재 한 명, 즉 저에 대한 평판만 작성이 가능하지만, 약간의 기능을 더 추가하면 다양한 사람들의 평판을 작성할 수 있도록 만들 수 있습니다.
 
+
+## Wire Frame
+![image](https://user-images.githubusercontent.com/89464762/207521853-b3afe7f7-d103-4d0e-8431-2d71771432b1.png)
+
+
 ## Preview
 [Site Enter](https://junhopportunity.github.io/Responses-Chat/)
-#### Login Page
-![image](https://user-images.githubusercontent.com/89464762/206898906-2c2cb5ab-d506-477b-a946-7258f0943ebc.png)
-
-#### Main Page
-![image](https://user-images.githubusercontent.com/89464762/206898819-38afe303-100c-4989-8011-3a556a4bb987.png)
-
-#### Profile Page
-![image](https://user-images.githubusercontent.com/89464762/206898842-559d6103-a6a6-4a39-95c7-bb3159c4a136.png)
-
-#### Feedback Page
-![image](https://user-images.githubusercontent.com/89464762/206898878-4b373a38-aca4-4033-9aa2-f6c40a90bd94.png)
-
-#### Navigation Bar
-![image](https://user-images.githubusercontent.com/89464762/206898893-7e5932eb-5e20-4a0f-a25a-bd779159af53.png)
+![image](https://user-images.githubusercontent.com/89464762/207521709-d00287c2-86d4-4897-b464-4d56906a9336.png)
 
 ## Used
 <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white">
