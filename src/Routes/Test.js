@@ -89,20 +89,7 @@ export default function Profile() {
 
   return (
     <>
-      <RangeInput
-        list="tickmarks"
-        value={value}
-        onChange={onChange}
-        type="range"
-        min="0"
-        max="2"
-      />
-      <datalist id="tickmarks">
-        <option value="0"></option>
-        <option value="1"></option>
-        <option value="2"></option>
-      </datalist>
-      {value}
+      <Loading/>
     </>
   );
 }

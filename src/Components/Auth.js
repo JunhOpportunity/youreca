@@ -194,7 +194,6 @@ export default function Auth({ userInfo }) {
     await authService.signInWithPopup(provider);
   };
   return (
-    <ThemeProvider>
       <Wrapper>
         <AuthBox>
           <Title>
@@ -253,6 +252,5 @@ export default function Auth({ userInfo }) {
           </SocialLogin>
         </AuthBox>
       </Wrapper>
-    </ThemeProvider>
   );
 }

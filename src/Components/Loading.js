@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import "animate.css";
 
 const Title = styled.div`
   width: 100%;
@@ -8,15 +9,20 @@ const Title = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: 50px;
+
   font-weight: lighter;
   color: white;
+`;
+const TitleText = styled.div`
+  font-size: 50px;
 `;
 
 export default function Loading() {
   return (
     <>
-      <Title>Loading..</Title>
+      <Title>
+        <h1 class="animate__animated animate__flash">Loading..</h1>
+      </Title>
     </>
   );
 }

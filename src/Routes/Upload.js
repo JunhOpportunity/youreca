@@ -34,12 +34,12 @@ const Input = styled.input`
   height: 50px;
   text-align: center;
   transition-duration: 1s;
-  color: white;
+  color: black;
   :focus {
-    background-color: #c8e6c9;
+    background-color: white;
     transition-duration: 1s;
     ::placeholder {
-      color: white;
+      color: black;
       transition-duration: 1s;
     }
   }
@@ -64,14 +64,14 @@ const TextArea = styled.textarea`
   background-color: #b2fab4;
   padding: 0px;
   transition-duration: 1s;
-  color: white;
+  color: black;
   font-size: 20px;
   font-weight: bolder;
   :focus {
-    background-color: #c8e6c9;
+    background-color: white;
     transition-duration: 1s;
     ::placeholder {
-      color: white;
+      color: black;
       transition-duration: 1s;
     }
   }
