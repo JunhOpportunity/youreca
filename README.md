@@ -6,18 +6,16 @@
 
 
 ## Wire Frame
-![image](https://user-images.githubusercontent.com/89464762/207521853-b3afe7f7-d103-4d0e-8431-2d71771432b1.png)
+![image](https://user-images.githubusercontent.com/89464762/207522425-95653488-4e8b-4de3-88b3-38e9ceb7885a.png)
 
 
 ## Preview
-[Site Enter](https://junhopportunity.github.io/Responses-Chat/)
+### [Site Enter](https://junhopportunity.github.io/Responses-Chat/)
+
 ![image](https://user-images.githubusercontent.com/89464762/207521709-d00287c2-86d4-4897-b464-4d56906a9336.png)
 
 ## Used
-<img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white">
-<img src="https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white">
-<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
-<img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white">
+<img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white"><img src="https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white"><img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white"><img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white">
 
 ## Reference
 * [Humburger npm](https://github.com/luukdv/hamburger-react)
