@@ -7,12 +7,14 @@ import Test from "./Routes/Test.js";
 import Upload from "./Routes/Upload.js";
 import FirstLogin from "./Routes/FirstLogin.js";
 import Feedback from "./Routes/Feedback.js";
+import Overview from "./Routes/Overview.js";
 
 function App() {
   return (
     <>
       <Router>
         <Routes>
+          <Route path="/" element={<Overview />} />
           <Route path="/Responses-Chat" element={<Main />} />
           <Route path="/Responses-Chat/firstlogin" element={<FirstLogin />} />
           <Route path="/Responses-Chat/upload" element={<Upload />} />
