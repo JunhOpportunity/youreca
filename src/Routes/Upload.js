@@ -161,7 +161,7 @@ export default function Upload() {
           />
           <TextArea
             type="text"
-            placeholder="개발자는 어떤 사람이었는지, 어떤 생활을 해왔는지 함께 지내며 보았던 것들(공부시간, 독서습관, 인간관계 등)을 바탕으로 자유롭게 적어주세요! (추후 포트폴리오에 첨부될 예정이니 최대한 정성스럽게 작성해주세요!)"
+            placeholder="김준호는 어떤 사람이었는지, 어떤 생활을 해왔는지 함께 지내며 보았던 것들(공부시간, 독서습관, 인간관계 등)을 바탕으로 자유롭게 적어주세요! (추후 포트폴리오에 첨부될 예정이니 최대한 정성스럽게 작성해주세요!)"
             value={response}
             name="response"
             onChange={onChange}

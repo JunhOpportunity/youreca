@@ -8,6 +8,7 @@ import Upload from "./Routes/Upload.js";
 import FirstLogin from "./Routes/FirstLogin.js";
 import Feedback from "./Routes/Feedback.js";
 import Overview from "./Routes/Overview.js";
+import NotFound from "./Routes/NotFound.js";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/Responses-Chat/feedback" element={<Feedback />} />
           <Route path="/Responses-Chat/contact" element={<Contact />} />
           <Route path="/Responses-Chat/test" element={<Test />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </>

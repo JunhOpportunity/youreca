@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Header from "../Components/Header";
 import Loading from "../Components/Loading";
 import { authService, dbService } from "../firebase";
+import Swal from "sweetalert2";
 
 
 const Wrapper = styled.div`
@@ -58,9 +59,13 @@ export default function Feedback() {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    await dbService.collection("FeedBack").doc(user.displayName).set({
+    await dbService.collection("FeedBack").add({
       feedback: supplementation,
+      userName: user.displayName,
+      userEmail: user.email
     });
+    Swal.fire("등록되었습니다!", "", "success");
+    setSupplementation("");
   };
 
   const onChange = (event) => {
