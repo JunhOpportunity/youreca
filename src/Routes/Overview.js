@@ -12,11 +12,13 @@ const Wrapper = styled.div`
 
 const TextBox = styled.div`
   width: 400px;
+  margin-bottom: 200px;
 `;
 
 const Text = styled.div`
   font-size: 18px;
   text-align: center;
+
 `;
 
 const SiteBox = styled.a`
@@ -58,23 +60,14 @@ export default function Overview() {
       <Wrapper>
         <TextBox>
           <Text>
-            베타 테스트에 참여해주셔서 감사합니다.
+            알파 테스트에 참여해주셔서 감사합니다.
             <br />이 테스트는 요청자의 취업이나 포트폴리오에 <br />
             정말 많은 도움이 될 수 있습니다.
-            <br /> 다소 시간이 걸릴 수 있지만 두 사이트 모두 <br />
+            <br /> 다소 시간이 걸릴 수 있지만 즐겁게 <br />
             테스트 해주시면 감사하겠습니다.
-            <br /> 시간이 없으시다면, <br />
-            아래 사이트라도 꼭 테스트 해주시길 바랍니다.
-            <br /> Specter 사이트에서 필요한 요청자의 정보는 <br />
-            카카오톡을 통해 알려드리도록 하겠습니다.
             <br /> 다시한번 감사드립니다.
           </Text>
         </TextBox>
-        <SiteBox href="https://www.specter.co.kr/intro/landing/writer/">
-          <Icon src="https://specter.s3.amazonaws.com/static/specter_v2/img/pc/front-logo-white-small.svg"></Icon>
-          <DistributeBar/>
-          <SiteName>Specter 접속하기</SiteName>
-        </SiteBox>
         <SiteBox
           href="https://rechat.run.goorm.io/Responses-Chat"
           style={{ backgroundColor: "#5a9216" }}

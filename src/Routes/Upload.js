@@ -17,6 +17,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 10px;
 `;
 
 const Form = styled.form`
@@ -26,23 +27,24 @@ const Form = styled.form`
   gap: 5px;
 `;
 
+const Label = styled.label`
+  text-align: center;
+  margin-top: 20px;
+`;
+
 const Input = styled.input`
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
   border: none;
-  background-color: #b2fab4;
   width: 100%;
   padding: 0px;
   height: 50px;
   text-align: center;
-  transition-duration: 1s;
   color: black;
-  :focus {
-    background-color: white;
-    transition-duration: 1s;
-    ::placeholder {
-      color: black;
-      transition-duration: 1s;
-    }
-  }
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
 `;
 
 const InputSubmit = styled.input`
@@ -59,22 +61,14 @@ const TextArea = styled.textarea`
   border: none;
   background-color: beige;
   width: 100%;
-  height: 800px;
+  height: 300px;
   resize: none;
   background-color: #b2fab4;
   padding: 0px;
-  transition-duration: 1s;
   color: black;
-  font-size: 20px;
-  font-weight: bolder;
-  :focus {
-    background-color: white;
-    transition-duration: 1s;
-    ::placeholder {
-      color: black;
-      transition-duration: 1s;
-    }
-  }
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
 `;
 
 export default function Upload() {
@@ -151,17 +145,18 @@ export default function Upload() {
       <Wrapper>
         <EmptyBox />
         <Form onSubmit={onSubmit}>
+        <Label for="story">당신의 정보를 입력해주세요.</Label>
           <Input
             type="text"
-            placeholder="당신의 정보를 알려주세요"
+            placeholder="EX) 군대 동기, 선임, 후임, 대학 동기 등"
             value={userRepresentation}
             name="representation"
             onChange={onChange}
             required
           />
+          <Label for="story">김준호라는 사람은 어떤 사람이었는지, 어떤 생활을 해왔는지 함께 지내며 보았던 것들(공부시간, 독서습관, 인간관계 등)을 바탕으로 자유롭게 적어주세요! (추후 포트폴리오에 첨부될 예정이지만 사실대로 가감없이 정확하게 작성해주세요!)</Label>
           <TextArea
             type="text"
-            placeholder="김준호는 어떤 사람이었는지, 어떤 생활을 해왔는지 함께 지내며 보았던 것들(공부시간, 독서습관, 인간관계 등)을 바탕으로 자유롭게 적어주세요! (추후 포트폴리오에 첨부될 예정이니 최대한 정성스럽게 작성해주세요!)"
             value={response}
             name="response"
             onChange={onChange}
@@ -170,6 +165,7 @@ export default function Upload() {
           <InputSubmit type="submit" value="게시하기" />
         </Form>
       </Wrapper>
+      
     </>
   );
 }
