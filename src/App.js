@@ -9,6 +9,7 @@ import FirstLogin from "./Routes/FirstLogin.js";
 import Feedback from "./Routes/Feedback.js";
 import Overview from "./Routes/Overview.js";
 import NotFound from "./Routes/NotFound.js";
+import EmailVerification from "./Routes/EmailVerification.js";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
           <Route path="/Responses-Chat/profile" element={<Profile />} />
           <Route path="/Responses-Chat/feedback" element={<Feedback />} />
           <Route path="/Responses-Chat/contact" element={<Contact />} />
-          <Route path="/Responses-Chat/test" element={<Test />} />
+          <Route path="/Responses-Chat/test" element={<EmailVerification />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

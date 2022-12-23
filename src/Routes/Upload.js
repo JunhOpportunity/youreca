@@ -128,6 +128,7 @@ export default function Upload() {
           userDisplayName: user.displayName,
           createdTime: koDate,
           userEmail: user.email,
+          emailVer: user.emailVerified,
           created: Date.now()
         });
         Swal.fire("등록되었습니다!", "", "success");
