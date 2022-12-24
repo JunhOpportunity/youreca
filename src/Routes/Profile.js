@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import ReBox from "../Components/ReBox";
 import Loading from "../Components/Loading";
 import styled from "styled-components";
+import EmailCertification from "../Components/EmailCertification";
 
 const Wrapper = styled.div`
   padding: 10px;
@@ -17,10 +18,13 @@ const EmptyBox = styled.div`
 export default function Profile() {
   const [init, setInit] = useState(false);
   const [myResponse, setMyResponse] = useState(false);
+  
+  
   useEffect(() => {
     authService.onAuthStateChanged(async (user) => {
       setInit(true);
       console.log("abc", user);
+      
       dbService
         .collection("ReArchive")
         .doc(user.uid)
@@ -30,6 +34,7 @@ export default function Profile() {
           setMyResponse(responseArray);
         });
     });
+    
   }, []);
   return (
     <>
@@ -37,7 +42,9 @@ export default function Profile() {
         <>
           <Header />
           <EmptyBox/>
+          
           <Wrapper>
+            <EmailCertification/>
             <ReName re={myResponse} />
             {myResponse ? <ReBox re={myResponse} /> : <></>}
           </Wrapper>
