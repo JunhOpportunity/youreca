@@ -25,3 +25,7 @@
 ## Precautions
 * Github의 BrowserRouter 오류로 인해 Main Page 이외의 페이지에서 Refresh를 할 경우 404 Error가 발생하고 있습니다. HashRouter 로 대체해보았으나 구상했던 방식대로 렌더링 되지 않아서 BrowserRotuer 를 그대로 사용하였습니다.
 * 현재 (22.12.11 기준) Refactoring과 React 최적화를 진행하지 않아서 로딩 시간이 다소 길어질 수 있습니다. 꾸준한 Refactoring과 React 최적화를 통해 원활한 사이트로 발전하도록 노력하겠습니다.
+
+## Update
+* 2022.12.10 (1.0.0) 출시
+* 2022.12.24 (1.1.0) 업데이트 : EmailVerification 추가, Certification Bedge 추가
