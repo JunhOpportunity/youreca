@@ -49,7 +49,6 @@ const InputBtn = styled.input`
 export default function Feedback() {
   const [supplementation, setSupplementation] = useState("");
   const user = authService.currentUser;
-  console.log("Feedback",user)
   const [init, setInit] = useState(false);
   useEffect(() => {
     authService.onAuthStateChanged(async (user) => {

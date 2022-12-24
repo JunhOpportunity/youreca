@@ -96,7 +96,6 @@ export default function ReName() {
   useEffect(() => {
     authService.onAuthStateChanged(async (user) => {
       setInit(true);
-      console.log("abc", user);
       dbService
         .collection("ReArchive")
         .doc(user.uid)
@@ -104,10 +103,8 @@ export default function ReName() {
         .then((snapshot) => {
           if (snapshot.exists) {
             setDocExist(true);
-            console.log("yes");
           } else {
             setDocExist(false);
-            console.log("no");
           }
         });
     });
@@ -146,7 +143,6 @@ export default function ReName() {
 
     // 변경 & 빈칸 만들기
     setTimeout(() => {
-      console.log("Real Name:", user.displayName);
       // Doc update https://firebase.google.com/docs/firestore/manage-data/add-data#update-data
       dbService
         .collection("ReArchive")

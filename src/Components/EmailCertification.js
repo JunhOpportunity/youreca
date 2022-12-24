@@ -61,7 +61,6 @@ export default function EmailCertification(certificate) {
     .collection("ReArchive")
     .doc(user.uid)
     .onSnapshot((snapshot) => {
-      console.log("TEST", snapshot.data().emailVer);
       setDbEmailVer(snapshot.data().emailVer);
     });
 

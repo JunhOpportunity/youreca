@@ -23,13 +23,11 @@ export default function Profile() {
   useEffect(() => {
     authService.onAuthStateChanged(async (user) => {
       setInit(true);
-      console.log("abc", user);
       
       dbService
         .collection("ReArchive")
         .doc(user.uid)
         .onSnapshot((snapshot) => {
-          console.log(snapshot.data());
           const responseArray = snapshot.data((doc) => ({ ...doc.data() }));
           setMyResponse(responseArray);
         });

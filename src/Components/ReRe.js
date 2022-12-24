@@ -33,7 +33,6 @@ export default function ReRe() {
       .collection("ReArchive")
       .orderBy("created", "desc")
       .onSnapshot((snapshot) => {
-        console.log(snapshot);
         const responseArray = snapshot.docs.map((doc) => ({ ...doc.data() }));
         setResponses(responseArray);
       });
