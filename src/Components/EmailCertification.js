@@ -53,8 +53,8 @@ const Svg = styled.svg`
 `;
 
 export default function EmailCertification(certificate) {
-  const [emailVer, setEmailVer] = useState(true);
-  const [dbEmailVer, setDbEmailVer] = useState(true);
+  const [emailVer, setEmailVer] = useState();
+  const [dbEmailVer, setDbEmailVer] = useState();
   const user = authService.currentUser;
 
   dbService
@@ -69,6 +69,7 @@ export default function EmailCertification(certificate) {
     authService.onAuthStateChanged(async (user) => {
       setEmailVer(user.emailVerified);
     });
+    
   }, []);
 
   const onClickEmailVerificationBtn = () => {
@@ -76,7 +77,7 @@ export default function EmailCertification(certificate) {
     Swal.fire({
       title: "인증 이메일을 발송했습니다.",
       icon: "success",
-      html: "'<b>noreply@re-chat</b>' 으로부터 <br/> 인증용 이메일을 발송하였습니다.<br />로그인에 사용하셨던 이메일 확인 후 <br /><b>5분 내로</b> 인증해주시기 바랍니다.<br />",
+      html: "'<b>noreply@re-chat</b>' 으로부터 <br/> 인증용 이메일을 발송하였습니다.<br />로그인에 사용하셨던 이메일 확인 후 <br /><b>5분 내로</b> 인증해주시기 바랍니다.<br /><br/> 인증 완료까지는 약 5분정도<br/> 소요될 수 있습니다.<br/><br/>인증 후 새로고침 부탁드립니다.",
       timer: "300000",
       timerProgressBar: true,
     });
@@ -106,16 +107,7 @@ export default function EmailCertification(certificate) {
             <path d="M211 7.3C205 1 196-1.4 187.6 .8s-14.9 8.9-17.1 17.3L154.7 80.6l-62-17.5c-8.4-2.4-17.4 0-23.5 6.1s-8.5 15.1-6.1 23.5l17.5 62L18.1 170.6c-8.4 2.1-15 8.7-17.3 17.1S1 205 7.3 211l46.2 45L7.3 301C1 307-1.4 316 .8 324.4s8.9 14.9 17.3 17.1l62.5 15.8-17.5 62c-2.4 8.4 0 17.4 6.1 23.5s15.1 8.5 23.5 6.1l62-17.5 15.8 62.5c2.1 8.4 8.7 15 17.1 17.3s17.3-.2 23.4-6.4l45-46.2 45 46.2c6.1 6.2 15 8.7 23.4 6.4s14.9-8.9 17.1-17.3l15.8-62.5 62 17.5c8.4 2.4 17.4 0 23.5-6.1s8.5-15.1 6.1-23.5l-17.5-62 62.5-15.8c8.4-2.1 15-8.7 17.3-17.1s-.2-17.3-6.4-23.4l-46.2-45 46.2-45c6.2-6.1 8.7-15 6.4-23.4s-8.9-14.9-17.3-17.1l-62.5-15.8 17.5-62c2.4-8.4 0-17.4-6.1-23.5s-15.1-8.5-23.5-6.1l-62 17.5L341.4 18.1c-2.1-8.4-8.7-15-17.1-17.3S307 1 301 7.3L256 53.5 211 7.3z" />
           </Svg>
         </TopBox>
-        {emailVer ? (
-          <></>
-        ) : (
-          <BottomBox>
-            <EmailVerifyBtn onClick={onClickEmailVerificationBtn}>
-              이메일 인증하기
-            </EmailVerifyBtn>
-          </BottomBox>
-        )}
-        {dbEmailVer === emailVer ? (
+        {emailVer ? dbEmailVer === emailVer ? (
           <></>
         ) : (
           <BottomBox>
@@ -123,7 +115,14 @@ export default function EmailCertification(certificate) {
               이메일 인증 갱신하기 (게시글의 뱃지가 뜨지 않는 경우)
             </EmailVerifyBtn>
           </BottomBox>
+        ) : (
+          <BottomBox>
+            <EmailVerifyBtn onClick={onClickEmailVerificationBtn}>
+              이메일 인증하기
+            </EmailVerifyBtn>
+          </BottomBox>
         )}
+        
       </EmailVerify>
     </>
   );
