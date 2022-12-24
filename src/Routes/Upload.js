@@ -17,7 +17,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px;
 `;
 
 const Form = styled.form`
@@ -29,7 +28,13 @@ const Form = styled.form`
 
 const Label = styled.label`
   text-align: center;
-  margin-top: 20px;
+  margin: 20px;
+`;
+
+const InputDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Input = styled.input`
@@ -37,8 +42,9 @@ const Input = styled.input`
   border-radius: 4px;
   background-color: #f8f8f8;
   border: none;
-  width: 100%;
-  padding: 0px;
+  width: 90%;
+  padding: 0;
+  margin: 0 20px;
   height: 50px;
   text-align: center;
   color: black;
@@ -55,6 +61,7 @@ const InputSubmit = styled.input`
   position: fixed;
   bottom: 0;
   width: 100%;
+  cursor: pointer;
 `;
 
 const TextArea = styled.textarea`
@@ -69,6 +76,7 @@ const TextArea = styled.textarea`
   border: 2px solid #ccc;
   border-radius: 4px;
   background-color: #f8f8f8;
+  margin: 0 20px;
 `;
 
 export default function Upload() {
@@ -129,7 +137,7 @@ export default function Upload() {
           createdTime: koDate,
           userEmail: user.email,
           emailVer: user.emailVerified,
-          created: Date.now()
+          created: Date.now(),
         });
         Swal.fire("등록되었습니다!", "", "success");
         setTimeout(() => {
@@ -146,27 +154,35 @@ export default function Upload() {
       <Wrapper>
         <EmptyBox />
         <Form onSubmit={onSubmit}>
-        <Label for="story">당신의 정보를 입력해주세요.</Label>
-          <Input
-            type="text"
-            placeholder="EX) 군대 동기, 선임, 후임, 대학 동기 등"
-            value={userRepresentation}
-            name="representation"
-            onChange={onChange}
-            required
-          />
-          <Label for="story">김준호라는 사람은 어떤 사람이었는지, 어떤 생활을 해왔는지 함께 지내며 보았던 것들(공부시간, 독서습관, 인간관계 등)을 바탕으로 자유롭게 적어주세요! (추후 포트폴리오에 첨부될 예정이지만 사실대로 가감없이 정확하게 작성해주세요!)</Label>
-          <TextArea
-            type="text"
-            value={response}
-            name="response"
-            onChange={onChange}
-            required
-          ></TextArea>
+          <Label for="story">당신의 정보를 입력해주세요.</Label>
+          <InputDiv>
+            <Input
+              type="text"
+              placeholder="EX) 군대 동기, 선임, 후임, 대학 동기 등"
+              value={userRepresentation}
+              name="representation"
+              onChange={onChange}
+              required
+            />
+          </InputDiv>
+          <Label for="story">
+            김준호라는 사람은 어떤 사람이었는지, 어떤 생활을 해왔는지 함께
+            지내며 보았던 것들(공부시간, 독서습관, 인간관계 등)을 바탕으로
+            자유롭게 적어주세요! (추후 포트폴리오에 첨부될 예정이지만 사실대로
+            가감없이 정확하게 작성해주세요!)
+          </Label>
+          <InputDiv>
+            <TextArea
+              type="text"
+              value={response}
+              name="response"
+              onChange={onChange}
+              required
+            ></TextArea>
+          </InputDiv>
           <InputSubmit type="submit" value="게시하기" />
         </Form>
       </Wrapper>
-      
     </>
   );
 }
