@@ -63,9 +63,12 @@ export default function Overview() {
             알파 테스트에 참여해주셔서 감사합니다.
             <br />이 테스트는 요청자의 취업이나 포트폴리오에 <br />
             정말 많은 도움이 될 수 있습니다.
-            <br /> 다소 시간이 걸릴 수 있지만 즐겁게 <br />
+            <br /> 다소 시간이 걸릴 수 있지만 <br />
             테스트 해주시면 감사하겠습니다.
             <br /> 다시한번 감사드립니다.
+            <br />
+            <br />
+            Developer : 김준호 (JunhOpportunity)
           </Text>
         </TextBox>
         <SiteBox

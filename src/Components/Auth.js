@@ -159,8 +159,8 @@ export default function Auth({ userInfo }) {
     } catch (error) {
       Swal.fire({
         icon: "error",
-        title: "Oops...",
-        text: "Something went wrong!",
+        title: "로그인 실패",
+        text: "이메일 또는 비밀번호가 잘못되었을 수 있습니다.",
         footer: '<a href="">로그인에 문제가 발생하셨나요?</a>',
       });
     }
