@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/main.8e9e7564.css","mappings":"AAEA,KAEE,+BAAmC,CACrC,yBAA6B,CAF3B,QAGF,CAEA,EACE,aACF","sources":["default.css"],"sourcesContent":["\n\nbody {\n  margin: 0px;\n  font-family: 'Do Hyeon', sans-serif;\nfont-family: 'Hahmlet', serif;\n}\n\na {\n  color : #696969;\n}\n"],"names":[],"sourceRoot":""}
