@@ -3,6 +3,7 @@ import { authService } from "../firebase";
 import Loading from "../Components/Loading";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Wrapper = styled.div`
   display: flex;
@@ -57,11 +58,28 @@ export default function EmailVerification() {
     authService.onAuthStateChanged(async (user) => {
       setInit(true);
     });
-    
   }, []);
 
   const onBtnClick = () => {
     navigation("/Responses-Chat/");
+  };
+
+  const onSkipBtnClick = () => {
+    Swal.fire({
+      title: "넘어가시겠습니까?",
+      text: "인증 완료시 신빙성 있는 사용자임을 증명하실 수 있습니다.",
+      icon: "warning",
+      showCancelButton: false,
+      showDenyButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "넘어가기",
+      denyButtonText: "취소",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigation("/Responses-Chat/");
+      }
+    });
   };
 
   return (
@@ -83,7 +101,7 @@ export default function EmailVerification() {
             <Button onClick={onBtnClick} style={{ backgroundColor: "#3085D6" }}>
               <BtnText>인증완료</BtnText>
             </Button>
-            <Button onClick={onBtnClick} style={{ backgroundColor: "#DC3741" }}>
+            <Button onClick={onSkipBtnClick} style={{ backgroundColor: "#DC3741" }}>
               <BtnText>넘어가기</BtnText>
             </Button>
           </ButtonBundle>
