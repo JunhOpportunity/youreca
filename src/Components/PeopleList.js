@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import Header from "./Header";
-import Upload from "../Routes/UploadReputation";
+import Upload from "../Routes/UploadReputation.js";
 import { useNavigate } from "react-router-dom";
 import { authService, dbService } from "../firebase";
 import { useEffect, useState } from "react";
 import ReBox from "./ReBox";
+import PersonBox from "./PersonBox";
 
 const EmptyBox = styled.div`
   height: 50px;
@@ -25,39 +26,35 @@ const NewPost = styled.div`
   color: white;
 `;
 
-export default function ReRe() {
-  const [responses, setResponses] = useState([]);
+export default function RePeople() {
+  const [people, setPeople] = useState([]);
   const user = authService.currentUser;
   useEffect(() => {
     dbService
-      .collection("ReArchive")
+      .collection("Person")
       .orderBy("created", "desc")
       .onSnapshot((snapshot) => {
-        const responseArray = snapshot.docs.map((doc) => ({ ...doc.data() }));
-        setResponses(responseArray);
+        const peopleArray = snapshot.docs.map((doc) => ({ ...doc.data() }));
+        console.log(peopleArray);
+        setPeople(peopleArray);
       });
   }, []);
 
   const navigation = useNavigate();
 
-  const goUpload = () => {
-    navigation("/Responses-Chat/upload");
+  const goCreatePerson = () => {
+    navigation("/Responses-Chat/person");
   };
 
   return (
     <>
       <Header />
-      <EmptyBox/>
-      <NewPost onClick={goUpload}>글 작성하러 가기</NewPost>
+      <EmptyBox />
+      <NewPost onClick={goCreatePerson}>내 평판 추가하러 가기</NewPost>
       <Wrapper>
-        
-        {responses.map((re) =>
-          user.uid === re.userId ? (
-            <ReBox re={re} isMine={true} />
-          ) : (
-            <ReBox re={re} isMine={false} />
-          )
-        )}
+        {people.map((pers) => (
+          <PersonBox re={pers} isMine={true} />
+        ))}
       </Wrapper>
     </>
   );

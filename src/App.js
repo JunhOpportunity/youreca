@@ -4,12 +4,14 @@ import Profile from "./Routes/Profile.js";
 import Contact from "./Routes/Profile.js";
 import Main from "./Routes/Main.js";
 import Test from "./Routes/Test.js";
-import Upload from "./Routes/Upload.js";
+import Upload from "./Routes/UploadReputation";
 import FirstLogin from "./Routes/FirstLogin.js";
 import Feedback from "./Routes/Feedback.js";
 import Overview from "./Routes/Overview.js";
 import NotFound from "./Routes/NotFound.js";
 import EmailVerification from "./Routes/EmailVerification.js";
+import RePeople from "./Components/PeopleList.js";
+import { CreatePerson } from "./Components/CreatePerson.js";
 
 function App() {
   return (
@@ -23,8 +25,13 @@ function App() {
           <Route path="/Responses-Chat/profile" element={<Profile />} />
           <Route path="/Responses-Chat/feedback" element={<Feedback />} />
           <Route path="/Responses-Chat/contact" element={<Contact />} />
-          <Route path="/Responses-Chat/emailverification" element={<EmailVerification />} />
+          <Route
+            path="/Responses-Chat/emailverification"
+            element={<EmailVerification />}
+          />
           <Route path="/Responses-Chat/test" element={<EmailVerification />} />
+          <Route path="/Responses-Chat/people" element={<RePeople />} />
+          <Route path="/Responses-Chat/person" element={<CreatePerson />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
