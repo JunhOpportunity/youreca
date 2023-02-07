@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { authService } from "../firebase";
+import Loading from "../Components/Loading";
 
 const Person = styled.div`
   display: flex;
@@ -33,19 +36,15 @@ const PersonInfo = styled.div`
   background-color: yellow;
 `;
 
-export default function PersonBox({ re }) {
-  
+export default function PersonBox({ personData }) {
   return (
-    <Person>
-      <PersonImg>
-    
-      </PersonImg>
-      <PersonName>
-
-      </PersonName>
-      <PersonInfo>
-
-      </PersonInfo>
-    </Person>
-  )
+    <>
+      <Person>
+        <PersonImg></PersonImg>
+        <PersonName>{personData.userDisplayName}</PersonName>
+        <PersonInfo>{personData.personInfo}</PersonInfo>
+        <PersonInfo>{personData.uesrEmail}</PersonInfo>
+      </Person>
+    </>
+  );
 }

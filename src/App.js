@@ -12,6 +12,7 @@ import NotFound from "./Routes/NotFound.js";
 import EmailVerification from "./Routes/EmailVerification.js";
 import RePeople from "./Components/PeopleList.js";
 import { CreatePerson } from "./Components/CreatePerson.js";
+import RegistPerson from "./Routes/RegistPerson.js";
 
 function App() {
   return (
@@ -31,7 +32,7 @@ function App() {
           />
           <Route path="/Responses-Chat/test" element={<EmailVerification />} />
           <Route path="/Responses-Chat/people" element={<RePeople />} />
-          <Route path="/Responses-Chat/person" element={<CreatePerson />} />
+          <Route path="/Responses-Chat/regist" element={<RegistPerson />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

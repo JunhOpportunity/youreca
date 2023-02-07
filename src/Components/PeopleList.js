@@ -32,7 +32,6 @@ export default function RePeople() {
   useEffect(() => {
     dbService
       .collection("Person")
-      .orderBy("created", "desc")
       .onSnapshot((snapshot) => {
         const peopleArray = snapshot.docs.map((doc) => ({ ...doc.data() }));
         console.log(peopleArray);
@@ -43,7 +42,7 @@ export default function RePeople() {
   const navigation = useNavigate();
 
   const goCreatePerson = () => {
-    navigation("/Responses-Chat/person");
+    navigation("/Responses-Chat/regist");
   };
 
   return (
@@ -53,7 +52,7 @@ export default function RePeople() {
       <NewPost onClick={goCreatePerson}>내 평판 추가하러 가기</NewPost>
       <Wrapper>
         {people.map((pers) => (
-          <PersonBox re={pers} isMine={true} />
+          <PersonBox personData={pers} isMine={true} />
         ))}
       </Wrapper>
     </>
