@@ -13,6 +13,7 @@ import EmailVerification from "./Routes/EmailVerification.js";
 import RePeople from "./Components/PeopleList.js";
 import { CreatePerson } from "./Components/CreatePerson.js";
 import RegistPerson from "./Routes/RegistPerson.js";
+import { UploadProfileImage } from "./Routes/UploadProfileImage.js";
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
             path="/Responses-Chat/emailverification"
             element={<EmailVerification />}
           />
-          <Route path="/Responses-Chat/test" element={<EmailVerification />} />
+          <Route path="/Responses-Chat/test" element={<UploadProfileImage />} />
           <Route path="/Responses-Chat/people" element={<RePeople />} />
           <Route path="/Responses-Chat/regist" element={<RegistPerson />} />
           <Route path="*" element={<NotFound />} />
