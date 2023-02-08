@@ -7,6 +7,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Header from "../Components/Header.js";
 import Loading from "../Components/Loading";
+import PersonBox from "../Components/PersonBox.js";
 
 const EmptyBox = styled.div`
   height: 50px;
@@ -54,7 +55,17 @@ const Input = styled.input`
   background-color: #f8f8f8;
 `;
 
-const UserNameInput = styled.input``;
+const UserNameInput = styled.input`
+  padding: 0;
+  margin: 0 20px;
+  height: 50px;
+  text-align: center;
+  font-weight: bold;
+  color: #696969;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+`;
 
 const InputSubmit = styled.input`
   border: none;
@@ -67,13 +78,15 @@ const InputSubmit = styled.input`
   cursor: pointer;
 `;
 
+const PreviewPersonBox = styled.div``;
+
 export default function RegistPerson() {
   const [init, setInit] = useState(false);
   const [personInfo, setPersonInfo] = useState("");
   const navigation = useNavigate();
   const auth = getAuth();
   const user = authService.currentUser;
-  console.log(user)
+  console.log(user);
 
   useEffect(() => {
     authService.onAuthStateChanged(async (user) => {
@@ -121,40 +134,48 @@ export default function RegistPerson() {
   };
 
   return (
-    <>{init ? (
-      <><Header />
+    <>
+      {init ? (
+        <>
+          <Header />
 
-      <Wrapper>
-        <EmptyBox />
-        <Form onSubmit={onSubmit}>
-          <Label for="story">이름</Label>
-          {/* 프로필 페이지에서 변경 */}
-          <InputDiv>
-            <UserNameInput
-              type="text"
-              value={user.displayName}
-              name="username"
-              disabled
-            />
-          </InputDiv>
+          <Wrapper>
+            <EmptyBox />
+            <Form onSubmit={onSubmit}>
+            <Label for="story" style={{color: "red"}}><u>프로필 사진과 이름 변경은 프로필 페이지에서만 가능합니다.</u></Label>
+              <Label for="story">프로필 사진</Label>
+              {/* 가입시 사진 등록 && 없을 경우 기본 사진 && 프로필 페이지에서 변경 */}
+              <Label for="story">이름</Label>
+              {/* 프로필 페이지에서 변경 */}
+              <InputDiv>
+                <UserNameInput
+                  type="text"
+                  value={user.displayName}
+                  name="username"
+                  disabled
+                />
+              </InputDiv>
 
-          <Label for="story">정보를 입력해주세요.</Label>
-          <InputDiv>
-            <Input
-              type="text"
-              placeholder="EX) OO대학교 학생, OO전자 인턴, OO비행단 복무중인 군인, ..."
-              value={personInfo}
-              name="userInfo"
-              onChange={onChange}
-              required
-            />
-          </InputDiv>
+              <Label for="story">정보를 입력해주세요 <br/><u>(정확하게 입력해주세요!)</u> </Label>
+              <InputDiv>
+                <Input
+                  type="text"
+                  placeholder="EX) OO대학교 학생, OO전자 인턴, OO비행단 복무중인 군인, ..."
+                  value={personInfo}
+                  name="userInfo"
+                  onChange={onChange}
+                  required
+                />
+              </InputDiv>
 
-          <Label for="story">프로필 사진</Label>
-          {/* 가입시 사진 등록 && 없을 경우 기본 사진 && 프로필 페이지에서 변경 */}
-          <InputSubmit type="submit" value="등록하기" />
-        </Form>
-      </Wrapper></>
-    ) : <Loading/>}</>
+              <InputSubmit type="submit" value="등록하기" />
+            </Form>
+
+          </Wrapper>
+        </>
+      ) : (
+        <Loading />
+      )}
+    </>
   );
 }
