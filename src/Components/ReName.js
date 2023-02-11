@@ -128,6 +128,14 @@ export default function ReName() {
       .collection("ReArchive")
       .doc(user.uid)
       .update({ userDisplayName: newDisplayName });
+      dbService
+      .collection("Person")
+      .doc(user.uid)
+      .update({ userDisplayName: newDisplayName })
+      .then()
+      .catch((error) => {
+        console.log("Doc 없으니까 만들면 제대로 적용 됩니다~!");
+      });
   };
 
   // Response Exchange
