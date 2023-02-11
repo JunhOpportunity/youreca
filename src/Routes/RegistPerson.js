@@ -80,9 +80,28 @@ const InputSubmit = styled.input`
 
 const PreviewPersonBox = styled.div``;
 
+const ProfileImgBox = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const ProfileImg = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  fill: white;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid #7bb241;
+  background-color: #7bb241;
+`;
+
 export default function RegistPerson() {
   const [init, setInit] = useState(false);
   const [personInfo, setPersonInfo] = useState("");
+  const [profileImgUrl, setProfileImgUrl] = useState(false);
   const navigation = useNavigate();
   const auth = getAuth();
   const user = authService.currentUser;
@@ -90,6 +109,13 @@ export default function RegistPerson() {
 
   useEffect(() => {
     authService.onAuthStateChanged(async (user) => {
+      dbService
+        .collection("User")
+        .doc(user.uid)
+        .onSnapshot((snapshot) => {
+          console.log(snapshot.data());
+          setProfileImgUrl(snapshot.data().profileImgUrl);
+        });
       setInit(true);
     });
   }, []);
@@ -108,7 +134,7 @@ export default function RegistPerson() {
     Swal.fire({
       title: "등록하시겠습니까?",
       text: "사용자의 정보는 변경이 불가능합니다.",
-      icon: "warrning",
+      icon: "warning",
       showCancelButton: false,
       showDenyButton: true,
       confirmButtonColor: "#3085d6",
@@ -123,6 +149,7 @@ export default function RegistPerson() {
           userEmail: user.email,
           emailVer: user.emailVerified,
           personInfo: personInfo,
+          profileImgUrl: profileImgUrl ? profileImgUrl : "",
         });
         Swal.fire("등록되었습니다!", "", "success");
         setTimeout(() => {
@@ -142,9 +169,29 @@ export default function RegistPerson() {
           <Wrapper>
             <EmptyBox />
             <Form onSubmit={onSubmit}>
-            <Label for="story" style={{color: "red"}}><u>프로필 사진과 이름 변경은 프로필 페이지에서만 가능합니다.</u></Label>
+              <Label for="story" style={{ color: "red" }}>
+                <u>프로필 사진과 이름 변경은 프로필 페이지에서만 가능합니다.</u>
+              </Label>
               <Label for="story">프로필 사진</Label>
               {/* 가입시 사진 등록 && 없을 경우 기본 사진 && 프로필 페이지에서 변경 */}
+              <ProfileImgBox>
+                {profileImgUrl ? (
+                  <>
+                    <ProfileImg>
+                      <img src={profileImgUrl} width="100px" height="100px" />
+                    </ProfileImg>
+                  </>
+                ) : (
+                  <ProfileImg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512"
+                    >
+                      <path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0S96 57.3 96 128s57.3 128 128 128zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+                    </svg>
+                  </ProfileImg>
+                )}
+              </ProfileImgBox>
               <Label for="story">이름</Label>
               {/* 프로필 페이지에서 변경 */}
               <InputDiv>
@@ -156,7 +203,10 @@ export default function RegistPerson() {
                 />
               </InputDiv>
 
-              <Label for="story">정보를 입력해주세요 <br/><u>(정확하게 입력해주세요!)</u> </Label>
+              <Label for="story">
+                정보를 입력해주세요 <br />
+                <u>(정확하게 입력해주세요!)</u>{" "}
+              </Label>
               <InputDiv>
                 <Input
                   type="text"
@@ -168,9 +218,8 @@ export default function RegistPerson() {
                 />
               </InputDiv>
 
-              <InputSubmit type="submit" value="등록하기" />
+              <InputSubmit onSubmit={onSubmit} type="submit" value="등록하기" />
             </Form>
-
           </Wrapper>
         </>
       ) : (
