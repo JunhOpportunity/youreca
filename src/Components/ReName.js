@@ -82,6 +82,13 @@ const SubmitInput = styled.input`
   color: white;
 `;
 
+const Text = styled.div`
+  font-size: 5px;
+  text-align: center;
+  color: red;
+  font-weight: bold;
+`;
+
 export default function ReName() {
   const [newDisplayName, setNewDisplayName] = useState("");
   const [init, setInit] = useState(false);
@@ -120,95 +127,40 @@ export default function ReName() {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    Swal.fire("변경되었습니다!", `당신의 이름: ${newDisplayName}`, "success");
-    user.updateProfile({
-      displayName: newDisplayName,
-    });
-    dbService
-      .collection("ReArchive")
-      .doc(user.uid)
-      .update({ userDisplayName: newDisplayName });
-      dbService
-      .collection("Person")
-      .doc(user.uid)
-      .update({ userDisplayName: newDisplayName })
-      .then()
-      .catch((error) => {
-        console.log("Doc 없으니까 만들면 제대로 적용 됩니다~!");
-      });
-  };
-
-  // Response Exchange
-  const onReChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setModify(value);
-  };
-
-  const onReSubmit = (event) => {
-    event.preventDefault();
-
-    // 변경 & 빈칸 만들기
-    setTimeout(() => {
-      // Doc update https://firebase.google.com/docs/firestore/manage-data/add-data#update-data
-      dbService
-        .collection("ReArchive")
-        .doc(user.uid)
-        .update({ response: modify })
-        .then()
-        .catch((error) => {
-          console.log("Doc 없으니까 만들면 제대로 적용 됩니다~!");
-        });
-
-      setNewDisplayName("");
-    }, 1000);
-
-    // 안내
-    let timerInterval;
     Swal.fire({
-      title: "변경하는 중입니다...",
-      icon: "success",
-      timer: 1000,
-      timerProgressBar: true,
-      showConfirmButton: false,
-      willClose: () => {
-        clearInterval(timerInterval);
-      },
-    });
-    setModify("");
-    setToggle(false);
-  };
-
-  const onModifyBtnClick = () => {
-    // Modify (Update Doc)
-    setToggle((e) => !e);
-  };
-
-  const onDeleteBtnClick = () => {
-    // Delete
-    setToggle(false);
-    Swal.fire({
-      title: "삭제하시겠습니까?",
-      text: "다시 작성하실 수 있습니다!",
-      icon: "error",
+      title: "변경하시겠습니까?",
+      html: "<h6 style='color:red'> 이름을 변경해도 이미 작성한 글에 대한 이름은 바꿀 수 없습니다. <br/>이름 변경 후에 글을 다시 작성해야 이름 변경이 적용됩니다. </h6>",
+      icon: "warning",
       showCancelButton: false,
       showDenyButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "삭제",
+      confirmButtonText: "변경",
       denyButtonText: "취소",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await dbService.doc(`ReArchive/${user.uid}`).delete();
-        Swal.fire("삭제되었습니다!", "", "success");
-        setDocExist(false);
+        Swal.fire(
+          "변경되었습니다!",
+          `당신의 이름: ${newDisplayName}`,
+          "success"
+        );
+        user.updateProfile({
+          displayName: newDisplayName,
+        });
+        dbService
+          .collection("ReArchive")
+          .doc(user.uid)
+          .update({ userDisplayName: newDisplayName });
+        dbService
+          .collection("Person")
+          .doc(user.uid)
+          .update({ userDisplayName: newDisplayName })
+          .then()
+          .catch((error) => {
+            console.log("Doc 없으니까 만들면 제대로 적용 됩니다~!");
+          });
       }
     });
-  };
-
-  const onCancleClick = () => {
-    setToggle(false);
   };
 
   return (
@@ -230,54 +182,6 @@ export default function ReName() {
               <SubmitInput type="submit" value="변경" />
             </Form>
           </NameModify>
-
-          {docExist ? (
-            <>
-              <Distribute>
-                <DistributeBar></DistributeBar>
-              </Distribute>
-              <BtnBundle>
-                <Btn
-                  onClick={onModifyBtnClick}
-                  style={{ backgroundColor: "#3085D6" }}
-                >
-                  수정
-                </Btn>
-                <Btn
-                  onClick={onDeleteBtnClick}
-                  style={{ backgroundColor: "#DC3741" }}
-                >
-                  삭제
-                </Btn>
-              </BtnBundle>
-            </>
-          ) : (
-            <></>
-          )}
-          <ResponseModify>
-            {toggle ? (
-              <>
-                <Form onSubmit={onReSubmit}>
-                  <TextArea
-                    type="text"
-                    placeholder=""
-                    value={modify}
-                    onChange={onReChange}
-                    required
-                  />
-                  <SubmitInput type="submit" value="변경" />
-                </Form>
-                <Btn
-                  style={{ backgroundColor: "gray", width: "100%" }}
-                  onClick={onCancleClick}
-                >
-                  취소
-                </Btn>
-              </>
-            ) : (
-              <></>
-            )}
-          </ResponseModify>
         </>
       ) : (
         <Loading />
