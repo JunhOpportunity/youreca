@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { authService } from "../firebase";
 import Loading from "../Components/Loading";
+import { useNavigate } from "react-router-dom";
 
 const Person = styled.div`
   width: 100%;
@@ -63,6 +64,11 @@ const GoPageBtn = styled.button`
 `;
 
 export default function PersonBox({ personData }) {
+  const navigate = useNavigate();
+  const address = personData.userEmail.split("@")[0]
+  const onClickedBtn = () => {
+    navigate(`/Responses-Chat/user-reputations/${address}`);
+  }
   return (
     <>
       <Person>
@@ -87,7 +93,7 @@ export default function PersonBox({ personData }) {
         </ProfileImgBox>
         <PersonName>{personData.userDisplayName}</PersonName>
         <PersonInfo>{personData.personInfo}</PersonInfo>
-        <GoPageBtn>평판 작성하러 가기</GoPageBtn>
+        <GoPageBtn onClick={onClickedBtn}>평판 작성하러 가기</GoPageBtn>
       </Person>
     </>
   );

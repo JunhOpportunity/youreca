@@ -3,7 +3,7 @@ import { dbService } from "../firebase.js";
 import styled from "styled-components";
 import { authService } from "../firebase.js";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useMatch, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import Header from "../Components/Header.js";
 
@@ -82,14 +82,23 @@ const TextArea = styled.textarea`
 export default function Upload() {
   const [userRepresentation, setUserRepresentation] = useState("");
   const [response, SetResponse] = useState("");
+  const [profileImgUrl, setProfileImgUrl] = useState(false);
   const navigation = useNavigate();
   const auth = getAuth();
   const user = authService.currentUser;
+  const { id } = useParams();
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
       const created = user.metadata.createdAt;
       const last = user.metadata.lastLoginAt;
+      dbService
+        .collection("User")
+        .doc(user.uid)
+        .onSnapshot((snapshot) => {
+          console.log(snapshot.data());
+          setProfileImgUrl(snapshot.data().profileImgUrl);
+        });
     } else {
       navigation("/Responses-Chat");
     }
@@ -129,16 +138,20 @@ export default function Upload() {
       denyButtonText: "취소",
     }).then((result) => {
       if (result.isConfirmed) {
-        dbService.collection("ReArchive").doc(user.uid).set({
-          representation: userRepresentation,
-          response: response,
-          userId: user.uid,
-          userDisplayName: user.displayName,
-          createdTime: koDate,
-          userEmail: user.email,
-          emailVer: user.emailVerified,
-          created: Date.now(),
-        });
+        dbService
+          .collection(id)
+          .doc(user.uid)
+          .set({
+            representation: userRepresentation,
+            response: response,
+            userId: user.uid,
+            userDisplayName: user.displayName,
+            createdTime: koDate,
+            userEmail: user.email,
+            emailVer: user.emailVerified,
+            profileImgUrl: profileImgUrl ? profileImgUrl : "",
+            created: Date.now(),
+          });
         Swal.fire("등록되었습니다!", "", "success");
         setTimeout(() => {
           navigation("/Responses-Chat");
@@ -154,7 +167,7 @@ export default function Upload() {
       <Wrapper>
         <EmptyBox />
         <Form onSubmit={onSubmit}>
-          <Label for="story">당신의 정보를 입력해주세요.</Label>
+          <Label for="story">어떤 사이인가요?</Label>
           <InputDiv>
             <Input
               type="text"
@@ -166,10 +179,12 @@ export default function Upload() {
             />
           </InputDiv>
           <Label for="story">
-            김준호라는 사람은 어떤 사람이었는지, 어떤 생활을 해왔는지 함께
-            지내며 보았던 것들(공부시간, 독서습관, 인간관계, 인성 등)을 바탕으로
-            자유롭게 적어주세요! (추후 포트폴리오에 첨부될 예정이지만 사실대로
-            가감없이 정확하게 작성해주세요!)
+            이 사람은 어떤 사람이었는지, 어떤 생활을 해왔는지
+            <br />
+            함께 지내며 보았던 것들
+            <br />
+            (공부시간, 인간관계, 인성, 업무처리능력 등)을 <br />
+            바탕으로 자유롭게 적어주세요!
           </Label>
           <InputDiv>
             <TextArea
