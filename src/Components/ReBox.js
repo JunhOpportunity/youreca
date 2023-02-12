@@ -1,4 +1,6 @@
+import { useState } from "react";
 import styled from "styled-components";
+import { dbService } from "../firebase";
 
 const ProfileImgBox = styled.div`
   overflow: hidden;
@@ -69,17 +71,42 @@ const Svg = styled.svg`
   fill: blue;
 `;
 
-export default function ReBox({ re }) {
+const ProfileImg = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  fill: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #7bb241;
+  background-color: #7bb241;
+`;
+
+export default function ReBox({ re, isMine }) {
   
   return (
     <RereBox key={re.userId}>
       <TopBox>
         <TopLeft>
-          <ProfileImgBox>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-              <path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0S96 57.3 96 128s57.3 128 128 128zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
-            </svg>
-          </ProfileImgBox>
+        {re.profileImgUrl ? (
+            <>
+              <ProfileImg>
+                <img
+                  src={re.profileImgUrl}
+                  width="50px"
+                  height="50px"
+                />
+              </ProfileImg>
+            </>
+          ) : (
+            <ProfileImg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0S96 57.3 96 128s57.3 128 128 128zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+              </svg>
+            </ProfileImg>
+          )}
         </TopLeft>
         <TopRight>
           <Name>
