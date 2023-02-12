@@ -29,4 +29,4 @@
 ## Update
 * 2022.12.10 (1.0.0) 출시
 * 2022.12.24 (1.1.0) 업데이트 : EmailVerification 추가, Certification Bedge 추가
-* 2023.02.12 (2.0.0) 업데이트 준비 중 : Create My Reputation Page 추가, Set User Image 추가
+* 2023.02.12 (2.0.0) 업데이트 준비 중 : Create My Reputation Page 추가, Set User Image 추
