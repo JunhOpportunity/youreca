@@ -25,7 +25,6 @@ function App() {
           <Route path="/" element={<Overview />} />
           <Route path="/Responses-Chat" element={<Main />} />
           <Route path="/Responses-Chat/firstlogin" element={<FirstLogin />} />
-          <Route path="/Responses-Chat/upload/:id" element={<Upload />} />
           <Route path="/Responses-Chat/profile" element={<Profile />} />
           <Route path="/Responses-Chat/feedback" element={<Feedback />} />
           <Route path="/Responses-Chat/contact" element={<Contact />} />
@@ -33,13 +32,13 @@ function App() {
             path="/Responses-Chat/emailverification"
             element={<EmailVerification />}
           />
-          <Route path="/Responses-Chat/test" element={<UploadProfileImage />} />
-          <Route path="/Responses-Chat/people" element={<RePeople />} />
           <Route
             path="/Responses-Chat/user-reputations/:id"
             element={<UserReputations />}
           />
+          <Route path="/Responses-Chat/upload/:id" element={<Upload />} />
           <Route path="/Responses-Chat/regist" element={<RegistPerson />} />
+          <Route path="/Responses-Chat/test" element={<UploadProfileImage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

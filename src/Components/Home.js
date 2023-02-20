@@ -3,7 +3,7 @@ import { authService } from "../firebase.js";
 import { dbService } from "../firebase.js";
 import { useNavigate } from "react-router-dom";
 import Loading from "./Loading.js";
-import ReRe from "./ReRe.js";
+import RePeople from "./PeopleList.js";
 
 export default function Home() {
   const navigation = useNavigate();
@@ -24,5 +24,5 @@ export default function Home() {
     
   }, []);
 
-  return <>{init ? (isChanged ? <ReRe /> : navigation("/Responses-Chat/firstlogin")) : <Loading/>}</>;
+  return <>{init ? (isChanged ? <RePeople /> : navigation("/Responses-Chat/firstlogin")) : <Loading/>}</>;
 }

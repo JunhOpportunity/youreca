@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { Divide as Hamburger } from "hamburger-react";
 
 const Wrapper = styled.div`
+z-index:99;
   width: 100%;
   height: 50px;
   display: flex;
