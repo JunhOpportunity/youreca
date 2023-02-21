@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useMatch, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { authService } from "../firebase";
 import Swal from "sweetalert2";
@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { Divide as Hamburger } from "hamburger-react";
 
 const Wrapper = styled.div`
-z-index:99;
+  z-index: 99;
   width: 100%;
   height: 50px;
   display: flex;
@@ -40,6 +40,8 @@ const NavigateIcon = styled.div`
 
 const NavigationBox = styled(motion.div)`
   width: 100%;
+  height: 100%;
+  display: flex;
   background-color: #5a9216;
 `;
 const Bundle = styled(motion.ol)`
@@ -102,6 +104,9 @@ const Svg = styled.svg`
 `;
 
 export default function Header() {
+  const isMainPage = useMatch("/Responses-Chat/");
+  const isProfilePage = useMatch("/Responses-Chat/profile");
+  const isFeedbackPage = useMatch("/Responses-Chat/feedback");
   const [isOpen, setIsOpen] = useState(false);
   const navigation = useNavigate();
   const onLogOutClick = () => {
@@ -124,15 +129,15 @@ export default function Header() {
 
   const onMainClick = () => {
     navigation("/Responses-Chat");
-  }
+  };
 
   const onFeedbackClick = () => {
     navigation("/Responses-Chat/feedback");
-  }
+  };
 
   const onProfileClick = () => {
     navigation("/Responses-Chat/profile");
-  }
+  };
 
   const logoClick = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -163,13 +168,22 @@ export default function Header() {
           >
             <Bundle>
               <Category variants={variants}>
-                <Anchor onClick={onMainClick} href="/Responses-Chat/">Main</Anchor>
+                <Anchor onClick={onMainClick} href="/Responses-Chat/">
+                  Main
+                </Anchor>
               </Category>
               <Category variants={variants}>
-                <Anchor onClick={onProfileClick} href="/Responses-Chat/profile">Profile</Anchor>
+                <Anchor onClick={onProfileClick} href="/Responses-Chat/profile">
+                  Profile
+                </Anchor>
               </Category>
-              <Category  variants={variants}>
-                <Anchor onClick={onFeedbackClick} href="/Responses-Chat/feedback">Feedback</Anchor>
+              <Category variants={variants}>
+                <Anchor
+                  onClick={onFeedbackClick}
+                  href="/Responses-Chat/feedback"
+                >
+                  Feedback
+                </Anchor>
               </Category>
               <Category
                 variants={variants}

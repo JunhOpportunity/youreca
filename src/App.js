@@ -16,6 +16,7 @@ import RegistPerson from "./Routes/RegistPerson.js";
 import { UploadProfileImage } from "./Routes/UploadProfileImage.js";
 import Loading from "./Components/Loading.js";
 import UserReputations from "./Components/DetailPage.js";
+import HeaderTest from "./Components/HeaderTest.js";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/Responses-Chat/upload/:id" element={<Upload />} />
           <Route path="/Responses-Chat/regist" element={<RegistPerson />} />
           <Route path="/Responses-Chat/test" element={<UploadProfileImage />} />
+          <Route path="/Responses-Chat/header" element={<HeaderTest />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
