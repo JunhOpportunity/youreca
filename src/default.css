@@ -9,3 +9,7 @@ font-family: 'Hahmlet', serif;
 a {
   color : #696969;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
