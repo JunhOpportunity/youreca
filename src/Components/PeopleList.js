@@ -6,6 +6,7 @@ import { authService, dbService } from "../firebase";
 import { useEffect, useState } from "react";
 import ReBox from "./ReBox";
 import PersonBox from "./PersonBox";
+import HeaderTest from "./HeaderTest";
 
 const EmptyBox = styled.div`
   height: 50px;
@@ -60,7 +61,7 @@ export default function RePeople() {
 
   return (
     <>
-      <Header />
+      <HeaderTest />
       <EmptyBox />
       <NewPost onClick={goCreatePerson}>내 평판 추가하러 가기</NewPost>
       <Wrapper>
@@ -70,6 +71,7 @@ export default function RePeople() {
           </Box>
         ))}
       </Wrapper>
+      <EmptyBox />
     </>
   );
 }

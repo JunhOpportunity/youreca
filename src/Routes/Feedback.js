@@ -4,6 +4,7 @@ import Header from "../Components/Header";
 import Loading from "../Components/Loading";
 import { authService, dbService } from "../firebase";
 import Swal from "sweetalert2";
+import HeaderTest from "../Components/HeaderTest";
 
 
 const Wrapper = styled.div`
@@ -78,7 +79,7 @@ export default function Feedback() {
     <>
       {init ? (
         <>
-          <Header />
+          <HeaderTest />
           <Wrapper>
             <PageInfo>
               <h3>개선할 점이 있다면</h3>

@@ -6,6 +6,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Navigate, useMatch, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import Header from "../Components/Header.js";
+import HeaderTest from "../Components/HeaderTest";
 
 const EmptyBox = styled.div`
   height: 50px;
@@ -59,7 +60,7 @@ const InputSubmit = styled.input`
   color: white;
   height: 50px;
   position: fixed;
-  bottom: 0;
+  top: 50px;
   width: 100%;
   cursor: pointer;
 `;
@@ -162,9 +163,10 @@ export default function Upload() {
 
   return (
     <>
-      <Header />
+      <HeaderTest />
 
       <Wrapper>
+        <EmptyBox />
         <EmptyBox />
         <Form onSubmit={onSubmit}>
           <Label for="story">어떤 사이인가요?</Label>

@@ -6,6 +6,7 @@ import ReBox from "../Components/ReBox";
 import Loading from "../Components/Loading";
 import styled from "styled-components";
 import EmailCertification from "../Components/EmailCertification";
+import HeaderTest from "../Components/HeaderTest";
 
 const Wrapper = styled.div`
   padding: 10px;
@@ -38,7 +39,7 @@ export default function Profile() {
     <>
       {init ? (
         <>
-          <Header />
+          <HeaderTest />
           <EmptyBox/>
           
           <Wrapper>
@@ -46,6 +47,7 @@ export default function Profile() {
             <ReName re={myResponse} />
             {myResponse ? <ReBox re={myResponse} /> : <></>}
           </Wrapper>
+          <EmptyBox/>
         </>
       ) : (
         <Loading />

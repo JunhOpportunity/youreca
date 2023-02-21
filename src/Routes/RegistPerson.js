@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import Header from "../Components/Header.js";
 import Loading from "../Components/Loading";
 import PersonBox from "../Components/PersonBox.js";
+import HeaderTest from "../Components/HeaderTest.js";
 
 const EmptyBox = styled.div`
   height: 50px;
@@ -164,7 +165,7 @@ export default function RegistPerson() {
     <>
       {init ? (
         <>
-          <Header />
+          <HeaderTest />
 
           <Wrapper>
             <EmptyBox />
@@ -220,6 +221,7 @@ export default function RegistPerson() {
 
               <InputSubmit onSubmit={onSubmit} type="submit" value="등록하기" />
             </Form>
+            <EmptyBox />
           </Wrapper>
         </>
       ) : (

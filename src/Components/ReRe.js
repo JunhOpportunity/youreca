@@ -51,7 +51,7 @@ export default function ReRe() {
 
   return (
     <>
-      <Header />
+      <HeaderTest />
       <EmptyBox />
       <NewPost onClick={goUpload}>글 작성하러 가기</NewPost>
       <Wrapper>
@@ -61,6 +61,7 @@ export default function ReRe() {
           <EmptyReputation />
         )}
       </Wrapper>
+      <EmptyBox />
     </>
   );
 }
