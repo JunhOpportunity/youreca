@@ -77,7 +77,7 @@ export default function EmailVerification() {
       denyButtonText: "취소",
     }).then((result) => {
       if (result.isConfirmed) {
-        navigation("/Responses-Chat/");
+        navigation("/Responses-Chat/first-profile-img");
       }
     });
   };

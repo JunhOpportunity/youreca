@@ -74,7 +74,7 @@ const InputSubmit = styled.input`
   color: white;
   height: 50px;
   position: fixed;
-  bottom: 0;
+  bottom: 50px;
   width: 100%;
   cursor: pointer;
 `;
@@ -106,7 +106,6 @@ export default function RegistPerson() {
   const navigation = useNavigate();
   const auth = getAuth();
   const user = authService.currentUser;
-  console.log(user);
 
   useEffect(() => {
     authService.onAuthStateChanged(async (user) => {
@@ -114,7 +113,6 @@ export default function RegistPerson() {
         .collection("User")
         .doc(user.uid)
         .onSnapshot((snapshot) => {
-          console.log(snapshot.data());
           setProfileImgUrl(snapshot.data().profileImgUrl);
         });
       setInit(true);
@@ -154,7 +152,7 @@ export default function RegistPerson() {
         });
         Swal.fire("등록되었습니다!", "", "success");
         setTimeout(() => {
-          navigation("/Responses-Chat/people");
+          navigation("/Responses-Chat/");
         }, 1000);
       }
     });
