@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import Header from "./Header";
-import Upload from "../Routes/UploadReputation";
-import { useMatch, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { authService, dbService } from "../firebase";
 import { useEffect, useState } from "react";
 import ReBox from "./ReBox";
@@ -41,8 +39,6 @@ export default function UserReputations() {
       .onSnapshot((snapshot) => {
         const responseArray = snapshot.docs.map((doc) => ({ ...doc.data() }));
         setResponses(responseArray);
-        console.log(responseArray);
-        console.log("test", Boolean(responseArray.length));
       });
     setInit(true);
   }, []);

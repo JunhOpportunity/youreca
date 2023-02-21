@@ -1,6 +1,4 @@
-import { useState } from "react";
 import styled from "styled-components";
-import { dbService } from "../firebase";
 
 const ProfileImgBox = styled.div`
   overflow: hidden;
@@ -85,19 +83,14 @@ const ProfileImg = styled.div`
 `;
 
 export default function ReBox({ re, isMine }) {
-  
   return (
     <RereBox key={re.userId}>
       <TopBox>
         <TopLeft>
-        {re.profileImgUrl ? (
+          {re.profileImgUrl ? (
             <>
               <ProfileImg>
-                <img
-                  src={re.profileImgUrl}
-                  width="50px"
-                  height="50px"
-                />
+                <img src={re.profileImgUrl} width="50px" height="50px" />
               </ProfileImg>
             </>
           ) : (
@@ -110,14 +103,14 @@ export default function ReBox({ re, isMine }) {
         </TopLeft>
         <TopRight>
           <Name>
-            {re.userDisplayName || "NAME"}{" "} 
-            {re.emailVer ? 
-              <Svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
-                <path d="M352 128c0 70.7-57.3 128-128 128s-128-57.3-128-128S153.3 0 224 0s128 57.3 128 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM625 177L497 305c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L591 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+            {re.userDisplayName || "NAME"}{" "}
+            {re.emailVer ? (
+              <Svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M211 7.3C205 1 196-1.4 187.6 .8s-14.9 8.9-17.1 17.3L154.7 80.6l-62-17.5c-8.4-2.4-17.4 0-23.5 6.1s-8.5 15.1-6.1 23.5l17.5 62L18.1 170.6c-8.4 2.1-15 8.7-17.3 17.1S1 205 7.3 211l46.2 45L7.3 301C1 307-1.4 316 .8 324.4s8.9 14.9 17.3 17.1l62.5 15.8-17.5 62c-2.4 8.4 0 17.4 6.1 23.5s15.1 8.5 23.5 6.1l62-17.5 15.8 62.5c2.1 8.4 8.7 15 17.1 17.3s17.3-.2 23.4-6.4l45-46.2 45 46.2c6.1 6.2 15 8.7 23.4 6.4s14.9-8.9 17.1-17.3l15.8-62.5 62 17.5c8.4 2.4 17.4 0 23.5-6.1s8.5-15.1 6.1-23.5l-17.5-62 62.5-15.8c8.4-2.1 15-8.7 17.3-17.1s-.2-17.3-6.4-23.4l-46.2-45 46.2-45c6.2-6.1 8.7-15 6.4-23.4s-8.9-14.9-17.3-17.1l-62.5-15.8 17.5-62c2.4-8.4 0-17.4-6.1-23.5s-15.1-8.5-23.5-6.1l-62 17.5L341.4 18.1c-2.1-8.4-8.7-15-17.1-17.3S307 1 301 7.3L256 53.5 211 7.3z" />
               </Svg>
-              :
+            ) : (
               <></>
-            }
+            )}
           </Name>
           <Representation>
             {re.representation} ({re.userEmail || "Email"})

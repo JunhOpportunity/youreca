@@ -1,7 +1,4 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { authService } from "../firebase";
-import Loading from "../Components/Loading";
 import { useNavigate } from "react-router-dom";
 
 const Person = styled.div`
@@ -33,6 +30,8 @@ const PersonInfo = styled.div`
   padding: 10px;
   height: 100px;
   width: 90%;
+  overflow-y: auto;
+  
 `;
 
 const ProfileImgBox = styled.div`

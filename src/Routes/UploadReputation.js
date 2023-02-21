@@ -97,7 +97,6 @@ export default function Upload() {
         .collection("User")
         .doc(user.uid)
         .onSnapshot((snapshot) => {
-          console.log(snapshot.data());
           setProfileImgUrl(snapshot.data().profileImgUrl);
         });
     } else {

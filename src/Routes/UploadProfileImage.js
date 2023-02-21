@@ -116,7 +116,6 @@ export function UploadProfileImage() {
       const fileRef = storageService.ref().child(`profileImage/${user.uid}`);
       const response = await fileRef.putString(attachment, "data_url");
       const attachmentUrl = await response.ref.getDownloadURL();
-      console.log(attachmentUrl)
 
       Swal.fire({
         title: "이 사진으로 선택하시겠습니까?",
@@ -149,10 +148,8 @@ export function UploadProfileImage() {
   };
 
   const onClearAttachment = (e) => {
-    console.log(fileInput.current.value);
     fileInput.current.value = null;
     setAttachment(null);
-    console.log(attachment);
   };
 
   const onClickImageUpload = () => {

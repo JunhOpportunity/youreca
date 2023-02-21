@@ -3,7 +3,7 @@ import { authService, dbService } from "../firebase";
 import Loading from "./Loading";
 import Swal from "sweetalert2";
 import styled from "styled-components";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Form = styled.form`
   display: flex;
@@ -28,6 +28,7 @@ const Title = styled.div`
 const NameModify = styled.div`
   border: 1px solid green;
   padding: 10px;
+  margin-bottom: 10px;
 `;
 
 const NameInput = styled.input`

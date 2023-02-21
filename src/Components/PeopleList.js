@@ -1,10 +1,7 @@
 import styled from "styled-components";
-import Header from "./Header";
-import Upload from "../Routes/UploadReputation.js";
 import { useNavigate } from "react-router-dom";
 import { authService, dbService } from "../firebase";
 import { useEffect, useState } from "react";
-import ReBox from "./ReBox";
 import PersonBox from "./PersonBox";
 import HeaderTest from "./HeaderTest";
 
@@ -48,7 +45,6 @@ export default function RePeople() {
   useEffect(() => {
     dbService.collection("Person").onSnapshot((snapshot) => {
       const peopleArray = snapshot.docs.map((doc) => ({ ...doc.data() }));
-      console.log(peopleArray);
       setPeople(peopleArray);
     });
   }, []);
