@@ -18,21 +18,20 @@ export function LogoutButton () {
   const navigation = useNavigate();
   const onLogOutClick = () => {
     
-    authService.signOut();
+    
     let timerInterval;
     Swal.fire({
       title: "로그아웃 중입니다...",
       icon: "success",
-      timer: 1000,
+      timer: 250,
       timerProgressBar: true,
       showConfirmButton: false,
       willClose: () => {
         clearInterval(timerInterval);
       },
     });
-    setTimeout(() => {
-      navigation("/Responses-Chat");
-    }, 1500);
+    authService.signOut();
+    navigation("/Responses-Chat/");
   };
   return (
     <>
