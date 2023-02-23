@@ -25,13 +25,11 @@ const PersonInfo = styled.div`
   background-color: #d3d3d3;
   display: flex;
   justify-content: center;
-  align-items: center;
-  text-align: center;
   padding: 10px;
   height: 100px;
   width: 90%;
   overflow-y: auto;
-  
+  font-size: 15px;
 `;
 
 const ProfileImgBox = styled.div`
@@ -49,8 +47,7 @@ const ProfileImg = styled.div`
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 1px solid #7bb241;
-  background-color: #7bb241;
+  border: 1px solid;
 `;
 
 const GoPageBtn = styled.button`

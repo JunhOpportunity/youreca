@@ -23,7 +23,7 @@ const EmailVerifyBtn = styled.div`
   width: 100%;
   height: 50px;
   background-color: #696969;
-  font-size: 20px;
+  font-size: 13px;
   text-align: center;
   display: flex;
   justify-content: center;
