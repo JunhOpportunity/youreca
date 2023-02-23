@@ -7,6 +7,9 @@ import HeaderTest from "./HeaderTest";
 
 const EmptyBox = styled.div`
   height: 50px;
+  @media only screen and (min-width: 768px) {
+    height: 100px;
+  }
 `;
 
 const Box = styled.div`
@@ -19,7 +22,10 @@ const Wrapper = styled.div`
   padding: 10px;
   gap: 10px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
+  @media only screen and (min-width: 425px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
   @media only screen and (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
   }

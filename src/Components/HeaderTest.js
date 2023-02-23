@@ -2,9 +2,6 @@ import { useMatch, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { authService } from "../firebase";
 import Swal from "sweetalert2";
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Divide as Hamburger, Turn } from "hamburger-react";
 
 const TopWrapper = styled.div`
   z-index: 99;
@@ -17,6 +14,7 @@ const TopWrapper = styled.div`
   align-items: space-between;
 `;
 
+// Mobile Header (Width < 768px)
 const BottomWrapper = styled.div`
   z-index: 99;
   width: 100%;
@@ -27,6 +25,9 @@ const BottomWrapper = styled.div`
   bottom: 0;
   background-color: #5a9216;
   align-items: space-between;
+  @media only screen and (min-width: 768px) {
+    visibility: hidden;
+  }
 `;
 
 const Nav = styled.div`
@@ -58,13 +59,6 @@ const NavigationBox = styled.div`
   display: flex;
   background-color: #5a9216;
 `;
-const Bundle = styled(motion.ol)`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  text-align: center;
-  padding: 0px;
-`;
 
 const Bd = styled.ul`
   list-style-type: none;
@@ -83,43 +77,39 @@ const List = styled.li`
   align-items: center;
 `;
 
-const bundleVar = {
-  open: {
-    visibility: "visible",
-    transition: {
-      duration: 0.5,
-    },
-  },
-  close: {
-    visibility: "hidden",
-
-    transition: {
-      duration: 0.5,
-    },
-  },
-};
-
-const variants = {
-  open: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: 2,
-    },
-  },
-  close: {
-    opacity: 0,
-    y: -10,
-  },
-};
-
-const Category = styled(motion.li)`
-  color: #003d00;
-  font-weight: bolder;
-  
+// Web Header (Width >= 768px)
+const WebHeader = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  position: fixed;
+  top: 50px;
+  background-color: #5a9216;
+  @media only screen and (max-width: 767px) {
+    display: none;
+  }
 `;
 
-const Anchor = styled(motion.div)`
+const Bundle = styled.ol`
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+  list-style-type: none;
+`;
+
+const Category = styled.li`
+  color: #003d00;
+  font-weight: bolder;
+`;
+
+const Anchor = styled.div`
   text-align: center;
   color: #003d00;
   cursor: pointer;
@@ -190,6 +180,8 @@ export default function HeaderTest() {
           <NavigateIcon></NavigateIcon>
         </Nav>
       </TopWrapper>
+
+      {/* Mobile */}
       <BottomWrapper>
         <Bd>
           <List onClick={onMainClick}>
@@ -221,6 +213,26 @@ export default function HeaderTest() {
           </List>
         </Bd>
       </BottomWrapper>
+      {/* Web */}
+      <WebHeader>
+        <Bundle>
+          <Category>
+            <Anchor onClick={onMainClick} href="/Responses-Chat/">
+              Home
+            </Anchor>
+          </Category>
+          <Category>
+            <Anchor onClick={onFeedbackClick} href="/Responses-Chat/feedback">
+              Feedback
+            </Anchor>
+          </Category>
+          <Category>
+            <Anchor onClick={onProfileClick} href="/Responses-Chat/profile">
+              Profile
+            </Anchor>
+          </Category>
+        </Bundle>
+      </WebHeader>
     </>
   );
 }

@@ -9,6 +9,9 @@ import HeaderTest from "./HeaderTest";
 
 const EmptyBox = styled.div`
   height: 50px;
+  @media only screen and (min-width: 768px) {
+    height: 100px;
+  }
 `;
 
 const Wrapper = styled.div`
