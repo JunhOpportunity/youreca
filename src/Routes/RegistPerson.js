@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import { dbService } from "../firebase.js";
 import styled from "styled-components";
 import { authService } from "../firebase.js";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { Navigate, useNavigate } from "react-router-dom";
+import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import Header from "../Components/Header.js";
+
 import Loading from "../Components/Loading";
-import PersonBox from "../Components/PersonBox.js";
 import HeaderTest from "../Components/HeaderTest.js";
 
 const TopEmptyBox = styled.div`
@@ -85,7 +84,9 @@ const InputSubmit = styled.input`
   position: fixed;
   bottom: 50px;
   width: 100%;
-  cursor: pointer;
+  cursor: pointer;@media only screen and (min-width: 768px) {
+    bottom: 0px;
+  }
 `;
 
 const PreviewPersonBox = styled.div``;
@@ -151,14 +152,17 @@ export default function RegistPerson() {
       denyButtonText: "취소",
     }).then((result) => {
       if (result.isConfirmed) {
-        dbService.collection("Person").doc(user.uid).set({
-          userId: user.uid,
-          userDisplayName: user.displayName,
-          userEmail: user.email,
-          emailVer: user.emailVerified,
-          personInfo: personInfo,
-          profileImgUrl: profileImgUrl ? profileImgUrl : "",
-        });
+        dbService
+          .collection("Person")
+          .doc(user.uid)
+          .set({
+            userId: user.uid,
+            userDisplayName: user.displayName,
+            userEmail: user.email,
+            emailVer: user.emailVerified,
+            personInfo: personInfo,
+            profileImgUrl: profileImgUrl ? profileImgUrl : "",
+          });
         Swal.fire("등록되었습니다!", "", "success");
         setTimeout(() => {
           navigation("/Responses-Chat/");

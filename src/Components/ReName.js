@@ -19,14 +19,14 @@ const TitleBox = styled.div`
 const Title = styled.div`
   width: 100px;
   border-radius: 25px;
-  background-color: #43a047;
+  background-color: #7bb241;
   color: white;
   text-align: center;
   padding: 5px;
 `;
 
 const NameModify = styled.div`
-  border: 1px solid green;
+  border: 1px solid #43a047;
   padding: 10px;
   margin-bottom: 10px;
 `;
@@ -35,59 +35,14 @@ const NameInput = styled.input`
   width: 100%;
   border: none;
   height: 25px;
-  background-color: #c8e6c9;
-`;
-
-const Distribute = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-const DistributeBar = styled.div`
-  width: 100%;
-  height: 1px;
-  background-color: gray;
-  margin: 20px 0px;
-`;
-
-const ResponseModify = styled.div``;
-
-const BtnBundle = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const Btn = styled.button`
-  cursor: pointer;
-  width: 50vw;
-  height: 30px;
-  border: 0;
-  border-radius: 0.25em;
-  color: white;
-  font-weight: bolder;
-`;
-
-const TextArea = styled.textarea`
-  border: none;
-  background-color: beige;
-  width: 100%;
-  height: 200px;
-  resize: none;
-  padding: 10px;
-  background-color: #c8e6c9;
+  box-shadow: 0px 0px 2px #7bb241;
 `;
 
 const SubmitInput = styled.input`
   border: none;
-  background-color: #66bb6a;
+  background-color: #7bb241;
   color: white;
-`;
-
-const Text = styled.div`
-  font-size: 5px;
-  text-align: center;
-  color: red;
-  font-weight: bold;
+  cursor: pointer;
 `;
 
 export default function ReName() {

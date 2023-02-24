@@ -5,6 +5,11 @@ import { useEffect, useState } from "react";
 import PersonBox from "./PersonBox";
 import HeaderTest from "./HeaderTest";
 
+const Main = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const TopEmptyBox = styled.div`
   height: 50px;
   @media only screen and (min-width: 768px) {
@@ -26,6 +31,7 @@ const Box = styled.div`
 `;
 
 const Wrapper = styled.div`
+  max-width: 1280px;
   padding: 10px;
   gap: 10px;
   display: grid;
@@ -45,11 +51,17 @@ const NewPost = styled.div`
   cursor: pointer;
   width: 100%;
   height: 50px;
-  background-color: #7bb241;
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: #7bb241;
+  box-shadow: 0px 0px 2px #7bb241;
+  transition-duration: .3s;
+  :hover {
+    color: white;
+    background-color: #7bb241;
+  }
 `;
 
 export default function RePeople() {
@@ -73,13 +85,15 @@ export default function RePeople() {
       <HeaderTest />
       <TopEmptyBox />
       <NewPost onClick={goCreatePerson}>내 평판 추가하러 가기</NewPost>
-      <Wrapper>
-        {people.map((pers) => (
-          <Box>
-            <PersonBox personData={pers} isMine={true} />
-          </Box>
-        ))}
-      </Wrapper>
+      <Main>
+        <Wrapper>
+          {people.map((pers) => (
+            <Box>
+              <PersonBox personData={pers} isMine={true} />
+            </Box>
+          ))}
+        </Wrapper>
+      </Main>
       <BottomEmptyBox />
     </>
   );

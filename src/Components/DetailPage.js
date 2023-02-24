@@ -29,11 +29,16 @@ const NewPost = styled.div`
   cursor: pointer;
   width: 100%;
   height: 50px;
-  background-color: #7bb241;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: #7bb241;
+  box-shadow: 0px 0px 2px #7bb241;
+  transition-duration: .3s;
+  :hover {
+    color: white;
+    background-color: #7bb241;
+  }
 `;
 
 export default function UserReputations() {

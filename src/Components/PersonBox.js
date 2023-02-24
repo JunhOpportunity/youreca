@@ -10,7 +10,7 @@ const Person = styled.div`
   align-items: center;
   padding: 10px;
   gap: 10px;
-  box-shadow: 0px 0px 5px #696969;
+  box-shadow: 0px 0px 1px;
 `;
 
 const PersonName = styled.div`
@@ -43,6 +43,7 @@ const ProfileImg = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  background-color: #7bb241;
   fill: white;
   width: 100px;
   height: 100px;
@@ -51,20 +52,27 @@ const ProfileImg = styled.div`
 `;
 
 const GoPageBtn = styled.button`
-  all: unset; 
+  all: unset;
   width: 100%;
   height: 50px;
   text-align: center;
-  background-color: gray;
+  background-color: white;
+  color: #7bb241;
+  border: 1px solid #7bb241;
+  transition-duration: .3s;
+  :hover {
+    color: white;
+    background-color: #7bb241;
+  }
   cursor: pointer;
 `;
 
 export default function PersonBox({ personData }) {
   const navigate = useNavigate();
-  const address = personData.userEmail.split("@")[0]
+  const address = personData.userEmail.split("@")[0];
   const onClickedBtn = () => {
     navigate(`/Responses-Chat/user-reputations/${address}`);
-  }
+  };
   return (
     <>
       <Person>
@@ -94,4 +102,3 @@ export default function PersonBox({ personData }) {
     </>
   );
 }
-

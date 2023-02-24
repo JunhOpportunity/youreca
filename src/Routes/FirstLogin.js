@@ -55,12 +55,12 @@ const Title = styled.div`
 const NameInput = styled.input`
   border: none;
   height: 50px;
-  background-color: #c8e6c9;
+  box-shadow: 0px 0px 2px #7bb241;
   outline: none;
-  transition-duration: 1s;
-  color: white;
+  color: #7bb241;
   text-align: center;
-  ::placeholder {
+
+  /* ::placeholder {
       color: #43a047;
       transition-duration: 1s;
       text-align: center;
@@ -72,7 +72,7 @@ const NameInput = styled.input`
       color: white;
       transition-duration: 1s;
     }
-  }
+  } */
 `;
 
 const SubmitInput = styled.input`
@@ -144,7 +144,7 @@ export default function FirstLogin() {
               onChange={onChange}
               required
             />
-            <SubmitInput type="submit" value="변경" />
+            <SubmitInput type="submit" value="설정" />
           </Form>
         </NameModify>
       </Wrapper>

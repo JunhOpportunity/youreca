@@ -1,7 +1,6 @@
 import { useMatch, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { authService } from "../firebase";
-import Swal from "sweetalert2";
+
 
 const TopWrapper = styled.div`
   z-index: 99;
@@ -10,7 +9,8 @@ const TopWrapper = styled.div`
   display: flex;
   justify-content: center;
   position: fixed;
-  background-color: #5a9216;
+  background-color: white;
+  box-shadow: 0px 0px 2px;
   align-items: space-between;
 `;
 
@@ -23,7 +23,8 @@ const BottomWrapper = styled.div`
   justify-content: center;
   position: fixed;
   bottom: 0;
-  background-color: #5a9216;
+  background-color: white;
+  box-shadow: 0px 0px 2px;
   align-items: space-between;
   @media only screen and (min-width: 768px) {
     visibility: hidden;
@@ -86,13 +87,15 @@ const WebHeader = styled.div`
   width: 100%;
   position: fixed;
   top: 50px;
-  background-color: #5a9216;
+  background-color: white;
+  box-shadow: 0px 0px 2px;
   @media only screen and (max-width: 767px) {
     display: none;
   }
 `;
 
 const Bundle = styled.ol`
+  max-width: 1280px;
   display: flex;
   width: 100%;
   justify-content: space-evenly;
@@ -107,6 +110,10 @@ const Bundle = styled.ol`
 const Category = styled.li`
   color: #003d00;
   font-weight: bolder;
+  padding: 5px;
+  width: 200px;
+  border-radius: 25rem;
+  border: ${(props) => (props.pageMatch ? "1px dashed #7bb241" : "1px solid transparent")};
 `;
 
 const Anchor = styled.div`
@@ -118,14 +125,14 @@ const Anchor = styled.div`
 const Svg = styled.svg`
   width: 25px;
   height: 25px;
-  fill: #003d00;
+  fill: #7bb241;
 `;
 
 const BottomSvg = styled.svg`
   width: 25px;
   height: 25px;
   cursor: pointer;
-  fill: ${(props) => (props.pageMatch ? "#003d00" : "#e1e1e1")};
+  fill: ${(props) => (props.pageMatch ? "#7bb241" : "#4e4e4e6e")};
 `;
 
 export default function HeaderTest() {
@@ -134,23 +141,6 @@ export default function HeaderTest() {
   const isFeedbackPage = useMatch("/Responses-Chat/feedback");
 
   const navigation = useNavigate();
-  const onLogOutClick = () => {
-    authService.signOut();
-    let timerInterval;
-    Swal.fire({
-      title: "로그아웃 중입니다...",
-      icon: "success",
-      timer: 1000,
-      timerProgressBar: true,
-      showConfirmButton: false,
-      willClose: () => {
-        clearInterval(timerInterval);
-      },
-    });
-    setTimeout(() => {
-      navigation("/Responses-Chat");
-    }, 1500);
-  };
 
   const onMainClick = () => {
     navigation("/Responses-Chat");
@@ -216,17 +206,17 @@ export default function HeaderTest() {
       {/* Web */}
       <WebHeader>
         <Bundle>
-          <Category>
+          <Category pageMatch={isMainPage}>
             <Anchor onClick={onMainClick} href="/Responses-Chat/">
               Home
             </Anchor>
           </Category>
-          <Category>
+          <Category pageMatch={isFeedbackPage}>
             <Anchor onClick={onFeedbackClick} href="/Responses-Chat/feedback">
               Feedback
             </Anchor>
           </Category>
-          <Category>
+          <Category pageMatch={isProfilePage}>
             <Anchor onClick={onProfileClick} href="/Responses-Chat/profile">
               Profile
             </Anchor>

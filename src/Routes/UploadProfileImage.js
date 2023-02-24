@@ -70,13 +70,18 @@ const SelectDefaultImage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #66bb6a;
-  color: white;
   height: 50px;
   position: fixed;
   bottom: 0;
   width: 100%;
   cursor: pointer;
+  color: #7bb241;
+  box-shadow: 0px 0px 10px #7bb241;
+  transition-duration: .3s;
+  :hover {
+    color: white;
+    background-color: #7bb241;
+  }
 `;
 
 export function UploadProfileImage() {

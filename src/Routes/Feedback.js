@@ -6,7 +6,6 @@ import { authService, dbService } from "../firebase";
 import Swal from "sweetalert2";
 import HeaderTest from "../Components/HeaderTest";
 
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -28,23 +27,22 @@ const Form = styled.form`
 
 const TextArea = styled.textarea`
   border: none;
-  background-color: beige;
   width: 70vw;
   height: 200px;
   resize: none;
   padding: 10px;
-  background-color: #c8e6c9;
+  box-shadow: 0px 0px 2px #7bb241;
 `;
 
 const InputBtn = styled.input`
   cursor: pointer;
   width: 100%;
   border-radius: 0.25em;
-  color: white;
   font-weight: bolder;
-  background-color: #66bb6a;
   border: none;
   padding: 10px;
+  color: white;
+  background-color: #7bb241;
 `;
 
 export default function Feedback() {
@@ -62,7 +60,7 @@ export default function Feedback() {
     await dbService.collection("FeedBack").add({
       feedback: supplementation,
       userName: user.displayName,
-      userEmail: user.email
+      userEmail: user.email,
     });
     Swal.fire("등록되었습니다!", "", "success");
     setSupplementation("");
