@@ -13,10 +13,17 @@ const Wrapper = styled.div`
   padding: 10px;
 `;
 
-const EmptyBox = styled.div`
+const TopEmptyBox = styled.div`
   height: 50px;
   @media only screen and (min-width: 768px) {
     height: 100px;
+  }
+`;
+
+const BottomEmptyBox = styled.div`
+  height: 50px;
+  @media only screen and (min-width: 768px) {
+    height: 0px;
   }
 `;
 
@@ -42,16 +49,16 @@ export default function Profile() {
       {init ? (
         <>
           <HeaderTest />
-          <EmptyBox />
+          <TopEmptyBox />
 
           <Wrapper>
             <RechangeProfileImage />
             <EmailCertification />
             <ReName re={myResponse} />
             {myResponse ? <ReBox re={myResponse} /> : <></>}
-            <LogoutButton/>
+            <LogoutButton />
           </Wrapper>
-          <EmptyBox />
+          <BottomEmptyBox />
         </>
       ) : (
         <Loading />

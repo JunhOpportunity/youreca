@@ -5,10 +5,17 @@ import { useEffect, useState } from "react";
 import PersonBox from "./PersonBox";
 import HeaderTest from "./HeaderTest";
 
-const EmptyBox = styled.div`
+const TopEmptyBox = styled.div`
   height: 50px;
   @media only screen and (min-width: 768px) {
     height: 100px;
+  }
+`;
+
+const BottomEmptyBox = styled.div`
+  height: 50px;
+  @media only screen and (min-width: 768px) {
+    height: 0px;
   }
 `;
 
@@ -64,7 +71,7 @@ export default function RePeople() {
   return (
     <>
       <HeaderTest />
-      <EmptyBox />
+      <TopEmptyBox />
       <NewPost onClick={goCreatePerson}>내 평판 추가하러 가기</NewPost>
       <Wrapper>
         {people.map((pers) => (
@@ -73,7 +80,7 @@ export default function RePeople() {
           </Box>
         ))}
       </Wrapper>
-      <EmptyBox />
+      <BottomEmptyBox />
     </>
   );
 }

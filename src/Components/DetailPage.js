@@ -7,10 +7,17 @@ import { EmptyReputation } from "./EmptyReputation";
 import MyReBox from "./MyReBox";
 import HeaderTest from "./HeaderTest";
 
-const EmptyBox = styled.div`
+const TopEmptyBox = styled.div`
   height: 50px;
   @media only screen and (min-width: 768px) {
     height: 100px;
+  }
+`;
+
+const BottomEmptyBox = styled.div`
+  height: 50px;
+  @media only screen and (min-width: 768px) {
+    height: 0px;
   }
 `;
 
@@ -55,7 +62,7 @@ export default function UserReputations() {
   return (
     <>
       <HeaderTest />
-      <EmptyBox />
+      <TopEmptyBox />
       <NewPost onClick={goUpload}>글 작성하러 가기</NewPost>
       <Wrapper>
         {responses.length ? (
@@ -66,7 +73,7 @@ export default function UserReputations() {
           <EmptyReputation />
         )}
       </Wrapper>
-      <EmptyBox />
+      <BottomEmptyBox />
     </>
   );
 }

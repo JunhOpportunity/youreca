@@ -10,11 +10,17 @@ import Loading from "../Components/Loading";
 import PersonBox from "../Components/PersonBox.js";
 import HeaderTest from "../Components/HeaderTest.js";
 
-const EmptyBox = styled.div`
+const TopEmptyBox = styled.div`
   height: 50px;
-  width: 100%;
   @media only screen and (min-width: 768px) {
     height: 100px;
+  }
+`;
+
+const BottomEmptyBox = styled.div`
+  height: 50px;
+  @media only screen and (min-width: 768px) {
+    height: 0px;
   }
 `;
 
@@ -169,7 +175,7 @@ export default function RegistPerson() {
           <HeaderTest />
 
           <Wrapper>
-            <EmptyBox />
+            <TopEmptyBox />
             <Form onSubmit={onSubmit}>
               <Label for="story" style={{ color: "red" }}>
                 <u>프로필 사진과 이름 변경은 프로필 페이지에서만 가능합니다.</u>
@@ -222,7 +228,7 @@ export default function RegistPerson() {
 
               <InputSubmit onSubmit={onSubmit} type="submit" value="등록하기" />
             </Form>
-            <EmptyBox />
+            <BottomEmptyBox />
           </Wrapper>
         </>
       ) : (

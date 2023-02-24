@@ -8,11 +8,17 @@ import ReBox from "./ReBox";
 import { EmptyReputation } from "./EmptyReputation";
 import MyReBox from "./MyReBox";
 
-
-const EmptyBox = styled.div`
+const TopEmptyBox = styled.div`
   height: 50px;
   @media only screen and (min-width: 768px) {
     height: 100px;
+  }
+`;
+
+const BottomEmptyBox = styled.div`
+  height: 50px;
+  @media only screen and (min-width: 768px) {
+    height: 0px;
   }
 `;
 
@@ -33,7 +39,7 @@ const NewPost = styled.div`
 
 export default function ReRe() {
   const [responses, setResponses] = useState([]);
-  const [isMine, setIsMine] = useState(false)
+  const [isMine, setIsMine] = useState(false);
   const { id } = useParams();
   const user = authService.currentUser;
   useEffect(() => {
@@ -55,16 +61,18 @@ export default function ReRe() {
   return (
     <>
       <HeaderTest />
-      <EmptyBox />
+      <TopEmptyBox />
       <NewPost onClick={goUpload}>글 작성하러 가기</NewPost>
       <Wrapper>
-        {responses.length != 0 ? 
-          (responses.map((re) =>  isMine ? <MyReBox re={re}/> :<ReBox re={re} />)
+        {responses.length != 0 ? (
+          responses.map((re) =>
+            isMine ? <MyReBox re={re} /> : <ReBox re={re} />
+          )
         ) : (
           <EmptyReputation />
         )}
       </Wrapper>
-      <EmptyBox />
+      <BottomEmptyBox />
     </>
   );
 }

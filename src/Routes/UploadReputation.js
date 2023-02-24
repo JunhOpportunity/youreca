@@ -169,7 +169,6 @@ export default function Upload() {
 
       <Wrapper>
         <EmptyBox />
-        <EmptyBox />
         <Form onSubmit={onSubmit}>
           <Label for="story">어떤 사이인가요?</Label>
           <InputDiv>
