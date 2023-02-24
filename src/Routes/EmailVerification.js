@@ -61,7 +61,7 @@ export default function EmailVerification() {
   }, []);
 
   const onBtnClick = () => {
-    navigation("/Responses-Chat/");
+    navigation("/Responses-Chat/first-profile-img");
   };
 
   const onSkipBtnClick = () => {

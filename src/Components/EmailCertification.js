@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Swal from "sweetalert2";
 
 const EmailVerify = styled.div`
-  border: 1px solid green;
+  border: 1px solid #43a047;
   padding: 10px;
   margin-bottom: 10px;
 `;
@@ -35,7 +35,7 @@ const EmailVerifyBtn = styled.div`
 const EmailTitle = styled.div`
   width: 200px;
   border-radius: 0.25em;
-  background-color: #43a047;
+  background-color: #7bb241;
   color: white;
   text-align: center;
   padding: 5px;

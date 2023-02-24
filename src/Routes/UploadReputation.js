@@ -3,9 +3,8 @@ import { dbService } from "../firebase.js";
 import styled from "styled-components";
 import { authService } from "../firebase.js";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { Navigate, useMatch, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import Header from "../Components/Header.js";
 import HeaderTest from "../Components/HeaderTest";
 
 const EmptyBox = styled.div`

@@ -50,7 +50,6 @@ export default function Profile() {
         <>
           <HeaderTest />
           <TopEmptyBox />
-
           <Wrapper>
             <RechangeProfileImage />
             <EmailCertification />
