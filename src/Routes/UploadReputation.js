@@ -8,10 +8,10 @@ import Swal from "sweetalert2";
 import HeaderTest from "../Components/HeaderTest";
 
 const EmptyBox = styled.div`
-  height: 50px;
+  height: 100px;
   width: 100%;
   @media only screen and (min-width: 768px) {
-    height: 100px;
+    height: 150px;
   }
 `;
 
@@ -58,13 +58,18 @@ const Input = styled.input`
 
 const InputSubmit = styled.input`
   border: none;
-  background-color: #66bb6a;
-  color: white;
   height: 50px;
   position: fixed;
   top: 50px;
   width: 100%;
   cursor: pointer;
+  color: #7bb241;
+  box-shadow: 0px 0px 2px #7bb241;
+  color: white;
+  background-color:  #7bb241;
+  @media only screen and (min-width: 768px) {
+    top: 100px;
+  }
 `;
 
 const TextArea = styled.textarea`
@@ -173,7 +178,7 @@ export default function Upload() {
           <InputDiv>
             <Input
               type="text"
-              placeholder="EX) 군대 동기, 선임, 후임, 대학 동기 등"
+              placeholder="EX) 군대 동기, 대학 동기, 입사 동기 등"
               value={userRepresentation}
               name="representation"
               onChange={onChange}
@@ -197,7 +202,7 @@ export default function Upload() {
               required
             ></TextArea>
           </InputDiv>
-          <InputSubmit type="submit" value="게시하기" />
+          <InputSubmit type="submit" value="등록하기" />
         </Form>
       </Wrapper>
     </>

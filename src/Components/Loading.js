@@ -4,14 +4,13 @@ import "animate.css";
 const Title = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: black;
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-
   font-weight: lighter;
-  color: white;
+  color: black;
 `;
 const TitleText = styled.div`
   font-size: 50px;

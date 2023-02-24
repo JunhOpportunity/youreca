@@ -10,9 +10,9 @@ import Loading from "../Components/Loading";
 import HeaderTest from "../Components/HeaderTest.js";
 
 const TopEmptyBox = styled.div`
-  height: 50px;
+  height: 100px;
   @media only screen and (min-width: 768px) {
-    height: 100px;
+    height: 150px;
   }
 `;
 
@@ -78,14 +78,15 @@ const UserNameInput = styled.input`
 
 const InputSubmit = styled.input`
   border: none;
-  background-color: #66bb6a;
-  color: white;
   height: 50px;
   position: fixed;
-  bottom: 50px;
+  top: 50px;
   width: 100%;
-  cursor: pointer;@media only screen and (min-width: 768px) {
-    bottom: 0px;
+  color: white;
+  background-color: #7bb241;
+  cursor: pointer;
+  @media only screen and (min-width: 768px) {
+    top: 100px;
   }
 `;
 
