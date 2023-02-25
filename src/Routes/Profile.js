@@ -8,6 +8,7 @@ import EmailCertification from "../Components/EmailCertification";
 import HeaderTest from "../Components/HeaderTest";
 import { RechangeProfileImage } from "../Components/RechangeProfileImage";
 import { LogoutButton } from "../Components/Logout";
+import PasswordReset from "../Components/PasswordReset";
 
 const Wrapper = styled.div`
   padding: 10px;
@@ -55,6 +56,7 @@ export default function Profile() {
             <EmailCertification />
             <ReName re={myResponse} />
             {myResponse ? <ReBox re={myResponse} /> : <></>}
+            <PasswordReset />
             <LogoutButton />
           </Wrapper>
           <BottomEmptyBox />

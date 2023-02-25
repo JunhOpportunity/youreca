@@ -130,7 +130,7 @@ export function RechangeProfileImage() {
     if (attachment) {
       Swal.fire({
         title: "이 사진으로 선택하시겠습니까?",
-        text: "프로필 사진은 Profile 페이지에서 변경하실 수 있습니다.",
+        html: "<h6 style='color:red'> 사진을 변경해도 이미 작성한 글에 대한 사진은 바꿀 수 없습니다. <br/>사진 변경 후에 글을 다시 작성해야 사진 변경이 적용됩니다. </h6>",
         icon: "success",
         showCancelButton: false,
         showDenyButton: true,
@@ -227,7 +227,7 @@ export function RechangeProfileImage() {
                   : { visibility: "hidden" }
               }
             >
-              업로드
+              변경
             </ImgButton>
           </ButtonDiv>
 
