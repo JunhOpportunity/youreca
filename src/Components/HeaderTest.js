@@ -139,6 +139,7 @@ export default function HeaderTest() {
   const isMainPage = useMatch("/Responses-Chat/");
   const isProfilePage = useMatch("/Responses-Chat/profile");
   const isFeedbackPage = useMatch("/Responses-Chat/feedback");
+  const isCSCPage = useMatch("/Responses-Chat/client-service-center");
 
   const navigation = useNavigate();
 
@@ -228,6 +229,11 @@ export default function HeaderTest() {
           <Category pageMatch={isProfilePage}>
             <Anchor onClick={onProfileClick} href="/Responses-Chat/profile">
               Profile
+            </Anchor>
+          </Category>
+          <Category pageMatch={isCSCPage}>
+            <Anchor onClick={onClientServiceCenterClick} href="/Responses-Chat/profile">
+              Client Service
             </Anchor>
           </Category>
         </Bundle>
