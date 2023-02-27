@@ -12,7 +12,6 @@ import EmailVerification from "./Routes/EmailVerification.js";
 import RegistPerson from "./Routes/RegistPerson.js";
 import { UploadProfileImage } from "./Routes/UploadProfileImage.js";
 import UserReputations from "./Components/DetailPage.js";
-import HeaderTest from "./Components/HeaderTest.js";
 import Loading from "./Components/Loading.js";
 import ClientServiceCenter from "./Routes/ClientServiceCenter.js";
 

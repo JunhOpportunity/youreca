@@ -1,13 +1,13 @@
-import { async } from "@firebase/util";
 import { useEffect, useState } from "react";
 import Auth from "../Components/Auth.js";
 import Home from "../Components/Home.js";
 import Loading from "../Components/Loading.js";
 import { authService } from "../firebase.js";
 import { dbService } from "../firebase.js";
+import { useUserDataInit } from "../Hooks/InitEffect.js";
 
-export default function Conatct() {
-  const [init, setInit] = useState(false);
+export default function Main() {
+  const init = useUserDataInit();
   const [isLogin, setIsLogin] = useState(false);
   useEffect(() => {
     authService.onAuthStateChanged(async (user) => {
@@ -34,9 +34,10 @@ export default function Conatct() {
       } else {
         setIsLogin(false);
       }
-
-      setInit(true);
     });
   }, []);
+
   return <>{init ? isLogin ? <Home /> : <Auth /> : <Loading />}</>;
 }
+
+

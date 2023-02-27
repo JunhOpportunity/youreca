@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { dbService } from "../firebase.js";
 import styled from "styled-components";
 import { authService } from "../firebase.js";
-import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-
 import Loading from "../Components/Loading";
 import HeaderTest from "../Components/HeaderTest.js";
+import { useUserDataInit } from "../Hooks/InitEffect.js";
 
 const TopEmptyBox = styled.div`
   height: 100px;
@@ -111,24 +110,20 @@ const ProfileImg = styled.div`
 `;
 
 export default function RegistPerson() {
-  const [init, setInit] = useState(false);
+  const init = useUserDataInit();
   const [personInfo, setPersonInfo] = useState("");
   const [profileImgUrl, setProfileImgUrl] = useState(false);
   const navigation = useNavigate();
-  const auth = getAuth();
   const user = authService.currentUser;
 
-  useEffect(() => {
-    authService.onAuthStateChanged(async (user) => {
-      dbService
-        .collection("User")
-        .doc(user.uid)
-        .onSnapshot((snapshot) => {
-          setProfileImgUrl(snapshot.data().profileImgUrl);
-        });
-      setInit(true);
-    });
-  }, []);
+  authService.onAuthStateChanged(async (user) => {
+    dbService
+      .collection("User")
+      .doc(user.uid)
+      .onSnapshot((snapshot) => {
+        setProfileImgUrl(snapshot.data().profileImgUrl);
+      });
+  });
 
   const onChange = (event) => {
     const {

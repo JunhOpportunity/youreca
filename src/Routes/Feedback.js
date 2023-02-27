@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
-import Header from "../Components/Header";
 import Loading from "../Components/Loading";
 import { authService, dbService } from "../firebase";
 import Swal from "sweetalert2";
 import HeaderTest from "../Components/HeaderTest";
+import { useUserDataInit } from "../Hooks/InitEffect";
 
 const Wrapper = styled.div`
   display: flex;
@@ -48,13 +48,7 @@ const InputBtn = styled.input`
 export default function Feedback() {
   const [supplementation, setSupplementation] = useState("");
   const user = authService.currentUser;
-  const [init, setInit] = useState(false);
-  useEffect(() => {
-    authService.onAuthStateChanged(async (user) => {
-      setInit(true);
-    });
-  }, []);
-
+  const init = useUserDataInit();
   const onSubmit = async (event) => {
     event.preventDefault();
     await dbService.collection("FeedBack").add({

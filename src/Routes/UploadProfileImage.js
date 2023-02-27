@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Loading from "../Components/Loading.js";
 import { dbService, storageService } from "../firebase.js";
 import { authService } from "../firebase.js";
 import styled from "styled-components";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { useUserDataInit } from "../Hooks/InitEffect.js";
 
 const Wrapper = styled.div`
   display: flex;
@@ -77,7 +78,7 @@ const SelectDefaultImage = styled.div`
   cursor: pointer;
   color: #7bb241;
   box-shadow: 0px 0px 10px #7bb241;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
   :hover {
     color: white;
     background-color: #7bb241;
@@ -87,16 +88,9 @@ const SelectDefaultImage = styled.div`
 export function UploadProfileImage() {
   const navigation = useNavigate();
   const [attachment, setAttachment] = useState();
-  const [init, setInit] = useState(false);
+  const init = useUserDataInit();
   const fileInput = useRef();
   let user = authService.currentUser;
-
-  useEffect(() => {
-    authService.onAuthStateChanged(async (user) => {
-      user = authService.currentUser;
-      setInit(true);
-    });
-  }, []);
 
   const onFileChange = (event) => {
     const {
@@ -112,7 +106,6 @@ export function UploadProfileImage() {
     };
     reader.readAsDataURL(theFile);
   };
-
 
   // 첫 로그인 시 프로필 이미지 설정 (Set Profile Image At First Login)
   const onSubmit = async (event) => {

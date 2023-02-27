@@ -137,10 +137,7 @@ const SubmitInput = styled.input`
 `;
 
 export default function MyReBox({ re }) {
-  const [newDisplayName, setNewDisplayName] = useState("");
-  const [init, setInit] = useState(false);
   const [toggle, setToggle] = useState(false);
-  const [docExist, setDocExist] = useState(false);
   const [modify, setModify] = useState(re.response);
 
   const user = authService.currentUser;
@@ -174,8 +171,6 @@ export default function MyReBox({ re }) {
         .catch((error) => {
           console.log("Doc 없으니까 만들면 제대로 적용 됩니다~!");
         });
-
-      setNewDisplayName("");
     }, 1000);
 
     // 안내
@@ -215,13 +210,8 @@ export default function MyReBox({ re }) {
       if (result.isConfirmed) {
         await dbService.doc(`${id}/${user.uid}`).delete();
         Swal.fire("삭제되었습니다!", "", "success");
-        setDocExist(false);
       }
     });
-  };
-
-  const onCancleClick = () => {
-    setToggle(false);
   };
 
   return (

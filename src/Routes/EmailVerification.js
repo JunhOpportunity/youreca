@@ -4,6 +4,7 @@ import Loading from "../Components/Loading";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useUserDataInit } from "../Hooks/InitEffect";
 
 const Wrapper = styled.div`
   display: flex;
@@ -46,19 +47,13 @@ const BtnText = styled.div``;
 
 export default function EmailVerification() {
   const navigation = useNavigate();
-  const [init, setInit] = useState(false);
-
+  const init = useUserDataInit();
   const user = authService.currentUser;
 
   setTimeout(() => {
     user.sendEmailVerification();
   }, 3000);
 
-  useEffect(() => {
-    authService.onAuthStateChanged(async (user) => {
-      setInit(true);
-    });
-  }, []);
 
   const onBtnClick = () => {
     navigation("/Responses-Chat/first-profile-img");
