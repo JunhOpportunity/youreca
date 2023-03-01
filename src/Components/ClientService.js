@@ -20,7 +20,7 @@ const Wrapper = styled.div`
 
 const PageTitleBox = styled.div`
   width: 100%;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   color: #7bb241;
@@ -67,7 +67,7 @@ const Svg = styled.svg`
   pointer-events: none;
 `;
 
-const DeleteBtn = styled.div`
+const Btn = styled.div`
   width: 100%;
   height: 30px;
   background-color: red;
@@ -109,13 +109,41 @@ export default function ClientService() {
     }
   };
 
+  const UploadRequest = (requestCategory, request, id, koDate, deleteDate) => {
+    dbService
+      .collection("Client-Request")
+      .doc(requestCategory)
+      .collection(request)
+      .doc(`${user.uid}`)
+      .set({
+        userId: user.uid,
+        userDisplayName: user.displayName,
+        userEmail: user.email,
+        reason: id,
+        createdTime: koDate,
+        deleteDate: deleteDate,
+      });
+  };
+
   const onClickDeleteBtn = async (event) => {
     const {
       target: { id },
     } = event;
 
     const date = new Date();
+
     const koDate = date.toLocaleString("ko", {
+      minute: "numeric",
+      hour: "numeric",
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+      weekday: "short",
+    });
+
+    let deleteDate = new Date();
+    deleteDate.setDate(date.getDate() + 7);
+    deleteDate = deleteDate.toLocaleString("ko", {
       minute: "numeric",
       hour: "numeric",
       day: "numeric",
@@ -128,7 +156,7 @@ export default function ClientService() {
 
     Swal.fire({
       title: "정말 신청하시겠습니까?",
-      text: "취소가 불가능합니다.",
+      html: `<h6 style='color:red'> 7일 이내 취소하지 않으실 경우 <br/>${deleteDate} 이후 삭제됩니다. </h6>`,
       icon: "warning",
       showCancelButton: false,
       showDenyButton: true,
@@ -138,41 +166,45 @@ export default function ClientService() {
       denyButtonText: "취소",
     }).then((result) => {
       if (result.isConfirmed) {
-        dbService.collection("Client-Request").doc(`${user.uid}-${id}`).set({
-          userId: user.uid,
-          userDisplayName: user.displayName,
-          userEmail: user.email,
-          reason: id,
-          createdTime: koDate,
-        });
+        if (id == "ReputationDelete") {
+          UploadRequest("Reputation", "Delete", id, koDate, deleteDate);
+        } else if (id == "AccountDelete") {
+          UploadRequest("Account", "Delete", id, koDate, deleteDate);
+        }
         Swal.fire("신청되었습니다!", "", "success");
       }
     });
+  };
+
+  const CancleRequest = (requestCategory, request) => {
+    dbService
+      .collection("Client-Request")
+      .doc(requestCategory)
+      .collection(request)
+      .doc(`${user.uid}`)
+      .delete();
+  };
+
+  const onClickCancleBtn = async (event) => {
+    const {
+      target: { id },
+    } = event;
+
+    event.preventDefault();
+
+    if (id == "ReputationDeleteCancle") {
+      CancleRequest("Reputation", "Delete");
+    } else if (id == "AccountDeleteCancle") {
+      CancleRequest("Account", "Delete");
+    }
+    Swal.fire("취소되었습니다!", "", "success");
   };
 
   return (
     <>
       <CS>
         <Wrapper>
-        <PageTitleBox>도움이 필요하신가요?</PageTitleBox>
-          <ServiceBox>
-            <TitleBox id="DeleteAccount" onClick={onClick}>
-              <Svg
-                isOpen={isDeleteAccountOpen}
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 256 512"
-              >
-                <path d="M246.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L178.7 256 41.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
-              </Svg>
-              제 평판 페이지를 제거하고 싶어요
-            </TitleBox>
-            <SubmitBox isOpen={isDeleteAccountOpen}>
-              정말로 평판을 제거하고싶으신가요?
-              <DeleteBtn id="ReputationDelete" onClick={onClickDeleteBtn}>
-                평판 제거 신청하기
-              </DeleteBtn>
-            </SubmitBox>
-          </ServiceBox>
+          <PageTitleBox>도움이 필요하신가요?</PageTitleBox>
           <ServiceBox>
             <TitleBox id="DeleteReputation" onClick={onClick}>
               <Svg
@@ -182,13 +214,52 @@ export default function ClientService() {
               >
                 <path d="M246.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L178.7 256 41.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
               </Svg>
-              계정 탈퇴가 하고싶어요
+              제 평판 페이지를 제거하고 싶어요
             </TitleBox>
             <SubmitBox isOpen={isDeleteReputationOpen}>
+              정말로 평판을 제거하고싶으신가요?
+              <Btn id="ReputationDelete" onClick={onClickDeleteBtn}>
+                평판 제거 신청하기
+              </Btn>
+              이미 평판 제거를 신청하셨나요?
+              <br />
+              혹시 평판 제거를 취소하고 싶으신가요?
+              <Btn
+                style={{ backgroundColor: "blue" }}
+                id="ReputationDeleteCancle"
+                onClick={onClickCancleBtn}
+              >
+                평판 제거 신청 취소하기
+              </Btn>
+            </SubmitBox>
+          </ServiceBox>
+
+          <ServiceBox>
+            <TitleBox id="DeleteAccount" onClick={onClick}>
+              <Svg
+                isOpen={isDeleteAccountOpen}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 256 512"
+              >
+                <path d="M246.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L178.7 256 41.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
+              </Svg>
+              계정 탈퇴가 하고싶어요
+            </TitleBox>
+            <SubmitBox isOpen={isDeleteAccountOpen}>
               계정을 삭제하고싶으신가요?
-              <DeleteBtn id="AccountDelete" onClick={onClickDeleteBtn}>
+              <Btn id="AccountDelete" onClick={onClickDeleteBtn}>
                 계정 삭제 신청하기
-              </DeleteBtn>
+              </Btn>
+              이미 계정 삭제를 신청하셨나요?
+              <br />
+              혹시 계정 삭제를 취소하고 싶으신가요?
+              <Btn
+                style={{ backgroundColor: "blue" }}
+                id="AccountDeleteCancle"
+                onClick={onClickCancleBtn}
+              >
+                계정 삭제 신청 취소하기
+              </Btn>
             </SubmitBox>
           </ServiceBox>
           <ServiceBox>
