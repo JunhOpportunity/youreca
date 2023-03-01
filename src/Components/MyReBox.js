@@ -4,19 +4,9 @@ import { authService, dbService } from "../firebase";
 import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 
-const ProfileImgBox = styled.div`
-  overflow: hidden;
-  fill: white;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 1px solid #7bb241;
-  background-color: #7bb241;
-`;
-
 const RereBox = styled.div`
   margin-bottom: 20px;
-  box-shadow: 5px 5px 10px;
+  box-shadow: 0px 0px 1px;
   position: relative;
   z-index: 0;
 `;
