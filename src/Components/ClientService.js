@@ -109,7 +109,7 @@ export default function ClientService() {
     }
   };
 
-  const UploadRequest = (requestCategory, request, id, koDate, deleteDate) => {
+  const UploadRequest = (requestCategory, request, id, koDate, deleteDate, deleteDateNumber) => {
     dbService
       .collection("Client-Request")
       .doc(requestCategory)
@@ -122,6 +122,7 @@ export default function ClientService() {
         reason: id,
         createdTime: koDate,
         deleteDate: deleteDate,
+        deleteDateNumber: deleteDateNumber,
       });
   };
 
@@ -142,7 +143,7 @@ export default function ClientService() {
     });
 
     let deleteDate = new Date();
-    deleteDate.setDate(date.getDate() + 7);
+    const deleteDateNumber = deleteDate.setDate(date.getDate() + 7);
     deleteDate = deleteDate.toLocaleString("ko", {
       minute: "numeric",
       hour: "numeric",
@@ -167,9 +168,9 @@ export default function ClientService() {
     }).then((result) => {
       if (result.isConfirmed) {
         if (id == "ReputationDelete") {
-          UploadRequest("Reputation", "Delete", id, koDate, deleteDate);
+          UploadRequest("Reputation", "Delete", id, koDate, deleteDate, deleteDateNumber);
         } else if (id == "AccountDelete") {
-          UploadRequest("Account", "Delete", id, koDate, deleteDate);
+          UploadRequest("Account", "Delete", id, koDate, deleteDate, deleteDateNumber);
         }
         Swal.fire("신청되었습니다!", "", "success");
       }
