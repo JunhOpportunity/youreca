@@ -119,6 +119,7 @@ export default function ClientService() {
         userId: user.uid,
         userDisplayName: user.displayName,
         userEmail: user.email,
+        userEmailName: user.email.split("@")[0],
         reason: id,
         createdTime: koDate,
         deleteDate: deleteDate,
@@ -249,17 +250,7 @@ export default function ClientService() {
             <SubmitBox isOpen={isDeleteAccountOpen}>
               계정을 삭제하고싶으신가요?
               <Btn id="AccountDelete" onClick={onClickDeleteBtn}>
-                계정 삭제 신청하기
-              </Btn>
-              이미 계정 삭제를 신청하셨나요?
-              <br />
-              혹시 계정 삭제를 취소하고 싶으신가요?
-              <Btn
-                style={{ backgroundColor: "blue" }}
-                id="AccountDeleteCancle"
-                onClick={onClickCancleBtn}
-              >
-                계정 삭제 신청 취소하기
+                계정 삭제하기
               </Btn>
             </SubmitBox>
           </ServiceBox>

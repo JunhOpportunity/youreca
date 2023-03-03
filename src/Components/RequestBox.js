@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Swal from "sweetalert2";
+import { DeleteUserAccountData } from "../Logic/DeleteUserData.js";
 
 const Wrapper = styled.div``;
 
@@ -31,7 +32,7 @@ const RequestDate = styled.div`
   color: #696969;
 `;
 
-export function RequestBox({ userRequest }) {
+export function RequestBox({ userRequest, requestFunction}) {
   const isExpire = Date.now() > userRequest.deleteDateNumber;
 
   const onClickBtn = () => {
@@ -50,6 +51,7 @@ export function RequestBox({ userRequest }) {
       if (result.isConfirmed) {
         console.log(result)
         if (result.value == userRequest.reason) {
+          requestFunction(userRequest)
           Swal.fire("처리되었습니다", "", "success");
         } else {
           Swal.fire("실패했습니다", "", "error");

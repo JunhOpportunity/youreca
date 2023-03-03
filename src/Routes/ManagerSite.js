@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import HeaderTest from "../Components/HeaderTest";
-import { DeleteAccount } from "../Components/Management";
+import { DeleteAccount } from "../Components/DeleteAccountRequest";
 import Loading from "../Components/Loading";
 import { dbService } from "../firebase";
 import { useEffect, useState } from "react";
+import { DeleteReputation } from "../Components/DeleteReputationRequest.js";
+import { GetAllDownDocumentData } from "../Logic/GetFirestore.js";
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,20 +28,18 @@ const BottomEmptyBox = styled.div`
 `;
 
 const ManageBox = styled.div`
-
   padding: 10px;
 `;
 
 const ManageBoxTitle = styled.div`
   font-size: 30px;
-  
 `;
 
 export default function ManagerSite() {
-  const [accountReqData, setAccountReqDataData] = useState();
+  const [accountReqData, setAccountReqData] = useState();
   const [reputationReqData, setReputationReqData] = useState();
   const [init, setInit] = useState(false);
-
+  let newdata;
   function getData(requestCategory, request, setFunction) {
     dbService
       .collection("Client-Request")
@@ -51,9 +51,12 @@ export default function ManagerSite() {
         setFunction(newData);
       });
   }
-
   useEffect(() => {
-    getData("Account", "Delete", setAccountReqDataData);
+    const data = GetAllDownDocumentData("Client-Request", "Account", "Delete");
+    newdata = GetAllDownDocumentData("Client-Request", "Account", "Delete");
+    console.log("data", data);
+    setAccountReqData(data);
+    //getData("Account", "Delete", setAccountReqData);
     getData("Reputation", "Delete", setReputationReqData);
     setInit(true);
   }, []);
@@ -66,12 +69,12 @@ export default function ManagerSite() {
           <TopEmptyBox />
           <Wrapper>
             <ManageBox>
-              <ManageBoxTitle>계정 삭제 요청</ManageBoxTitle>
+              <ManageBoxTitle>계정 데이터 삭제 요청</ManageBoxTitle>
               <DeleteAccount reqData={accountReqData} />
             </ManageBox>
             <ManageBox>
               <ManageBoxTitle>평판 삭제 요청</ManageBoxTitle>
-              <DeleteAccount reqData={reputationReqData} />
+              <DeleteReputation reqData={reputationReqData} />
             </ManageBox>
           </Wrapper>
           <BottomEmptyBox />
