@@ -49,7 +49,6 @@ export function RequestBox({ userRequest, requestFunction}) {
       denyButtonText: "취소",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(result)
         if (result.value == userRequest.reason) {
           requestFunction(userRequest)
           Swal.fire("처리되었습니다", "", "success");

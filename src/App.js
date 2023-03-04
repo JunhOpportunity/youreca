@@ -15,6 +15,7 @@ import UserReputations from "./Components/DetailPage.js";
 import Loading from "./Components/Loading.js";
 import ClientServiceCenter from "./Routes/ClientServiceCenter.js";
 import ManagerSite from "./Routes/ManagerSite.js";
+import Test from "./Routes/Test.js";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/Responses-Chat/upload/:id" element={<Upload />} />
           <Route path="/Responses-Chat/regist" element={<RegistPerson />} />
           <Route path="/Responses-Chat/test" element={<ManagerSite />} />
+          <Route path="/Responses-Chat/test2" element={<Test />} />
           <Route path="/Responses-Chat/client-service-center" element={<ClientServiceCenter />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

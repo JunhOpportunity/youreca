@@ -66,7 +66,6 @@ const NewPost = styled.div`
 
 export default function RePeople() {
   const [people, setPeople] = useState([]);
-  const user = authService.currentUser;
   useEffect(() => {
     dbService.collection("Person").onSnapshot((snapshot) => {
       const peopleArray = snapshot.docs.map((doc) => ({ ...doc.data() }));

@@ -19,7 +19,6 @@ const Wrapper = styled.div`
 `;
 
 export function DeleteAccount({ reqData }) {
-  console.log("reqData",reqData)
   return (
     <Wrapper>
       {reqData ? (

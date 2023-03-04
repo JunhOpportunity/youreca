@@ -14,7 +14,6 @@ const TextBox = styled.div`
 `;
 
 export function EmptyReputation() {
-  console.log("The List Is Empty!")
   return (
     <>
       <Wrapper>
