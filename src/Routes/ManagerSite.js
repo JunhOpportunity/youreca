@@ -5,7 +5,8 @@ import Loading from "../Components/Loading";
 import { dbService } from "../firebase";
 import { useEffect, useState } from "react";
 import { DeleteReputation } from "../Components/DeleteReputationRequest.js";
-import { GetAllDownDocumentData } from "../Logic/GetFirestore.js";
+import { getAllDownDocumentData } from "../Logic/GetFirestore.js";
+import { useGetAllDownDocumentData, useGetAllDownDocumentData2 } from "../Hooks/getDataEffect";
 
 const Wrapper = styled.div`
   display: flex;
@@ -36,28 +37,21 @@ const ManageBoxTitle = styled.div`
 `;
 
 export default function ManagerSite() {
-  const [accountReqData, setAccountReqData] = useState();
-  const [reputationReqData, setReputationReqData] = useState();
   const [init, setInit] = useState(false);
-  let newdata;
-  function getData(requestCategory, request, setFunction) {
-    dbService
-      .collection("Client-Request")
-      .doc(requestCategory)
-      .collection(request)
-      .orderBy("createdTime", "desc")
-      .onSnapshot(async (snapshot) => {
-        const newData = snapshot.docs.map((doc) => ({ ...doc.data() }));
-        setFunction(newData);
-      });
-  }
+
+  const accountReqData = useGetAllDownDocumentData(
+    "Client-Request",
+    "Account",
+    "Delete"
+  );
+
+  const reputationReqData = useGetAllDownDocumentData(
+    "Client-Request",
+    "Reputation",
+    "Delete"
+  );
+
   useEffect(() => {
-    const data = GetAllDownDocumentData("Client-Request", "Account", "Delete");
-    newdata = GetAllDownDocumentData("Client-Request", "Account", "Delete");
-    console.log("data", data);
-    setAccountReqData(data);
-    //getData("Account", "Delete", setAccountReqData);
-    getData("Reputation", "Delete", setReputationReqData);
     setInit(true);
   }, []);
 

@@ -7,13 +7,15 @@ export function GetAllDocumentData(collection) {
   });
 }
 
-export function GetAllDownDocumentData(topCollection, topDoc, downCollection) {
-  dbService
+export function getAllDownDocumentData(topCollection, topDoc, downCollection) {
+  let newData = dbService
     .collection(topCollection)
     .doc(topDoc)
     .collection(downCollection)
-    .get().then((snapshot) => {
+    .get()
+    .then((snapshot) => {
       const data = snapshot.docs.map((doc) => ({ ...doc.data() }));
+      return data;
     });
-
+  return newData
 }

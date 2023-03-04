@@ -1,95 +1,99 @@
-import Header from "../Components/Header";
-import Loading from "../Components/Loading";
-import FirstLogin from "./FirstLogin";
 import styled from "styled-components";
-import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import PersonBox from "../Components/PersonBox";
+import HeaderTest from "../Components/HeaderTest";
+import {
+  useGetAllDocumentData2,
+} from "../Hooks/getDataEffect";
+import Loading from "../Components/Loading";
 
-const ListBundle = styled(motion.ul)`
-  background-color: yellow;
+const Main = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
-const List = styled(motion.li)`
-  background-color: blue;
-  width: 100px;
-  height: 100px;
-  color: white;
+const TopEmptyBox = styled.div`
+  height: 50px;
+  @media only screen and (min-width: 768px) {
+    height: 100px;
+  }
 `;
 
-const bundleVar = {
-  open: {
-    opacity: 1,
-    y: 200,
-    transition: {
-      delayChildren: 0.3,
-      staggerChildren: 0.2,
-    },
-  },
-  close: {
-    transition: {
-      delay: 0.5,
-    },
-    opacity: 1,
-    y: 0,
-  },
-};
+const BottomEmptyBox = styled.div`
+  height: 50px;
+  @media only screen and (min-width: 768px) {
+    height: 0px;
+  }
+`;
 
-const variants = {
-  open: {
-    y: 20,
-    opacity: 1,
-    transition: {
-      delay: 0.5,
-      staggerChildren: 0.5,
-    },
-  },
-  close: {
-    y: 20,
-    opacity: 0,
-  },
-};
+const Box = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
-const RangeInput = styled.input`
-  -webkit-appearance: none;
+const Wrapper = styled.div`
+  max-width: 1280px;
+  padding: 10px;
+  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  @media only screen and (min-width: 425px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media only screen and (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media only screen and (min-width: 1025px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+`;
+
+const NewPost = styled.div`
+  cursor: pointer;
   width: 100%;
-  height: 15px;
-  border-radius: 5px;
-  background: #d3d3d3;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: 0.2s;
-  transition: opacity 0.2s;
-  ::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background: #04aa6d;
-    cursor: pointer;
-  }
-  ::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background: #04aa6d;
-    cursor: pointer;
+  height: 50px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #7bb241;
+  box-shadow: 0px 0px 2px #7bb241;
+  transition-duration: 0.3s;
+  :hover {
+    color: white;
+    background-color: #7bb241;
   }
 `;
 
-export default function Profile() {
-  const [value, setValue] = useState(1);
-
-  const onChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setValue(value);
+export default function Test() {
+  const people = useGetAllDocumentData2("Person");
+  const navigation = useNavigate();
+  const goCreatePerson = () => {
+    navigation("/Responses-Chat/regist");
   };
 
   return (
     <>
-      <Loading/>
+      {people ? (
+        <>
+          <HeaderTest />
+          <TopEmptyBox />
+          <NewPost onClick={goCreatePerson}>내 평판 추가하러 가기</NewPost>
+          <Main>
+            <Wrapper>
+              {people.map((pers) => (
+                <Box>
+                  <PersonBox personData={pers} isMine={true} />
+                </Box>
+              ))}
+            </Wrapper>
+          </Main>
+          <BottomEmptyBox />
+        </>
+      ) : (
+        <><Loading/></>
+      )}
     </>
   );
 }
