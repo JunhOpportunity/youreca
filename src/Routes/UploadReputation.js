@@ -91,6 +91,7 @@ export default function Upload() {
   const [userRepresentation, setUserRepresentation] = useState("");
   const [response, SetResponse] = useState("");
   const [profileImgUrl, setProfileImgUrl] = useState(false);
+  const [userNickname, setUserNickname] = useState("");
   const navigation = useNavigate();
   const auth = getAuth();
   const user = authService.currentUser;
@@ -105,6 +106,7 @@ export default function Upload() {
         .doc(user.uid)
         .onSnapshot((snapshot) => {
           setProfileImgUrl(snapshot.data().profileImgUrl);
+          setUserNickname(snapshot.data().userNickname);
         });
     } else {
       navigation("/Responses-Chat");

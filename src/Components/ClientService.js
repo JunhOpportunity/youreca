@@ -110,6 +110,7 @@ export default function ClientService() {
   };
 
   const UploadRequest = (requestCategory, request, id, koDate, deleteDate, deleteDateNumber) => {
+    console.log(user)
     dbService
       .collection("Client-Request")
       .doc(requestCategory)
@@ -119,7 +120,6 @@ export default function ClientService() {
         userId: user.uid,
         userDisplayName: user.displayName,
         userEmail: user.email,
-        userEmailName: user.email.split("@")[0],
         reason: id,
         createdTime: koDate,
         deleteDate: deleteDate,
