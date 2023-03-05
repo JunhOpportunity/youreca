@@ -6,6 +6,7 @@ import {
   useGetAllDocumentData2,
 } from "../Hooks/getDataEffect";
 import Loading from "../Components/Loading";
+import FirstLoginSetNickname from "./FirstLoginSetNickname";
 
 const Main = styled.div`
   display: flex;
@@ -89,6 +90,7 @@ export default function Test() {
               ))}
             </Wrapper>
           </Main>
+          <FirstLoginSetNickname/>
           <BottomEmptyBox />
         </>
       ) : (
