@@ -74,3 +74,21 @@ export function useGetAllDocumentData2(topCollection) {
 
   return data;
 }
+
+export function useGetDocumentData(collection, document) {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    dbService
+      .collection(collection)
+      .doc(document)
+      .get()
+      .then((doc) => {
+        const getData = doc.data()
+        setData(getData);
+      });
+  }, []);
+
+  return data;
+}
+
