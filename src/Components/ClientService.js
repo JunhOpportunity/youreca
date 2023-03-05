@@ -267,7 +267,7 @@ export default function ClientService() {
             </TitleBox>
             <SubmitBox isOpen={isBugreportOpen}>
               어떤 버그를 신고하고싶으신가요?
-              <ReportBtn href="https://open.kakao.com/me/junhopportunity">
+              <ReportBtn target="_blank" rel="noreferrer noopener" href="https://open.kakao.com/me/junhopportunity">
                 버그 신고하러 가기
               </ReportBtn>
             </SubmitBox>
