@@ -64,9 +64,9 @@ const ResponseBox = styled.div`
 `;
 
 const Svg = styled.svg`
-  width: 15px;
-  height: 15px;
-  fill: blue;
+  width: 25px;
+  height: 25px;
+  fill: black;
 `;
 
 const ProfileImg = styled.div`
@@ -242,11 +242,9 @@ export default function MyReBox({ re }) {
           <BtnBundle>
             <Btn
               onClick={onModifyBtnClick}
-              style={{ backgroundColor: "#3085D6" }}
             >
               {!toggle ? (
                 <Svg
-                  style={{ fill: "white" }}
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
                 >
@@ -254,7 +252,6 @@ export default function MyReBox({ re }) {
                 </Svg>
               ) : (
                 <Svg
-                  style={{ fill: "white" }}
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 320 512"
                 >
@@ -264,10 +261,9 @@ export default function MyReBox({ re }) {
             </Btn>
             <Btn
               onClick={onDeleteBtnClick}
-              style={{ backgroundColor: "#DC3741" }}
             >
               <Svg
-                style={{ fill: "white" }}
+                style={{ fill: "red" }}
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 448 512"
               >
