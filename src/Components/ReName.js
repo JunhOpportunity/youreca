@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
-import { authService, dbService } from "../firebase";
+import { useState } from "react";
+import { authService } from "../firebase";
 import Loading from "./Loading";
 import Swal from "sweetalert2";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { UpdateTopDocument } from "../Logic/UpdateData";
+import { useUserDataInit } from "../Hooks/InitEffect";
 
 const Form = styled.form`
   display: flex;
@@ -47,31 +48,8 @@ const SubmitInput = styled.input`
 
 export default function ReName() {
   const [newDisplayName, setNewDisplayName] = useState("");
-  const [init, setInit] = useState(false);
-  const [toggle, setToggle] = useState(false);
-  const [docExist, setDocExist] = useState(false);
-  const [modify, setModify] = useState("");
-
-  const navigate = useNavigate();
-
+  const init = useUserDataInit();
   const user = authService.currentUser;
-
-  useEffect(() => {
-    authService.onAuthStateChanged(async (user) => {
-      setInit(true);
-      dbService
-        .collection("ReArchive")
-        .doc(user.uid)
-        .get()
-        .then((snapshot) => {
-          if (snapshot.exists) {
-            setDocExist(true);
-          } else {
-            setDocExist(false);
-          }
-        });
-    });
-  }, []);
 
   // Name Exchange
   const onChange = (event) => {
@@ -103,18 +81,9 @@ export default function ReName() {
         user.updateProfile({
           displayName: newDisplayName,
         });
-        dbService
-          .collection("ReArchive")
-          .doc(user.uid)
-          .update({ userDisplayName: newDisplayName });
-        dbService
-          .collection("Person")
-          .doc(user.uid)
-          .update({ userDisplayName: newDisplayName })
-          .then()
-          .catch((error) => {
-            console.log("Doc 없으니까 만들면 제대로 적용 됩니다~!");
-          });
+        UpdateTopDocument("Person", user.uid, {
+          userDisplayName: newDisplayName,
+        });
       }
     });
   };

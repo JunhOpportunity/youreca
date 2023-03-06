@@ -1,4 +1,3 @@
-import Loading from "./Loading";
 import { RequestBox } from "./RequestBox";
 import styled from "styled-components";
 import { DeleteUserAccountData } from "../Logic/DeleteUserData.js";

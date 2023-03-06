@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { authService, dbService } from "../firebase";
-import { useEffect, useState } from "react";
 import PersonBox from "./PersonBox";
 import HeaderTest from "./HeaderTest";
+import { useGetAllDocumentData } from "../Hooks/getDataEffect";
 
 const Main = styled.div`
   display: flex;
@@ -57,7 +56,7 @@ const NewPost = styled.div`
   align-items: center;
   color: #7bb241;
   box-shadow: 0px 0px 2px #7bb241;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
   :hover {
     color: white;
     background-color: #7bb241;
@@ -65,13 +64,7 @@ const NewPost = styled.div`
 `;
 
 export default function RePeople() {
-  const [people, setPeople] = useState([]);
-  useEffect(() => {
-    dbService.collection("Person").onSnapshot((snapshot) => {
-      const peopleArray = snapshot.docs.map((doc) => ({ ...doc.data() }));
-      setPeople(peopleArray);
-    });
-  }, []);
+  const people = useGetAllDocumentData("Person");
 
   const navigation = useNavigate();
 
@@ -81,19 +74,25 @@ export default function RePeople() {
 
   return (
     <>
-      <HeaderTest />
-      <TopEmptyBox />
-      <NewPost onClick={goCreatePerson}>내 평판 추가하러 가기</NewPost>
-      <Main>
-        <Wrapper>
-          {people.map((pers) => (
-            <Box>
-              <PersonBox personData={pers} isMine={true} />
-            </Box>
-          ))}
-        </Wrapper>
-      </Main>
-      <BottomEmptyBox />
+      {people ? (
+        <>
+          <HeaderTest />
+          <TopEmptyBox />
+          <NewPost onClick={goCreatePerson}>내 평판 추가하러 가기</NewPost>
+          <Main>
+            <Wrapper>
+              {people.map((pers) => (
+                <Box>
+                  <PersonBox personData={pers} isMine={true} />
+                </Box>
+              ))}
+            </Wrapper>
+          </Main>
+          <BottomEmptyBox />
+        </>
+      ) : (
+        <></>
+      )}
     </>
   );
 }

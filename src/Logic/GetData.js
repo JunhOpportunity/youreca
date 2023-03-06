@@ -17,5 +17,5 @@ export function getAllDownDocumentData(topCollection, topDoc, downCollection) {
       const data = snapshot.docs.map((doc) => ({ ...doc.data() }));
       return data;
     });
-  return newData
+  return newData;
 }

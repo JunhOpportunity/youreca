@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import Loading from "../Components/Loading";
 import HeaderTest from "../Components/HeaderTest.js";
 import { useUserDataInit } from "../Hooks/InitEffect.js";
+import { CreateTopDocument } from "../Logic/CreateData.js";
 
 const TopEmptyBox = styled.div`
   height: 100px;
@@ -89,8 +90,6 @@ const InputSubmit = styled.input`
   }
 `;
 
-const PreviewPersonBox = styled.div``;
-
 const ProfileImgBox = styled.div`
   display: flex;
   justify-content: center;
@@ -123,7 +122,7 @@ export default function RegistPerson() {
       .doc(user.uid)
       .onSnapshot((snapshot) => {
         setProfileImgUrl(snapshot.data().profileImgUrl);
-        setUserNickname(snapshot.data().userNickname)
+        setUserNickname(snapshot.data().userNickname);
       });
   });
 
@@ -150,25 +149,21 @@ export default function RegistPerson() {
       denyButtonText: "취소",
     }).then((result) => {
       if (result.isConfirmed) {
-        dbService
-          .collection("Person")
-          .doc(user.uid)
-          .set({
-            userId: user.uid,
-            userDisplayName: user.displayName,
-            userEmail: user.email,
-            emailVer: user.emailVerified,
-            personInfo: personInfo,
-            profileImgUrl: profileImgUrl ? profileImgUrl : "",
-            userNickname: userNickname,
-          });
+        CreateTopDocument("Person", user.uid, {
+          userId: user.uid,
+          userDisplayName: user.displayName,
+          userEmail: user.email,
+          emailVer: user.emailVerified,
+          personInfo: personInfo,
+          profileImgUrl: profileImgUrl ? profileImgUrl : "",
+          userNickname: userNickname,
+        });
         Swal.fire("등록되었습니다!", "", "success");
         setTimeout(() => {
           navigation("/Responses-Chat/");
         }, 1000);
       }
     });
-    // 사진 등록 (Cloud database)
   };
 
   return (

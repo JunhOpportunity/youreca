@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Swal from "sweetalert2";
-import { DeleteUserAccountData } from "../Logic/DeleteUserData.js";
 
 const Wrapper = styled.div``;
 

@@ -2,11 +2,9 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import PersonBox from "../Components/PersonBox";
 import HeaderTest from "../Components/HeaderTest";
-import {
-  useGetAllDocumentData2,
-} from "../Hooks/getDataEffect";
+import { useGetAllDocumentData2 } from "../Hooks/getDataEffect";
 import Loading from "../Components/Loading";
-import FirstLoginSetNickname from "./FirstLoginSetNickname";
+import { authService } from "../firebase";
 
 const Main = styled.div`
   display: flex;
@@ -74,6 +72,8 @@ export default function Test() {
     navigation("/Responses-Chat/regist");
   };
 
+
+
   return (
     <>
       {people ? (
@@ -90,11 +90,12 @@ export default function Test() {
               ))}
             </Wrapper>
           </Main>
-          <FirstLoginSetNickname/>
           <BottomEmptyBox />
         </>
       ) : (
-        <><Loading/></>
+        <>
+          <Loading />
+        </>
       )}
     </>
   );

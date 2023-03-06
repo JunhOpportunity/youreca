@@ -2,11 +2,11 @@ import styled from "styled-components";
 import HeaderTest from "../Components/HeaderTest";
 import { DeleteAccount } from "../Components/DeleteAccountRequest";
 import Loading from "../Components/Loading";
-import { dbService } from "../firebase";
 import { useEffect, useState } from "react";
 import { DeleteReputation } from "../Components/DeleteReputationRequest.js";
-import { getAllDownDocumentData } from "../Logic/GetFirestore.js";
-import { useGetAllDownDocumentData, useGetAllDownDocumentData2 } from "../Hooks/getDataEffect";
+import { useGetAllDownDocumentData } from "../Hooks/getDataEffect";
+import { authService } from "../firebase";
+import { useUserDataInit } from "../Hooks/InitEffect";
 
 const Wrapper = styled.div`
   display: flex;
@@ -37,7 +37,14 @@ const ManageBoxTitle = styled.div`
 `;
 
 export default function ManagerSite() {
-  const [init, setInit] = useState(false);
+  const init = useUserDataInit();
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    authService.onAuthStateChanged(async (user) => {
+      setIsAdmin(user.uid === process.env.REACT_APP_FIREBASE_MANAGER_ID);
+    });
+  }, []);
 
   const accountReqData = useGetAllDownDocumentData(
     "Client-Request",
@@ -51,28 +58,28 @@ export default function ManagerSite() {
     "Delete"
   );
 
-  useEffect(() => {
-    setInit(true);
-  }, []);
-
   return (
     <>
       {init ? (
-        <>
-          <HeaderTest />
-          <TopEmptyBox />
-          <Wrapper>
-            <ManageBox>
-              <ManageBoxTitle>계정 데이터 삭제 요청</ManageBoxTitle>
-              <DeleteAccount reqData={accountReqData} />
-            </ManageBox>
-            <ManageBox>
-              <ManageBoxTitle>평판 삭제 요청</ManageBoxTitle>
-              <DeleteReputation reqData={reputationReqData} />
-            </ManageBox>
-          </Wrapper>
-          <BottomEmptyBox />
-        </>
+        isAdmin ? (
+          <>
+            <HeaderTest />
+            <TopEmptyBox />
+            <Wrapper>
+              <ManageBox>
+                <ManageBoxTitle>계정 데이터 삭제 요청</ManageBoxTitle>
+                <DeleteAccount reqData={accountReqData} />
+              </ManageBox>
+              <ManageBox>
+                <ManageBoxTitle>평판 삭제 요청</ManageBoxTitle>
+                <DeleteReputation reqData={reputationReqData} />
+              </ManageBox>
+            </Wrapper>
+            <BottomEmptyBox />
+          </>
+        ) : (
+          <Loading />
+        )
       ) : (
         <Loading />
       )}

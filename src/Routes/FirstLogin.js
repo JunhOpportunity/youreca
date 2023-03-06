@@ -1,14 +1,12 @@
 import { useState } from "react";
 import Loading from "../Components/Loading";
 import { authService } from "../firebase";
-import { dbService } from "../firebase";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import {
-  useGetAllDocumentData,
-  useGetDocumentData,
-} from "../Hooks/getDataEffect";
+import { useGetDocumentData } from "../Hooks/getDataEffect";
+import { UpdateTopDocument } from "../Logic/UpdateData";
+import { CreateTopDocument } from "../Logic/CreateData";
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -103,21 +101,16 @@ export default function FirstLogin() {
       user.updateProfile({
         displayName: newDisplayName,
       });
-
-      dbService.collection("User").doc(user.uid).set({
+      CreateTopDocument("User", user.uid, {
         userEmail: user.email,
         userId: user.uid,
         changedDisplayName: true,
         userNickname: newNickname,
       });
 
-      dbService
-        .collection("User")
-        .doc("Nickname")
-        .set({
-          List: [...userNicknameList.List, newNickname],
-        });
-
+      UpdateTopDocument("User", "Nickname", {
+        List: [...userNicknameList.List, newNickname],
+      });
       navigation("/Responses-Chat/emailverification");
     }
   };

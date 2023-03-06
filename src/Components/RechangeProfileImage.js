@@ -96,6 +96,7 @@ export function RechangeProfileImage() {
   const [currentProfileImage, setCurrentProfileImage] = useState();
   const fileInput = useRef();
   let user = authService.currentUser;
+  
 
   useEffect(() => {
     authService.onAuthStateChanged(async (user) => {

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Loading from "../Components/Loading";
-import { authService, dbService } from "../firebase";
+import { authService } from "../firebase";
 import Swal from "sweetalert2";
 import HeaderTest from "../Components/HeaderTest";
 import { useUserDataInit } from "../Hooks/InitEffect";
+import { CreateTopCollection } from "../Logic/CreateData";
 
 const Wrapper = styled.div`
   display: flex;
@@ -49,9 +50,10 @@ export default function Feedback() {
   const [supplementation, setSupplementation] = useState("");
   const user = authService.currentUser;
   const init = useUserDataInit();
+  
   const onSubmit = async (event) => {
     event.preventDefault();
-    await dbService.collection("FeedBack").add({
+    CreateTopCollection("FeedBack", {
       feedback: supplementation,
       userName: user.displayName,
       userEmail: user.email,

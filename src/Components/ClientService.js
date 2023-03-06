@@ -2,6 +2,8 @@ import { useState } from "react";
 import styled from "styled-components";
 import { authService, dbService } from "../firebase";
 import Swal from "sweetalert2";
+import { CreateDownDocument } from "../Logic/CreateData";
+import { DeleteDownDocument } from "../Logic/DeleteFirestore";
 
 const CS = styled.div`
   display: flex;
@@ -109,24 +111,6 @@ export default function ClientService() {
     }
   };
 
-  const UploadRequest = (requestCategory, request, id, koDate, deleteDate, deleteDateNumber) => {
-    console.log(user)
-    dbService
-      .collection("Client-Request")
-      .doc(requestCategory)
-      .collection(request)
-      .doc(`${user.uid}`)
-      .set({
-        userId: user.uid,
-        userDisplayName: user.displayName,
-        userEmail: user.email,
-        reason: id,
-        createdTime: koDate,
-        deleteDate: deleteDate,
-        deleteDateNumber: deleteDateNumber,
-      });
-  };
-
   const onClickDeleteBtn = async (event) => {
     const {
       target: { id },
@@ -169,9 +153,31 @@ export default function ClientService() {
     }).then((result) => {
       if (result.isConfirmed) {
         if (id == "ReputationDelete") {
-          UploadRequest("Reputation", "Delete", id, koDate, deleteDate, deleteDateNumber);
+          CreateDownDocument(
+            "Client-Request",
+            "Reputation",
+            "Delete",
+            user.uid,
+            {
+              userId: user.uid,
+              userDisplayName: user.displayName,
+              userEmail: user.email,
+              reason: id,
+              createdTime: koDate,
+              deleteDate: deleteDate,
+              deleteDateNumber: deleteDateNumber,
+            }
+          );
         } else if (id == "AccountDelete") {
-          UploadRequest("Account", "Delete", id, koDate, deleteDate, deleteDateNumber);
+          CreateDownDocument("Client-Request", "Account", "Delete", user.uid, {
+            userId: user.uid,
+            userDisplayName: user.displayName,
+            userEmail: user.email,
+            reason: id,
+            createdTime: koDate,
+            deleteDate: deleteDate,
+            deleteDateNumber: deleteDateNumber,
+          });
         }
         Swal.fire("신청되었습니다!", "", "success");
       }
@@ -179,12 +185,7 @@ export default function ClientService() {
   };
 
   const CancleRequest = (requestCategory, request) => {
-    dbService
-      .collection("Client-Request")
-      .doc(requestCategory)
-      .collection(request)
-      .doc(`${user.uid}`)
-      .delete();
+    DeleteDownDocument("Client-Request", requestCategory, request, user.uid);
   };
 
   const onClickCancleBtn = async (event) => {
@@ -267,7 +268,11 @@ export default function ClientService() {
             </TitleBox>
             <SubmitBox isOpen={isBugreportOpen}>
               어떤 버그를 신고하고싶으신가요?
-              <ReportBtn target="_blank" rel="noreferrer noopener" href="https://open.kakao.com/me/junhopportunity">
+              <ReportBtn
+                target="_blank"
+                rel="noreferrer noopener"
+                href="https://open.kakao.com/me/junhopportunity"
+              >
                 버그 신고하러 가기
               </ReportBtn>
             </SubmitBox>

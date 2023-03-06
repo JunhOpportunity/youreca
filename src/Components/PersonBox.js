@@ -69,7 +69,6 @@ const GoPageBtn = styled.button`
 
 export default function PersonBox({ personData }) {
   const navigate = useNavigate();
-  console.log(personData)
   const address = personData.userNickname;
   const onClickedBtn = () => {
     navigate(`/Responses-Chat/user-reputations/${address}`);
