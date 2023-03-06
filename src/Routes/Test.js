@@ -69,7 +69,7 @@ export default function Test() {
   const people = useGetAllDocumentData2("Person");
   const navigation = useNavigate();
   const goCreatePerson = () => {
-    navigation("/Responses-Chat/regist");
+    navigation("/regist");
   };
 
 

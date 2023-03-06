@@ -21,25 +21,25 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Overview />} />
-          <Route path="/Responses-Chat" element={<Main />} />
-          <Route path="/Responses-Chat/firstlogin" element={<FirstLogin />} />
-          <Route path="/Responses-Chat/first-profile-img" element={<UploadProfileImage />} />
-          <Route path="/Responses-Chat/profile" element={<Profile />} />
-          <Route path="/Responses-Chat/feedback" element={<Feedback />} />
-          <Route path="/Responses-Chat/contact" element={<Contact />} />
+          <Route path="/invitation" element={<Overview />} />
+          <Route path="/" element={<Main />} />
+          <Route path="/firstlogin" element={<FirstLogin />} />
+          <Route path="/first-profile-img" element={<UploadProfileImage />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/contact" element={<Contact />} />
           <Route
-            path="/Responses-Chat/emailverification"
+            path="/emailverification"
             element={<EmailVerification />}
           />
           <Route
-            path="/Responses-Chat/user-reputations/:id"
+            path="/user-reputations/:id"
             element={<UserReputations />}
           />
-          <Route path="/Responses-Chat/upload/:id" element={<Upload />} />
-          <Route path="/Responses-Chat/regist" element={<RegistPerson />} />
-          <Route path="/Responses-Chat/admin" element={<ManagerSite />} />
-          <Route path="/Responses-Chat/client-service-center" element={<ClientServiceCenter />} />
+          <Route path="/upload/:id" element={<Upload />} />
+          <Route path="/regist" element={<RegistPerson />} />
+          <Route path="/admin" element={<ManagerSite />} />
+          <Route path="/client-service-center" element={<ClientServiceCenter />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

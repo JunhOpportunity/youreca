@@ -111,7 +111,7 @@ export default function FirstLogin() {
       UpdateTopDocument("User", "Nickname", {
         List: [...userNicknameList.List, newNickname],
       });
-      navigation("/Responses-Chat/emailverification");
+      navigation("/emailverification");
     }
   };
 

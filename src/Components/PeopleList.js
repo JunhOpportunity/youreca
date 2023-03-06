@@ -69,7 +69,7 @@ export default function RePeople() {
   const navigation = useNavigate();
 
   const goCreatePerson = () => {
-    navigation("/Responses-Chat/regist");
+    navigation("/regist");
   };
 
   return (

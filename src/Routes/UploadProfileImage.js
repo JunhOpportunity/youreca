@@ -133,7 +133,7 @@ export function UploadProfileImage() {
             .update({ profileImgUrl: attachmentUrl });
           Swal.fire("업로드 되었습니다!", "", "success");
           setTimeout(() => {
-            navigation("/Responses-Chat/");
+            navigation("/");
           }, 1000);
         }
       });
@@ -142,7 +142,7 @@ export function UploadProfileImage() {
 
   // 기본 이미지로 설정하는 버튼을 클릭했을 경우 (In case of Clicked Set Default Image Button)
   const onClickedDefaultImageButton = () => {
-    navigation("/Responses-Chat/");
+    navigation("/");
   };
 
   const onClearAttachment = (e) => {

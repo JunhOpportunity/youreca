@@ -61,7 +61,7 @@ export default function UserReputations() {
   const navigation = useNavigate();
 
   const goUpload = () => {
-    navigation(`/Responses-Chat/upload/${id}`);
+    navigation(`/upload/${id}`);
   };
 
   return (

@@ -56,7 +56,7 @@ export default function EmailVerification() {
 
 
   const onBtnClick = () => {
-    navigation("/Responses-Chat/first-profile-img");
+    navigation("/first-profile-img");
   };
 
   const onSkipBtnClick = () => {
@@ -72,7 +72,7 @@ export default function EmailVerification() {
       denyButtonText: "취소",
     }).then((result) => {
       if (result.isConfirmed) {
-        navigation("/Responses-Chat/first-profile-img");
+        navigation("/first-profile-img");
       }
     });
   };

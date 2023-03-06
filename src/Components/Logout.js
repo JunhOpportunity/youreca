@@ -31,7 +31,7 @@ export function LogoutButton () {
       },
     });
     authService.signOut();
-    navigation("/Responses-Chat/");
+    navigation("/");
   };
   return (
     <>

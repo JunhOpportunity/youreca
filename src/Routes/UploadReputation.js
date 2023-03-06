@@ -109,7 +109,7 @@ export default function Upload() {
           setUserNickname(snapshot.data().userNickname);
         });
     } else {
-      navigation("/Responses-Chat");
+      navigation("/");
     }
   });
 
@@ -163,7 +163,7 @@ export default function Upload() {
           });
         Swal.fire("등록되었습니다!", "", "success");
         setTimeout(() => {
-          navigation("/Responses-Chat");
+          navigation("/");
         }, 1000);
       }
     });

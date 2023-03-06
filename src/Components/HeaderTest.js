@@ -136,27 +136,27 @@ const BottomSvg = styled.svg`
 `;
 
 export default function HeaderTest() {
-  const isMainPage = useMatch("/Responses-Chat/");
-  const isProfilePage = useMatch("/Responses-Chat/profile");
-  const isFeedbackPage = useMatch("/Responses-Chat/feedback");
-  const isCSCPage = useMatch("/Responses-Chat/client-service-center");
+  const isMainPage = useMatch("/");
+  const isProfilePage = useMatch("/profile");
+  const isFeedbackPage = useMatch("/feedback");
+  const isCSCPage = useMatch("/client-service-center");
 
   const navigation = useNavigate();
 
   const onMainClick = () => {
-    navigation("/Responses-Chat");
+    navigation("/");
   };
 
   const onFeedbackClick = () => {
-    navigation("/Responses-Chat/feedback");
+    navigation("/feedback");
   };
 
   const onProfileClick = () => {
-    navigation("/Responses-Chat/profile");
+    navigation("/profile");
   };
 
   const onClientServiceCenterClick = () => {
-    navigation("/Responses-Chat/client-service-center")
+    navigation("/client-service-center")
   }
 
   const logoClick = () => {
@@ -217,22 +217,22 @@ export default function HeaderTest() {
       <WebHeader>
         <Bundle>
           <Category pageMatch={isMainPage}>
-            <Anchor onClick={onMainClick} href="/Responses-Chat/">
+            <Anchor onClick={onMainClick} href="/">
               Home
             </Anchor>
           </Category>
           <Category pageMatch={isFeedbackPage}>
-            <Anchor onClick={onFeedbackClick} href="/Responses-Chat/feedback">
+            <Anchor onClick={onFeedbackClick} href="/feedback">
               Feedback
             </Anchor>
           </Category>
           <Category pageMatch={isProfilePage}>
-            <Anchor onClick={onProfileClick} href="/Responses-Chat/profile">
+            <Anchor onClick={onProfileClick} href="/profile">
               Profile
             </Anchor>
           </Category>
           <Category pageMatch={isCSCPage}>
-            <Anchor onClick={onClientServiceCenterClick} href="/Responses-Chat/profile">
+            <Anchor onClick={onClientServiceCenterClick} href="/profile">
               Client Service
             </Anchor>
           </Category>

@@ -160,7 +160,7 @@ export default function RegistPerson() {
         });
         Swal.fire("등록되었습니다!", "", "success");
         setTimeout(() => {
-          navigation("/Responses-Chat/");
+          navigation("/");
         }, 1000);
       }
     });

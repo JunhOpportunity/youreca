@@ -33,7 +33,7 @@ export default function NotFound() {
   const navigation = useNavigate();
   useEffect(() => {
     setTimeout(() => {
-      navigation("/Responses-Chat")
+      navigation("/")
     }, 2000)
   }, []);
   

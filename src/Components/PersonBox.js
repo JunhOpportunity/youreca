@@ -71,7 +71,7 @@ export default function PersonBox({ personData }) {
   const navigate = useNavigate();
   const address = personData.userNickname;
   const onClickedBtn = () => {
-    navigate(`/Responses-Chat/user-reputations/${address}`);
+    navigate(`/user-reputations/${address}`);
   };
   return (
     <>
