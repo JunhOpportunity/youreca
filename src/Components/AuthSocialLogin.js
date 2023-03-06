@@ -38,6 +38,14 @@ const SocialIcon = styled.img`
   height: 50px;
 `;
 
+const Text =styled.div`
+  font-size: 10px;
+  font-weight: bolder;
+  text-align: center;
+  color: red;
+  margin-top: 20px;
+`;
+
 export default function AuthSocialLogin() {
   const onClickSocialLogin = async (event) => {
     const {
@@ -74,6 +82,14 @@ export default function AuthSocialLogin() {
             ></SocialIcon>
           </SocialLoginBtn>
         </SocialLoginBtnBundle>
+        <Text>
+          보안을 위해 되도록 소셜 로그인을 이용해주세요.
+          <br/>
+          <br/>
+          개발자는 여러분의 이메일을 제외한 
+          <br/>
+          어떠한 정보도 수집 또는 열람할 수 없습니다.
+        </Text>
       </SocialLogin>
     </>
   );
