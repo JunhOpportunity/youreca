@@ -66,7 +66,7 @@ const InputSubmit = styled.input`
   color: #7bb241;
   box-shadow: 0px 0px 2px #7bb241;
   color: white;
-  background-color:  #7bb241;
+  background-color: #7bb241;
   @media only screen and (min-width: 768px) {
     top: 100px;
   }
@@ -163,7 +163,7 @@ export default function Upload() {
           });
         Swal.fire("등록되었습니다!", "", "success");
         setTimeout(() => {
-          navigation("/");
+          navigation(`/user-reputations/${id}`);
         }, 1000);
       }
     });
