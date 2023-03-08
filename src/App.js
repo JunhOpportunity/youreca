@@ -40,6 +40,7 @@ function App() {
           <Route path="/regist" element={<RegistPerson />} />
           <Route path="/admin" element={<ManagerSite />} />
           <Route path="/client-service-center" element={<ClientServiceCenter />} />
+          <Route path="/test" element={<Test />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
