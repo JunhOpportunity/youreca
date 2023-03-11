@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const Person = styled.div`
   width: 100%;
-  height: 300px;
+  height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,6 +18,13 @@ const PersonName = styled.div`
   color: #696969;
   font-weight: bold;
   font-size: 20px;
+`;
+
+const PersonJob = styled.div`
+  text-align: center;
+  color: #696969;
+  font-weight: lighter;
+  font-size: 10px;
 `;
 
 const PersonInfo = styled.div`
@@ -59,7 +66,7 @@ const GoPageBtn = styled.button`
   background-color: white;
   color: #7bb241;
   border: 1px solid #7bb241;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
   :hover {
     color: white;
     background-color: #7bb241;
@@ -96,6 +103,7 @@ export default function PersonBox({ personData }) {
           )}
         </ProfileImgBox>
         <PersonName>{personData.userDisplayName}</PersonName>
+        <PersonJob>{personData.userJob} </PersonJob>
         <PersonInfo>{personData.personInfo}</PersonInfo>
         <GoPageBtn onClick={onClickedBtn}>평판 작성하러 가기</GoPageBtn>
       </Person>
