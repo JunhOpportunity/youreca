@@ -113,7 +113,7 @@ export default function RegistPerson() {
   const [personInfo, setPersonInfo] = useState("");
   const [profileImgUrl, setProfileImgUrl] = useState(false);
   const [userNickname, setUserNickname] = useState("");
-  const [userJob, setUserJob] = useState("")
+  const [userJob, setUserJob] = useState("");
   const navigation = useNavigate();
   const user = authService.currentUser;
 
@@ -124,7 +124,7 @@ export default function RegistPerson() {
       .onSnapshot((snapshot) => {
         setProfileImgUrl(snapshot.data().profileImgUrl);
         setUserNickname(snapshot.data().userNickname);
-        setUserJob(snapshot.data().userJob)
+        setUserJob(snapshot.data().userJob);
       });
   });
 
@@ -213,8 +213,11 @@ export default function RegistPerson() {
               </InputDiv>
 
               <Label for="story">
-                정보를 입력해주세요 <br />
-                <u>(정확하게 입력해주세요!)</u>{" "}
+                정보를 입력해주세요
+                <br />
+                <u>(정확하게 입력해주세요!)</u>
+                <br />
+                <u>글자수 제한은 없습니다</u>
               </Label>
               <InputDiv>
                 <Input
