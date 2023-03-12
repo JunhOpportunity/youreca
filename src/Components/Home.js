@@ -24,5 +24,5 @@ export default function Home() {
     
   }, []);
 
-  return <>{init ? (isChanged ? <RePeople /> : navigation("/firstlogin")) : <Loading/>}</>;
+  return <>{init ? (isChanged ? <RePeople /> : navigation("/firstlogin-1")) : <Loading/>}</>;
 }

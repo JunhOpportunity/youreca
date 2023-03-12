@@ -19,16 +19,9 @@ const NameModify = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-
   padding: 10px;
-  width: 70vw;
-  height: 50vh;
-  transition-duration: 1s;
-  box-shadow: 0px 0px 10px #696969;
-  :hover {
-    transition-duration: 1s;
-    box-shadow: 0px 0px 30px #43a047;
-  }
+  width: 300px;
+  height: 400px;
 `;
 
 const Form = styled.form`
@@ -46,10 +39,11 @@ const TitleBox = styled.div`
 const Title = styled.div`
   width: 100px;
   border-radius: 25px;
-  background-color: #43a047;
-  color: white;
+  color: #7bb241;
   text-align: center;
+  font-weight: bolder;
   padding: 5px;
+  box-shadow: 0px 0px 5px #7bb241;
 `;
 
 const Text = styled.div`
@@ -63,7 +57,7 @@ const NameInput = styled.input`
   border: none;
   height: 50px;
   box-shadow: 0px 0px 2px #7bb241;
-  outline: none;
+  outline-color: #7bb241;
   color: #7bb241;
   text-align: center;
   margin-top: 20px;
@@ -78,7 +72,7 @@ const SubmitInput = styled.input`
   margin-top: 20px;
 `;
 
-export default function FirstLogin() {
+export default function FirstLoginName() {
   const [newDisplayName, setNewDisplayName] = useState("");
   const [newNickname, setNewNickname] = useState("");
   const navigation = useNavigate();
@@ -92,7 +86,7 @@ export default function FirstLogin() {
     if (/^[a-z0-9A-Z]{4,}$/.test(newNickname) == false) {
       return Swal.fire(
         "Error",
-        "알파벳과 숫자만을 사용해서 4글자 이상 작성해주세요!",
+        "닉네임은 알파벳과 숫자만을 사용해서 4글자 이상 작성해주세요!",
         "error"
       );
     }
@@ -111,7 +105,7 @@ export default function FirstLogin() {
       UpdateTopDocument("User", "Nickname", {
         List: [...userNicknameList.List, newNickname],
       });
-      navigation("/emailverification");
+      navigation("/firstlogin-2");
     }
   };
 
@@ -128,7 +122,7 @@ export default function FirstLogin() {
         <Wrapper>
           <NameModify>
             <TitleBox>
-              <Title>기본 프로필</Title>
+              <Title>이름 </Title>
             </TitleBox>
             <Form onSubmit={onSubmit}>
               <NameInput
@@ -152,7 +146,7 @@ export default function FirstLogin() {
                 <br />
                 닉네임은 변경이 불가능하니 주의하세요!
               </Text>
-              <SubmitInput type="submit" value="설정" />
+              <SubmitInput type="submit" value="다음" />
             </Form>
           </NameModify>
         </Wrapper>
