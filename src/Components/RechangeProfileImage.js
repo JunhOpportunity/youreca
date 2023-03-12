@@ -44,12 +44,13 @@ const InputImgButton = styled.button`
   text-align: center;
   width: 200px;
   height: 50px;
-  border-radius: 25px;
+  border-radius: 5px;
   color: #7bb241;
 `;
 
 const ButtonDiv = styled.div`
   display: flex;
+  gap: 10px;
 `;
 
 const ImgButton = styled.button`
@@ -96,7 +97,6 @@ export function RechangeProfileImage() {
   const [currentProfileImage, setCurrentProfileImage] = useState();
   const fileInput = useRef();
   let user = authService.currentUser;
-  
 
   useEffect(() => {
     authService.onAuthStateChanged(async (user) => {
@@ -153,6 +153,7 @@ export function RechangeProfileImage() {
             .doc(user.uid)
             .update({ profileImgUrl: attachmentUrl });
           Swal.fire("변경 되었습니다!", "", "success");
+          setAttachment(null);
         }
       });
     }
@@ -224,7 +225,7 @@ export function RechangeProfileImage() {
               onClick={onSubmit}
               style={
                 attachment
-                  ? { visibility: "visible", backgroundColor: "#3085D6" }
+                  ? { visibility: "visible", backgroundColor: "#43a047" }
                   : { visibility: "hidden" }
               }
             >
