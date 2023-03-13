@@ -4,7 +4,7 @@ import { dbService, storageService } from "../firebase.js";
 import { authService } from "../firebase.js";
 import styled from "styled-components";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { UpdateTopDocument } from "../Logic/UpdateData.js";
 
 const Wrapper = styled.div`
   margin-bottom: 10px;
@@ -31,8 +31,8 @@ const ProfileImg = styled.div`
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 1px solid #7bb241;
-  background-color: #7bb241;
+  border: 1px solid #66bb6a;
+  background-color: #66bb6a;
 `;
 
 const InputImg = styled.input`
@@ -53,45 +53,20 @@ const ButtonDiv = styled.div`
   gap: 10px;
 `;
 
-const ImgButton = styled.button`
-  transition-duration: 0.5s;
+const ImgButton = styled.div`
   width: 100px;
-  height: 50px;
-  border: 0;
-  font-size: 20px;
+  height: 30px;
+  font-size: 16px;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 0.25em;
+  border-radius: 5px;
   color: white;
   cursor: pointer;
-`;
-
-const SelectDefaultImage = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #66bb6a;
-  color: white;
-  height: 50px;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  cursor: pointer;
-`;
-
-const DeleteImgButton = styled.div`
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  background-color: red;
-  width: 20px;
-  height: 20px;
 `;
 
 export function RechangeProfileImage() {
-  const navigation = useNavigate();
   const [attachment, setAttachment] = useState();
   const [init, setInit] = useState(false);
   const [currentProfileImage, setCurrentProfileImage] = useState();
@@ -144,19 +119,36 @@ export function RechangeProfileImage() {
         const response = await fileRef.putString(attachment, "data_url");
         const attachmentUrl = await response.ref.getDownloadURL();
         if (result.isConfirmed) {
-          dbService
-            .collection("User")
-            .doc(user.uid)
-            .update({ profileImgUrl: attachmentUrl });
-          dbService
-            .collection("Person")
-            .doc(user.uid)
-            .update({ profileImgUrl: attachmentUrl });
+          UpdateTopDocument("User", user.uid, { profileImgUrl: attachmentUrl });
+          UpdateTopDocument("Person", user.uid, {
+            profileImgUrl: attachmentUrl,
+          });
           Swal.fire("변경 되었습니다!", "", "success");
           setAttachment(null);
         }
       });
     }
+  };
+
+  const onDelete = async (event) => {
+    event.preventDefault();
+    Swal.fire({
+      title: "삭제하시겠습니까?",
+      html: "<h6 style='color:red'> 사진을 삭제해도 이미 작성한 글에 대한 사진은 삭제되지 않습니다. <br/>사진 삭제 후에 글을 다시 작성해야 사진 삭제가 적용됩니다. </h6>",
+      icon: "success",
+      showCancelButton: false,
+      showDenyButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "삭제",
+      denyButtonText: "취소",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        UpdateTopDocument("User", user.uid, { profileImgUrl: "" });
+        UpdateTopDocument("Person", user.uid, { profileImgUrl: "" });
+        Swal.fire("삭제 되었습니다!", "", "success");
+      }
+    });
   };
 
   const onClearAttachment = (e) => {
@@ -215,8 +207,8 @@ export function RechangeProfileImage() {
               onClick={onClearAttachment}
               style={
                 attachment
-                  ? { visibility: "visible", backgroundColor: "#DC3741" }
-                  : { visibility: "hidden" }
+                  ? { display: "flex", backgroundColor: "#DC3741" }
+                  : { display: "none" }
               }
             >
               취소
@@ -225,11 +217,21 @@ export function RechangeProfileImage() {
               onClick={onSubmit}
               style={
                 attachment
-                  ? { visibility: "visible", backgroundColor: "#43a047" }
-                  : { visibility: "hidden" }
+                  ? { display: "flex", backgroundColor: "#43a047" }
+                  : { display: "none" }
               }
             >
               변경
+            </ImgButton>
+            <ImgButton
+              onClick={onDelete}
+              style={
+                attachment
+                  ? { display: "none" }
+                  : { display: "flex", backgroundColor: "red", width: "200px" }
+              }
+            >
+              프로필 사진 삭제
             </ImgButton>
           </ButtonDiv>
 
