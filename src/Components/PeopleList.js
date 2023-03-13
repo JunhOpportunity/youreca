@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import PersonBox from "./PersonBox";
-import HeaderTest from "./HeaderTest";
+import Header from "./Header";
 import { useGetAllDocumentData } from "../Hooks/getDataEffect";
 
 const Main = styled.div`
@@ -76,7 +76,7 @@ export default function RePeople() {
     <>
       {people ? (
         <>
-          <HeaderTest />
+          <Header />
           <TopEmptyBox />
           <NewPost onClick={goCreatePerson}>내 평판 추가하러 가기</NewPost>
           <Main>

@@ -2,11 +2,12 @@ import ReName from "../Components/ReName";
 import Loading from "../Components/Loading";
 import styled from "styled-components";
 import EmailCertification from "../Components/EmailCertification";
-import HeaderTest from "../Components/HeaderTest";
+import HeaderTest from "../Components/Header";
 import { RechangeProfileImage } from "../Components/RechangeProfileImage";
 import { LogoutButton } from "../Components/Logout";
 import PasswordReset from "../Components/PasswordReset";
 import { useUserDataInit } from "../Hooks/InitEffect";
+import RechangeJob from "../Components/RechangeJob";
 
 const Wrapper = styled.div`
   padding: 10px;
@@ -53,6 +54,7 @@ export default function Profile() {
               <RechangeProfileImage />
               <EmailCertification />
               <ReName />
+              <RechangeJob />
               <PasswordReset />
               <LogoutButton />
             </ProfileBox>

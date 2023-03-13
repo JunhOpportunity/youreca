@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Swal from "sweetalert2";
 
 const EmailVerify = styled.div`
-  border: 1px solid #43a047;
+  border-bottom: 1px solid #43a047;
   padding: 10px;
   margin-bottom: 10px;
 `;
@@ -53,17 +53,9 @@ const Svg = styled.svg`
   fill: ${(props) => (props.emailVer ? "blue" : "#696969")};
 `;
 
-export default function EmailCertification(certificate) {
+export default function EmailCertification() {
   const [emailVer, setEmailVer] = useState();
-  const [dbEmailVer, setDbEmailVer] = useState();
   const user = authService.currentUser;
-
-  dbService
-    .collection("ReArchive")
-    .doc(user.uid)
-    .onSnapshot((snapshot) => {
-      setDbEmailVer(snapshot.data().emailVer);
-    });
 
   useEffect(() => {
     authService.onAuthStateChanged(async (user) => {
@@ -107,15 +99,11 @@ export default function EmailCertification(certificate) {
           </Svg>
         </TopBox>
         {emailVer ? (
-          dbEmailVer === emailVer ? (
-            <></>
-          ) : (
-            <BottomBox>
-              <EmailVerifyBtn onClick={onClickRenew}>
-                이메일 인증 갱신하기 (게시글의 뱃지가 뜨지 않는 경우)
-              </EmailVerifyBtn>
-            </BottomBox>
-          )
+          <BottomBox>
+            <EmailVerifyBtn onClick={onClickRenew}>
+              이메일 인증 갱신하기 (게시글의 뱃지가 뜨지 않는 경우)
+            </EmailVerifyBtn>
+          </BottomBox>
         ) : (
           <BottomBox>
             <EmailVerifyBtn onClick={onClickEmailVerificationBtn}>
