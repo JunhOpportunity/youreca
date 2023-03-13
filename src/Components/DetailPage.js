@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import ReBox from "./ReBox";
 import { EmptyReputation } from "./EmptyReputation";
 import MyReBox from "./MyReBox";
-import HeaderTest from "./HeaderTest";
+import Header from "./Header";
 
 const TopEmptyBox = styled.div`
   height: 50px;
@@ -66,7 +66,7 @@ export default function UserReputations() {
 
   return (
     <>
-      <HeaderTest />
+      <Header />
       <TopEmptyBox />
       <NewPost onClick={goUpload}>글 작성하러 가기</NewPost>
       <Wrapper>

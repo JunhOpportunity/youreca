@@ -8,7 +8,7 @@ import { UpdateTopDocument } from "../Logic/UpdateData.js";
 
 const Wrapper = styled.div`
   margin-bottom: 10px;
-  border: 1px solid #43a047;
+  border-bottom: 1px solid #43a047;
   padding: 10px;
   display: flex;
   flex-direction: column;

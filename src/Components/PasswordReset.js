@@ -13,6 +13,7 @@ const PasswordResetBox = styled.div`
   align-items: center;
   background-color: #43a047;
   color: white;
+  border-radius: 5px;
 `;
 
 export default function PasswordReset() {

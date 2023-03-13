@@ -28,7 +28,7 @@ const Title = styled.div`
 `;
 
 const NameModify = styled.div`
-  border: 1px solid #43a047;
+  border-bottom: 1px solid #43a047;
   padding: 10px;
   margin-bottom: 10px;
 `;

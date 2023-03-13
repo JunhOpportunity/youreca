@@ -5,7 +5,7 @@ import { authService } from "../firebase.js";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import HeaderTest from "../Components/HeaderTest";
+import Header from "../Components/Header";
 
 const EmptyBox = styled.div`
   height: 100px;
@@ -171,7 +171,7 @@ export default function Upload() {
 
   return (
     <>
-      <HeaderTest />
+      <Header />
 
       <Wrapper>
         <EmptyBox />

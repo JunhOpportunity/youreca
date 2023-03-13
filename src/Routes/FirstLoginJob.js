@@ -127,8 +127,8 @@ export default function FirstLoginJob() {
           <Form onSubmit={onSubmit}>
             <Title>직업</Title>
             <SelectBox onChange={onClick} disabled={isCheck}>
-              {categoryList.List.map((a) => {
-                return <Option value={a}>{a}</Option>;
+              {categoryList.List.map((job) => {
+                return <Option value={job}>{job}</Option>;
               })}
             </SelectBox>
             <Check>

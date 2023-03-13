@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Loading from "../Components/Loading";
 import { authService } from "../firebase";
 import Swal from "sweetalert2";
-import HeaderTest from "../Components/HeaderTest";
+import Header from "../Components/Header";
 import { useUserDataInit } from "../Hooks/InitEffect";
 import { CreateTopCollection } from "../Logic/CreateData";
 
@@ -73,7 +73,7 @@ export default function Feedback() {
     <>
       {init ? (
         <>
-          <HeaderTest />
+          <Header />
           <Wrapper>
             <PageInfo>
               <h3>개선할 점이 있다면</h3>

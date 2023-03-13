@@ -12,6 +12,7 @@ const LogoutBtn = styled.div`
   align-items: center;
   background-color: red;
   color: white;
+  border-radius: 5px;
 `;
 
 export function LogoutButton () {

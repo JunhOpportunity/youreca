@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ClientService from "../Components/ClientService";
-import HeaderTest from "../Components/HeaderTest";
+import Header from "../Components/Header";
 
 const TopEmptyBox = styled.div`
   height: 50px;
@@ -12,7 +12,7 @@ const TopEmptyBox = styled.div`
 export default function ClientServiceCenter() {
   return(
     <>
-      <HeaderTest />
+      <Header />
       <TopEmptyBox />
       <ClientService/>
     </>

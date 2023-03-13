@@ -5,7 +5,7 @@ import { authService } from "../firebase.js";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Loading from "../Components/Loading";
-import HeaderTest from "../Components/HeaderTest.js";
+import Header from "../Components/Header.js";
 import { useUserDataInit } from "../Hooks/InitEffect.js";
 import { CreateTopDocument } from "../Logic/CreateData.js";
 
@@ -173,7 +173,7 @@ export default function RegistPerson() {
     <>
       {init ? (
         <>
-          <HeaderTest />
+          <Header />
 
           <Wrapper>
             <TopEmptyBox />

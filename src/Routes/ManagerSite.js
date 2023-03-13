@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import HeaderTest from "../Components/HeaderTest";
+import Header from "../Components/Header";
 import { DeleteAccount } from "../Components/DeleteAccountRequest";
 import Loading from "../Components/Loading";
 import { useEffect, useState } from "react";
@@ -63,7 +63,7 @@ export default function ManagerSite() {
       {init ? (
         isAdmin ? (
           <>
-            <HeaderTest />
+            <Header />
             <TopEmptyBox />
             <Wrapper>
               <ManageBox>
