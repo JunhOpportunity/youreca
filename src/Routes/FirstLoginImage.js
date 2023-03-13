@@ -42,8 +42,8 @@ const ProfileImg = styled.div`
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 1px solid #7bb241;
-  background-color: #7bb241;
+  border: 1px solid #66bb6a;
+  background-color: #66bb6a;
 `;
 
 const InputImg = styled.input`

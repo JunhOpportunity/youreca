@@ -20,8 +20,9 @@ const TitleBox = styled.div`
 const Title = styled.div`
   width: 100px;
   border-radius: 25px;
-  background-color: #7bb241;
-  color: white;
+  font-weight: bolder;
+  box-shadow: 0px 0px 5px #7bb241;
+  color: #7bb241;
   text-align: center;
   padding: 5px;
 `;
@@ -41,7 +42,7 @@ const NameInput = styled.input`
 
 const SubmitInput = styled.input`
   border: none;
-  background-color: #7bb241;
+  background-color: #43a047;
   color: white;
   cursor: pointer;
 `;
