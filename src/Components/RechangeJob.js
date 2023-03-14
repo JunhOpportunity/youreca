@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { authService } from "../firebase";
-import Loading from "./Loading";
 import Swal from "sweetalert2";
 import styled from "styled-components";
 import { UpdateTopDocument } from "../Logic/UpdateData";
@@ -31,6 +30,7 @@ const JobModify = styled.div`
   border-bottom: 1px solid #43a047;
   padding: 10px;
   margin-bottom: 10px;
+  height: 100px;
 `;
 
 const SelectBox = styled.select`
@@ -96,7 +96,19 @@ export default function RechangeJob() {
           </JobModify>
         </>
       ) : (
-        <Loading />
+        <JobModify>
+          <TitleBox>
+            <Title>직업 변경</Title>
+          </TitleBox>
+          <Form>
+            <SelectBox>
+              <Option disabled selected value>
+                변경할 직업을 선택해주세요.
+              </Option>
+            </SelectBox>
+            <SubmitInput type="submit" value="변경" />
+          </Form>
+        </JobModify>
       )}
     </>
   );

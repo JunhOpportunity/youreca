@@ -7,6 +7,7 @@ const EmailVerify = styled.div`
   border-bottom: 1px solid #43a047;
   padding: 10px;
   margin-bottom: 10px;
+  height: 100px;
 `;
 
 const TopBox = styled.div`
