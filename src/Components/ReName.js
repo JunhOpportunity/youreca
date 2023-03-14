@@ -1,21 +1,23 @@
 import { useState } from "react";
 import { authService } from "../firebase";
-import Loading from "./Loading";
 import Swal from "sweetalert2";
 import styled from "styled-components";
 import { UpdateTopDocument } from "../Logic/UpdateData";
 import { useUserDataInit } from "../Hooks/InitEffect";
+
 
 const Form = styled.form`
   display: flex;
   justify-content: center;
 `;
 
+
 const TitleBox = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
 `;
+
 
 const Title = styled.div`
   width: 100px;
@@ -27,11 +29,14 @@ const Title = styled.div`
   padding: 5px;
 `;
 
+
 const NameModify = styled.div`
   border-bottom: 1px solid #43a047;
   padding: 10px;
   margin-bottom: 10px;
+  height: 100px;
 `;
+
 
 const NameInput = styled.input`
   width: 100%;
@@ -40,6 +45,7 @@ const NameInput = styled.input`
   box-shadow: 0px 0px 2px #7bb241;
 `;
 
+
 const SubmitInput = styled.input`
   border: none;
   background-color: #43a047;
@@ -47,10 +53,12 @@ const SubmitInput = styled.input`
   cursor: pointer;
 `;
 
+
 export default function ReName() {
   const [newDisplayName, setNewDisplayName] = useState("");
   const init = useUserDataInit();
   const user = authService.currentUser;
+
 
   // Name Exchange
   const onChange = (event) => {
@@ -59,6 +67,7 @@ export default function ReName() {
     } = event;
     setNewDisplayName(value);
   };
+
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -89,6 +98,7 @@ export default function ReName() {
     });
   };
 
+
   return (
     <>
       {init ? (
@@ -110,7 +120,15 @@ export default function ReName() {
           </NameModify>
         </>
       ) : (
-        <Loading />
+        <NameModify>
+          <TitleBox>
+            <Title>이름 변경</Title>
+          </TitleBox>
+          <Form>
+            <NameInput type="text" placeholder="..." />
+            <SubmitInput type="submit" value="변경" />
+          </Form>
+        </NameModify>
       )}
     </>
   );
