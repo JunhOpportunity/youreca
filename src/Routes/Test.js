@@ -1,148 +1,43 @@
-import { useState } from "react";
 import styled from "styled-components";
-import Loading from "../Components/Loading";
-import { authService } from "../firebase";
-import { useGetDocumentData } from "../Hooks/getDataEffect";
-import { UpdateTopDocument } from "../Logic/UpdateData";
 
 const Wrapper = styled.div`
-  height: 100vh;
+  padding: 10px;
+`;
+
+const ProgressbarBox = styled.div`
+  width: 100%;
+  height: 40px;
+  background-color: #f1f1f1;
   display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+const Progressbar = styled.div`
+  height: 40px;
+  background-color: #2196f3;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 50px;
-`;
-
-const SelectBox = styled.select`
-  width: 100px;
-  height: 50px;
-  padding: 5px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 2px #7bb241;
-  border: none;
-  font-weight: bolder;
-`;
-
-const Option = styled.option`
-`;
-
-const Label = styled.label`
-  font-size: 15px;
-  font-weight: bolder;
-`;
-
-const Check = styled.div`
-  display: flex;
-`;
-
-const CheckBox = styled.input``;
-
-const InputBundle = styled.div`
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  display: ${(props) => (props.isCheck ? "none" : "flex")};
-`;
-
-const InputTitle = styled.div`
-  font-size: 13px;
-  text-align: center;
-`;
-
-const InputText = styled.input`
-  width: 200px;
-  border: none;
-  height: 50px;
-  box-shadow: 0px 0px 2px #7bb241;
-  text-align: center;
-`;
-
-const SubmitInput = styled.input`
-  border: none;
-  background-color: #66bb6a;
   color: white;
-  height: 50px;
-  width: 200px;
-  cursor: pointer;
+  font-weight: bolder;
 `;
 
 export default function Test() {
-  const categoryList = useGetDocumentData("User", "Job-Category");
-  const [category, setCategory] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [isCheck, setIsCheck] = useState(false);
-  const user = authService.currentUser;
-
-  const onClick = (e) => {
-    const job = e.target.value;
-    setSelectedCategory(job);
-  };
-
-  const onChangeInput = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setCategory(value);
-    console.log(category);
-  };
-  const onChangeCheckbox = (event) => {
-    const result = event.target.checked;
-    setIsCheck(result);
-  };
-  const onSubmit = (event) => {
-    event.preventDefault();
-    if (isCheck == true) {
-      UpdateTopDocument("User", "Job-Category", {
-        List: [...categoryList.List, category],
-      });
-      return UpdateTopDocument("User", user.uid, { userJob: category });
-    }
-    UpdateTopDocument("User", user.uid, { userJob: selectedCategory });
-  };
   return (
-    <>
-      {categoryList ? (
-        <Wrapper>
-          <Form onSubmit={onSubmit}>
-            <SelectBox onChange={onClick} disabled={isCheck}>
-              {categoryList.List.map((a) => {
-                return <Option value={a}>{a}</Option>;
-              })}
-            </SelectBox>
-            <Check>
-              <Label for="checkbox">해당하는 직업이 목록에 없으신가요?</Label>
-              <CheckBox
-                id="checkbox"
-                onChange={onChangeCheckbox}
-                type="checkbox"
-              />
-            </Check>
-            <InputBundle isCheck={!isCheck}>
-              <InputTitle>
-                직접 추가하시면 다른 사람들에게도 도움을 줄 수 있습니다!
-              </InputTitle>
-              <InputText
-                value={category}
-                onChange={onChangeInput}
-                type="text"
-                placeholder="당신의 직업을 적어주세요"
-                required
-              />
-            </InputBundle>
-            <SubmitInput type="submit" value="완료" />
-          </Form>
-        </Wrapper>
-      ) : (
-        <>
-          <Loading />
-        </>
-      )}
-    </>
+    <Wrapper>
+      <ProgressbarBox>
+        <Progressbar style={{ width: "25%" }}>25%</Progressbar>
+      </ProgressbarBox>
+      <ProgressbarBox>
+        <Progressbar style={{ width: "50%" }}>50%</Progressbar>
+      </ProgressbarBox>
+      <ProgressbarBox>
+        <Progressbar style={{ width: "75%" }}>75%</Progressbar>
+      </ProgressbarBox>
+      <ProgressbarBox>
+        <Progressbar style={{ width: "100%" }}>100%</Progressbar>
+      </ProgressbarBox>
+    </Wrapper>
   );
 }

@@ -82,6 +82,38 @@ const SubmitInput = styled.input`
   cursor: pointer;
 `;
 
+const Progress = styled.div`
+  position: fixed;
+  bottom: 50px;
+  width: 90%;
+  padding: 20px;
+`;
+
+const ProgressText = styled.div`
+  color: #7bb241;
+  font-weight: bolder;
+  text-align: center;
+`;
+
+const ProgressbarBox = styled.div`
+  width: 100%;
+  height: 40px;
+  background-color: #f1f1f1;
+  display: flex;
+  align-items: center;
+`;
+
+const Progressbar = styled.div`
+  height: 40px;
+  background-color: #66bb6a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 10px;
+  font-weight: bolder;
+`;
+
 export default function FirstLoginJob() {
   const categoryList = useGetDocumentData("User", "Job-Category");
   const [category, setCategory] = useState("");
@@ -124,6 +156,7 @@ export default function FirstLoginJob() {
     <>
       {categoryList ? (
         <Wrapper>
+          
           <Form onSubmit={onSubmit}>
             <Title>직업</Title>
             <SelectBox onChange={onClick} disabled={isCheck}>
@@ -153,6 +186,12 @@ export default function FirstLoginJob() {
             </InputBundle>
             <SubmitInput type="submit" value="다음" />
           </Form>
+          <Progress>
+            <ProgressText>프로필 생성중...</ProgressText>
+            <ProgressbarBox>
+              <Progressbar style={{ width: "50%" }}>50%</Progressbar>
+            </ProgressbarBox>
+          </Progress>
         </Wrapper>
       ) : (
         <>

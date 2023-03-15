@@ -72,6 +72,38 @@ const SubmitInput = styled.input`
   margin-top: 20px;
 `;
 
+const Progress = styled.div`
+  position: fixed;
+  bottom: 50px;
+  width: 90%;
+  padding: 20px;
+`;
+
+const ProgressText = styled.div`
+  color: #7bb241;
+  font-weight: bolder;
+  text-align: center;
+`;
+
+const ProgressbarBox = styled.div`
+  width: 100%;
+  height: 40px;
+  background-color: #f1f1f1;
+  display: flex;
+  align-items: center;
+`;
+
+const Progressbar = styled.div`
+  height: 40px;
+  background-color: #66bb6a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 10px;
+  font-weight: bolder;
+`;
+
 export default function FirstLoginName() {
   const [newDisplayName, setNewDisplayName] = useState("");
   const [newNickname, setNewNickname] = useState("");
@@ -149,6 +181,12 @@ export default function FirstLoginName() {
               <SubmitInput type="submit" value="다음" />
             </Form>
           </NameModify>
+          <Progress>
+            <ProgressText>프로필 생성중...</ProgressText>
+            <ProgressbarBox>
+              <Progressbar style={{ width: "25%" }}>25%</Progressbar>
+            </ProgressbarBox>
+          </Progress>
         </Wrapper>
       ) : (
         <Loading />

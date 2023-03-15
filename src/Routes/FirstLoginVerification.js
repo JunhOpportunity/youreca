@@ -55,6 +55,38 @@ const Button = styled.div`
 
 const BtnText = styled.div``;
 
+const Progress = styled.div`
+  position: fixed;
+  bottom: 50px;
+  width: 90%;
+  padding: 20px;
+`;
+
+const ProgressText = styled.div`
+  color: #7bb241;
+  font-weight: bolder;
+  text-align: center;
+`;
+
+const ProgressbarBox = styled.div`
+  width: 100%;
+  height: 40px;
+  background-color: #f1f1f1;
+  display: flex;
+  align-items: center;
+`;
+
+const Progressbar = styled.div`
+  height: 40px;
+  background-color: #66bb6a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 10px;
+  font-weight: bolder;
+`;
+
 export default function FirstLoginVerification() {
   const navigation = useNavigate();
   const init = useUserDataInit();
@@ -65,7 +97,7 @@ export default function FirstLoginVerification() {
   }, 3000);
 
   const onBtnClick = () => {
-    navigation("/firstlogin-finish");
+    navigation("/");
   };
 
   const onSkipBtnClick = () => {
@@ -81,7 +113,7 @@ export default function FirstLoginVerification() {
       denyButtonText: "취소",
     }).then((result) => {
       if (result.isConfirmed) {
-        navigation("/firstlogin-finish");
+        navigation("/");
       }
     });
   };
@@ -107,6 +139,12 @@ export default function FirstLoginVerification() {
               <BtnText>완료</BtnText>
             </Button>
           </ButtonBundle>
+          <Progress>
+            <ProgressText>프로필 생성중...</ProgressText>
+            <ProgressbarBox>
+              <Progressbar style={{ width: "100%" }}>100%</Progressbar>
+            </ProgressbarBox>
+          </Progress>
         </Wrapper>
       ) : (
         <>
