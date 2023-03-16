@@ -65,11 +65,38 @@ const NewPost = styled.div`
 
 export default function RePeople() {
   const people = useGetAllDocumentData("Person");
+  console.log("People", people);
 
   const navigation = useNavigate();
 
   const goCreatePerson = () => {
     navigation("/regist");
+  };
+
+  console.log(people);
+  const onclick1 = async () => {
+    const newpeople = await people.sort(function (a, b) {
+      return a.userDisplayName < b.userDisplayName
+        ? -1
+        : a.userDisplayName > b.userDisplayName
+        ? 1
+        : 0;
+    });
+
+    console.log("1", newpeople);
+    console.log("1", people);
+  };
+
+  const onclick2 = async () => {
+    const newpeople = await people.sort(function (a, b) {
+      return a.userDisplayName > b.userDisplayName
+        ? -1
+        : a.userDisplayName < b.userDisplayName
+        ? 1
+        : 0;
+    });
+    console.log("2", newpeople);
+    console.log("2", people);
   };
 
   return (
