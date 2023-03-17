@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import PersonBox from "./PersonBox";
 import Header from "./Header";
-import { useGetAllDocumentData } from "../Hooks/getDataEffect";
+import { useEffect, useState } from "react";
+import { dbService } from "../firebase";
 
 const Main = styled.div`
   display: flex;
@@ -63,9 +64,39 @@ const NewPost = styled.div`
   }
 `;
 
-export default function RePeople() {
-  const people = useGetAllDocumentData("Person");
-  console.log("People", people);
+const SelectBox = styled.div`
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+`;
+
+const Select = styled.select`
+  width: 100%;
+  max-width: 1280px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 2px #7bb241;
+  border: none;
+  font-weight: bolder;
+`;
+
+const Option = styled.option``;
+
+export default function Test() {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    dbService
+      .collection("Person")
+      .orderBy("userDisplayName", "asc")
+      .onSnapshot((snapshot) => {
+        const getData = snapshot.docs.map((doc) => ({ ...doc.data() }));
+        setData(getData);
+      });
+  }, []);
 
   const navigation = useNavigate();
 
@@ -73,42 +104,64 @@ export default function RePeople() {
     navigation("/regist");
   };
 
-  console.log(people);
-  const onclick1 = async () => {
-    const newpeople = await people.sort(function (a, b) {
-      return a.userDisplayName < b.userDisplayName
-        ? -1
-        : a.userDisplayName > b.userDisplayName
-        ? 1
-        : 0;
-    });
+  const onChangeSelectBox = async (e) => {
+    const select = e.target.value;
 
-    console.log("1", newpeople);
-    console.log("1", people);
-  };
-
-  const onclick2 = async () => {
-    const newpeople = await people.sort(function (a, b) {
-      return a.userDisplayName > b.userDisplayName
-        ? -1
-        : a.userDisplayName < b.userDisplayName
-        ? 1
-        : 0;
-    });
-    console.log("2", newpeople);
-    console.log("2", people);
+    if (select == "nameDescending") {
+      // 이름순 - 내림차순
+      const newpeople = await data.sort(function (a, b) {
+        return a.userDisplayName < b.userDisplayName
+          ? -1
+          : a.userDisplayName > b.userDisplayName
+          ? 1
+          : 0;
+      });
+      setData([...newpeople]);
+    } else if (select == "nameAscending") {
+      // 이름순 - 오름차순
+      const newpeople = await data.sort(function (a, b) {
+        return a.userDisplayName > b.userDisplayName
+          ? -1
+          : a.userDisplayName < b.userDisplayName
+          ? 1
+          : 0;
+      });
+      setData([...newpeople]);
+    } else if (select == "dateLater") {
+      // 날짜순 - 나중순
+      const newpeople = await data.sort(function (a, b) {
+        return a.created - b.created;
+      });
+      setData([...newpeople]);
+    } else if (select == "dateNewest") {
+      // 날짜순 - 최신순
+      const newpeople = await data.sort(function (a, b) {
+        return b.created - a.created;
+      });
+      setData([...newpeople]);
+    }
   };
 
   return (
     <>
-      {people ? (
+      {data ? (
         <>
           <Header />
           <TopEmptyBox />
           <NewPost onClick={goCreatePerson}>내 평판 추가하러 가기</NewPost>
+          <SelectBox>
+            <Select onChange={onChangeSelectBox}>
+              <Option value="nameDescending">
+                이름순(오름차순)
+              </Option>
+              <Option value="nameAscending">이름순(내림차순)</Option>
+              <Option value="dateNewest">최신순</Option>
+              <Option value="dateLater">생성순</Option>
+            </Select>
+          </SelectBox>
           <Main>
             <Wrapper>
-              {people.map((pers) => (
+              {data.map((pers) => (
                 <Box>
                   <PersonBox personData={pers} isMine={true} />
                 </Box>

@@ -160,6 +160,7 @@ export default function RegistPerson() {
           profileImgUrl: profileImgUrl ? profileImgUrl : "",
           userNickname: userNickname,
           userJob: userJob,
+          created: Date.now(),
         });
         Swal.fire("등록되었습니다!", "", "success");
         setTimeout(() => {

@@ -65,49 +65,82 @@ const NewPost = styled.div`
   }
 `;
 
+const SelectBox = styled.div`
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+`;
+
+const Select = styled.select`
+  width: 100%;
+  max-width: 1280px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 2px #7bb241;
+  border: none;
+  font-weight: bolder;
+`;
+
+const Option = styled.option``;
+
 export default function Test() {
   const [data, setData] = useState();
 
   useEffect(() => {
     dbService
       .collection("Person")
-      .get()
-      .then((snapshot) => {
+      .orderBy("userDisplayName", "asc")
+      .onSnapshot((snapshot) => {
         const getData = snapshot.docs.map((doc) => ({ ...doc.data() }));
         setData(getData);
       });
   }, []);
-  useEffect(() => {
-    console.log("data",data)
-  }, [data])
+
   const navigation = useNavigate();
 
   const goCreatePerson = () => {
     navigation("/regist");
   };
 
-  const onclick1 = async () => {
-    const newpeople = await data.sort(function (a, b) {
-      return a.userDisplayName < b.userDisplayName
-        ? -1
-        : a.userDisplayName > b.userDisplayName
-        ? 1
-        : 0;
-    });
-    setData([...newpeople])
-    console.log(data)
-  };
+  const onChangeSelectBox = async (e) => {
+    const select = e.target.value;
 
-  const onclick2 = async () => {
-    const newpeople = await data.sort(function (a, b) {
-      return a.userDisplayName > b.userDisplayName
-        ? -1
-        : a.userDisplayName < b.userDisplayName
-        ? 1
-        : 0;
-    });
-    setData([...newpeople])
-    console.log(data)
+    if (select == "nameDescending") {
+      // 이름순 - 내림차순
+      const newpeople = await data.sort(function (a, b) {
+        return a.userDisplayName < b.userDisplayName
+          ? -1
+          : a.userDisplayName > b.userDisplayName
+          ? 1
+          : 0;
+      });
+      setData([...newpeople]);
+    } else if (select == "nameAscending") {
+      // 이름순 - 오름차순
+      const newpeople = await data.sort(function (a, b) {
+        return a.userDisplayName > b.userDisplayName
+          ? -1
+          : a.userDisplayName < b.userDisplayName
+          ? 1
+          : 0;
+      });
+      setData([...newpeople]);
+    } else if (select == "dateLater") {
+      // 날짜순 - 나중순
+      const newpeople = await data.sort(function (a, b) {
+        return a.created - b.created;
+      });
+      setData([...newpeople]);
+    } else if (select == "dateNewest") {
+      // 날짜순 - 최신순
+      const newpeople = await data.sort(function (a, b) {
+        return b.created - a.created;
+      });
+      setData([...newpeople]);
+    }
   };
 
   return (
@@ -117,10 +150,18 @@ export default function Test() {
           <Header />
           <TopEmptyBox />
           <NewPost onClick={goCreatePerson}>내 평판 추가하러 가기</NewPost>
+          <SelectBox>
+            <Select onChange={onChangeSelectBox}>
+              <Option value="nameDescending" selected>
+                이름순(오름차순)
+              </Option>
+              <Option value="nameAscending">이름순(내림차순)</Option>
+              <Option value="dateNewest">최신순</Option>
+              <Option value="dateLater">나중순</Option>
+            </Select>
+          </SelectBox>
           <Main>
             <Wrapper>
-              <div onClick={onclick1}>이름순(내림차순)</div>
-              <div onClick={onclick2}>이름순(오름차순)</div>
               {data.map((pers) => (
                 <Box>
                   <PersonBox personData={pers} isMine={true} />
