@@ -69,7 +69,7 @@ export default function EmailCertification() {
     Swal.fire({
       title: "인증 이메일을 발송했습니다.",
       icon: "success",
-      html: "'<b>noreply@re-chat</b>' 으로부터 <br/> 인증용 이메일을 발송하였습니다.<br />로그인에 사용하셨던 이메일 확인 후 <br /><b>5분 내로</b> 인증해주시기 바랍니다.<br /><br/> 인증 완료까지는 약 5분정도<br/> 소요될 수 있습니다.<br/><br/>인증 후 새로고침 부탁드립니다.",
+      html: "'<b>YOURECA-관리자</b>' 로부터 <br/> 인증용 이메일을 발송하였습니다.<br />로그인에 사용하셨던 이메일 확인 후 <br /><b>5분 내로</b> 인증해주시기 바랍니다.<br /><br/> 인증 완료까지는 약 5분정도<br/> 소요될 수 있습니다.<br/><br/>인증 후 새로고침 부탁드립니다.",
       timer: "300000",
       timerProgressBar: true,
     });

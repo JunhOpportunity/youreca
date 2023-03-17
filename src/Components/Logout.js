@@ -32,7 +32,10 @@ export function LogoutButton () {
       },
     });
     authService.signOut();
-    navigation("/");
+    setTimeout(() => {
+      navigation("/");
+    }, 250)
+    
   };
   return (
     <>

@@ -72,7 +72,7 @@ const Svg = styled.svg`
 const Btn = styled.div`
   width: 100%;
   height: 30px;
-  background-color: red;
+  background-color: #ff3844;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,7 +83,7 @@ const Btn = styled.div`
 const ReportBtn = styled.a`
   width: 100%;
   height: 30px;
-  background-color: blue;
+  background-color: #2282dd;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -228,7 +228,7 @@ export default function ClientService() {
               <br />
               혹시 평판 제거를 취소하고 싶으신가요?
               <Btn
-                style={{ backgroundColor: "blue" }}
+                style={{ backgroundColor: "#2282dd" }}
                 id="ReputationDeleteCancle"
                 onClick={onClickCancleBtn}
               >
