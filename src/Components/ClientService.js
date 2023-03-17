@@ -4,6 +4,7 @@ import { authService, dbService } from "../firebase";
 import Swal from "sweetalert2";
 import { CreateDownDocument } from "../Logic/CreateData";
 import { DeleteDownDocument } from "../Logic/DeleteFirestore";
+import { UpdateTopDocument } from "../Logic/UpdateData";
 
 const CS = styled.div`
   display: flex;
@@ -91,12 +92,33 @@ const ReportBtn = styled.a`
   cursor: pointer;
 `;
 
+const SelectBox = styled.select`
+  width: 100%;
+  height: 50px;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 2px #7bb241;
+  border: none;
+  font-weight: bolder;
+`;
+
+const Option = styled.option``;
+
 export default function ClientService() {
   const [isDeleteAccountOpen, setIsDeleteAccountOpen] = useState(false);
   const [isDeleteReputationOpen, setIsDeleteReputationOpen] = useState(false);
   const [isBugreportOpen, setIsBugreportOpen] = useState(false);
-
+  const [isJobCategoryContributeOpen, setIsJobCategoryContributeOpen] =
+    useState(false);
+  const [jobCategory, setJobCategory] = useState();
   const user = authService.currentUser;
+  dbService
+    .collection("User")
+    .doc("Job-Category")
+    .get()
+    .then(async (doc) => {
+      setJobCategory(doc.data().List);
+    });
 
   const onClick = async (event) => {
     const {
@@ -108,7 +130,19 @@ export default function ClientService() {
       setIsDeleteReputationOpen((e) => !e);
     } else if (id == "Bugreport") {
       setIsBugreportOpen((e) => !e);
+    } else if (id == "JobCategoryContribute") {
+      setIsJobCategoryContributeOpen((e) => !e);
     }
+  };
+
+  const onClickContribute = () => {
+    dbService
+      .collection("User")
+      .doc("Job-Category")
+      .get()
+      .then(async (doc) => {
+        console.log(doc.data().List);
+      });
   };
 
   const onClickDeleteBtn = async (event) => {
@@ -203,6 +237,46 @@ export default function ClientService() {
     Swal.fire("취소되었습니다!", "", "success");
   };
 
+  const onClickContributeBtn = (event) => {
+    Swal.fire({
+      title: "감사합니다",
+      text: "어떤 직업을 추가하고 싶으신가요?",
+      icon: "question",
+      input: "text",
+      showCancelButton: false,
+      showDenyButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "blue",
+      confirmButtonText: `등록`,
+      denyButtonText: "취소",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        if (jobCategory.indexOf(result.value) != -1) {
+          return Swal.fire(
+            "다시 확인해주세요..",
+            "이미 존재하는 직업이네요!",
+            "error"
+          );
+        }
+        Swal.fire(
+          "등록되었습니다!",
+          "언제든지 추가로 작성해주세요.",
+          "success"
+        );
+        UpdateTopDocument("User", "Job-Category", {
+          List: [...jobCategory, result.value],
+        });
+        dbService
+          .collection("User")
+          .doc("Job-Category")
+          .get()
+          .then(async (doc) => {
+            setJobCategory(doc.data().List);
+          });
+      }
+    });
+  };
+
   return (
     <>
       <CS>
@@ -275,6 +349,38 @@ export default function ClientService() {
               >
                 버그 신고하러 가기
               </ReportBtn>
+            </SubmitBox>
+          </ServiceBox>
+          <PageTitleBox>도움을 주고 싶으신가요?</PageTitleBox>
+          <ServiceBox>
+            <TitleBox id="JobCategoryContribute" onClick={onClick}>
+              <Svg
+                isOpen={isJobCategoryContributeOpen}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 256 512"
+              >
+                <path d="M246.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L178.7 256 41.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
+              </Svg>
+              생각나는 직업 카테고리가 있어요
+            </TitleBox>
+            <SubmitBox isOpen={isJobCategoryContributeOpen}>
+              <SelectBox>
+                {jobCategory ? (
+                  jobCategory.map((job) => {
+                    return <Option>{job}</Option>;
+                  })
+                ) : (
+                  <Option>...</Option>
+                )}
+              </SelectBox>
+              <br />위 리스트에 해당하지 않는 직업인가요?
+              <Btn
+                style={{ backgroundColor: "#2282dd" }}
+                id="ReputationDeleteCancle"
+                onClick={onClickContributeBtn}
+              >
+                직업 카테고리 추천 기여하기
+              </Btn>
             </SubmitBox>
           </ServiceBox>
         </Wrapper>

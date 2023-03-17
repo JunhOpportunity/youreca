@@ -5,6 +5,7 @@ import { authService } from "../firebase";
 import { useGetDocumentData } from "../Hooks/getDataEffect";
 import { UpdateTopDocument } from "../Logic/UpdateData";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -142,6 +143,9 @@ export default function FirstLoginJob() {
   const onSubmit = (event) => {
     event.preventDefault();
     if (isCheck == true) {
+      if(categoryList.List.indexOf(category) != -1) {
+        return Swal.fire("다시 확인해주세요..", "잘 찾아보세요! 입력하신 직업이 리스트에 포함되어있습니다.", "warning");
+      }
       UpdateTopDocument("User", "Job-Category", {
         List: [...categoryList.List, category],
       });
