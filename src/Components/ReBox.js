@@ -53,6 +53,12 @@ const ResponseBox = styled.div`
   background-color: #e8f5e9;
 `;
 
+const Img = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 const Svg = styled.svg`
   width: 15px;
   height: 15px;
@@ -68,7 +74,7 @@ const ProfileImg = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  border: 1px solid #7bb241;
+  border: 1px solid;
   background-color: #7bb241;
 `;
 
@@ -80,7 +86,7 @@ export default function ReBox({ re, isMine }) {
           {re.profileImgUrl ? (
             <>
               <ProfileImg>
-                <img src={re.profileImgUrl} width="50px" height="50px" />
+                <Img src={re.profileImgUrl} />
               </ProfileImg>
             </>
           ) : (

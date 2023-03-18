@@ -50,7 +50,7 @@ export default function Feedback() {
   const [supplementation, setSupplementation] = useState("");
   const user = authService.currentUser;
   const init = useUserDataInit();
-  
+
   const onSubmit = async (event) => {
     event.preventDefault();
     CreateTopCollection("FeedBack", {
@@ -77,7 +77,10 @@ export default function Feedback() {
           <Wrapper>
             <PageInfo>
               <h3>개선할 점이 있다면</h3>
-              <h1>알려주세요!</h1>
+              <h2>알려주세요!</h2>
+              <h1>+</h1>
+              <h3>이 사이트의 사용 소감을</h3>
+              <h2>알려주세요!</h2>
             </PageInfo>
             <Form onSubmit={onSubmit}>
               <TextArea

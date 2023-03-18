@@ -113,6 +113,7 @@ export default function RegistPerson() {
   const [personInfo, setPersonInfo] = useState("");
   const [profileImgUrl, setProfileImgUrl] = useState(false);
   const [userNickname, setUserNickname] = useState("");
+  const [userBetaTester, setUserBetaTester] = useState(false);
   const [userJob, setUserJob] = useState("");
   const navigation = useNavigate();
   const user = authService.currentUser;
@@ -125,6 +126,7 @@ export default function RegistPerson() {
         setProfileImgUrl(snapshot.data().profileImgUrl);
         setUserNickname(snapshot.data().userNickname);
         setUserJob(snapshot.data().userJob);
+        setUserBetaTester(snapshot.data().userBetaTester);
       });
   });
 
@@ -161,6 +163,7 @@ export default function RegistPerson() {
           userNickname: userNickname,
           userJob: userJob,
           created: Date.now(),
+          userBetaTester: userBetaTester,
         });
         Swal.fire("등록되었습니다!", "", "success");
         setTimeout(() => {

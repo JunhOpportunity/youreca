@@ -135,16 +135,6 @@ export default function ClientService() {
     }
   };
 
-  const onClickContribute = () => {
-    dbService
-      .collection("User")
-      .doc("Job-Category")
-      .get()
-      .then(async (doc) => {
-        console.log(doc.data().List);
-      });
-  };
-
   const onClickDeleteBtn = async (event) => {
     const {
       target: { id },

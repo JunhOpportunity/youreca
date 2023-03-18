@@ -132,6 +132,7 @@ export default function FirstLoginName() {
         userId: user.uid,
         changedDisplayName: true,
         userNickname: newNickname,
+        userBetaTester: Date.now() < 1680259308420 ? true : false,
       });
 
       UpdateTopDocument("User", "Nickname", {
