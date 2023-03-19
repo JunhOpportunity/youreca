@@ -37,6 +37,7 @@ export function useGetAllDownDocumentData2(
     .get()
     .then((snapshot) => {
       const getData = snapshot.docs.map((doc) => ({ ...doc.data() }));
+      
       setData(getData);
     });
 
@@ -52,6 +53,22 @@ export function useGetAllDocumentData(collection) {
       .get()
       .then((snapshot) => {
         const getData = snapshot.docs.map((doc) => ({ ...doc.data() }));
+        setData(getData);
+      });
+  }, []);
+
+  return data;
+}
+
+export function useGetAllDocumentDataArrange(collection, field, category) {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    dbService
+      .collection(collection)
+      .orderBy(field, category)
+      .onSnapshot((snapshot) => {
+        const getData = snapshot.docs.map((doc) => ({ ...doc.data(), randomId: doc.id }));
         setData(getData);
       });
   }, []);
@@ -84,11 +101,10 @@ export function useGetDocumentData(collection, document) {
       .doc(document)
       .get()
       .then((doc) => {
-        const getData = doc.data()
+        const getData = doc.data();
         setData(getData);
       });
   }, []);
 
   return data;
 }
-

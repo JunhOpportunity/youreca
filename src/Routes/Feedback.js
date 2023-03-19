@@ -52,14 +52,24 @@ export default function Feedback() {
   const init = useUserDataInit();
 
   const onSubmit = async (event) => {
+    const date = new Date();
+    const koDate = date.toLocaleString("ko", {
+      minute: "numeric",
+      hour: "numeric",
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+      weekday: "short",
+    });
     event.preventDefault();
     CreateTopCollection("FeedBack", {
       feedback: supplementation,
       userName: user.displayName,
       userEmail: user.email,
+      created: Date.now(),
+      createdAt: koDate,
     });
     Swal.fire("등록되었습니다!", "", "success");
-    setSupplementation("");
   };
 
   const onChange = (event) => {

@@ -4,9 +4,14 @@ import { DeleteAccount } from "../Components/DeleteAccountRequest";
 import Loading from "../Components/Loading";
 import { useEffect, useState } from "react";
 import { DeleteReputation } from "../Components/DeleteReputationRequest.js";
-import { useGetAllDownDocumentData } from "../Hooks/getDataEffect";
+import {
+  useGetAllDocumentData,
+  useGetAllDocumentDataArrange,
+  useGetAllDownDocumentData,
+} from "../Hooks/getDataEffect";
 import { authService } from "../firebase";
 import { useUserDataInit } from "../Hooks/InitEffect";
+import FeedbackBox from "../Components/FeedbackBox";
 
 const Wrapper = styled.div`
   display: flex;
@@ -14,6 +19,19 @@ const Wrapper = styled.div`
   justify-content: center;
   gap: 10px;
 `;
+
+const FeedbackBundle = styled.div`
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  @media only screen and (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media only screen and (min-width: 1025px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  gap: 10px;
+`;
+
 const TopEmptyBox = styled.div`
   height: 100px;
   @media only screen and (min-width: 768px) {
@@ -58,6 +76,14 @@ export default function ManagerSite() {
     "Delete"
   );
 
+  const feedbackData = useGetAllDocumentDataArrange(
+    "FeedBack",
+    "created",
+    "desc"
+  );
+
+  console.log(feedbackData);
+
   return (
     <>
       {init ? (
@@ -66,6 +92,18 @@ export default function ManagerSite() {
             <Header />
             <TopEmptyBox />
             <Wrapper>
+              <ManageBox>
+                <ManageBoxTitle>피드백</ManageBoxTitle>
+                <FeedbackBundle>
+                  {feedbackData ? (
+                    feedbackData.map((data) => {
+                      return <FeedbackBox feedbackData={data}></FeedbackBox>;
+                    })
+                  ) : (
+                    <></>
+                  )}
+                </FeedbackBundle>
+              </ManageBox>
               <ManageBox>
                 <ManageBoxTitle>계정 데이터 삭제 요청</ManageBoxTitle>
                 <DeleteAccount reqData={accountReqData} />
