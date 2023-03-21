@@ -12,8 +12,6 @@
 
 
 ## Preview
-### [Site Enter](https://junhopportunity.github.io/Responses-Chat/)
-
 ![image](https://user-images.githubusercontent.com/89464762/207521709-d00287c2-86d4-4897-b464-4d56906a9336.png)
 
 ## Used
