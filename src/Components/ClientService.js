@@ -110,6 +110,7 @@ export default function ClientService() {
   const [isBugreportOpen, setIsBugreportOpen] = useState(false);
   const [isJobCategoryContributeOpen, setIsJobCategoryContributeOpen] =
     useState(false);
+  const [isDeleteReputationQAOpen, setIsDeleteReputationQAOpen] = useState(false);
   const [jobCategory, setJobCategory] = useState();
   const user = authService.currentUser;
   dbService
@@ -132,6 +133,8 @@ export default function ClientService() {
       setIsBugreportOpen((e) => !e);
     } else if (id == "JobCategoryContribute") {
       setIsJobCategoryContributeOpen((e) => !e);
+    } else if (id == "DeleteReputationQA") {
+      setIsDeleteReputationQAOpen((e) => !e)
     }
   };
 
@@ -371,6 +374,31 @@ export default function ClientService() {
               >
                 직업 카테고리 추천 기여하기
               </Btn>
+            </SubmitBox>
+          </ServiceBox>
+
+          <PageTitleBox>Q/A</PageTitleBox>
+          <ServiceBox>
+            <TitleBox id="DeleteReputationQA" onClick={onClick}>
+              <Svg
+                isOpen={isDeleteReputationQAOpen}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 256 512"
+              >
+                <path d="M246.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L178.7 256 41.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
+              </Svg>
+              왜 평판 페이지를 직접 제거할 수 없는건가요?
+            </TitleBox>
+            <SubmitBox isOpen={isDeleteReputationQAOpen}>
+              사용자분들의 평판은 중요한 데이터입니다!
+              <br />
+              따라서 실수를 방지하기 위해 여러 가지 기능을
+              <br />
+              고안해 보았지만 혹시 모를 계정 해킹 사례를 대비하여
+              <br />
+              페이지를 함부로 제거할 수 없도록 하였습니다.
+              <br />
+              추후 보안 문제가 해결된다면 추가할 예정입니다.
             </SubmitBox>
           </ServiceBox>
         </Wrapper>
