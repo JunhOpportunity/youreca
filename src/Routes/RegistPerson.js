@@ -235,6 +235,9 @@ export default function RegistPerson() {
               </InputDiv>
 
               <InputSubmit onSubmit={onSubmit} type="submit" value="등록하기" />
+              <Label for="story" style={{ color: "red" }}>
+                <u>프로필 페이지 정보 수정은 현재 페이지에서 재작성  등록하시면 수정하실 수 있습니다.</u>
+              </Label>
             </Form>
             <BottomEmptyBox />
           </Wrapper>
