@@ -79,6 +79,7 @@ const WebHeader = styled.div`
   position: fixed;
   top: 50px;
   background-color: white;
+  z-index: 1;
   box-shadow: 0px 0px 2px;
   @media only screen and (max-width: 767px) {
     display: none;
