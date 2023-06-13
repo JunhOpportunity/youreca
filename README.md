@@ -14,6 +14,10 @@
 ## Preview
 ![image](https://user-images.githubusercontent.com/89464762/207521709-d00287c2-86d4-4897-b464-4d56906a9336.png)
 
+(디자인 리뉴얼 전)
+![image](https://github.com/JunhOpportunity/Responses-Chat/assets/89464762/c46ffd1f-c5ee-4574-8448-58aed3514c24)
+(디자인 리뉴얼 후)
+
 ## Used
 <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white"><img src="https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white"><img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white"><img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white">
 
