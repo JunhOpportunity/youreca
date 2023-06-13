@@ -1,4 +1,6 @@
-# RE-CHAT
+# YOURECA
+![image](https://github.com/JunhOpportunity/Responses-Chat/assets/89464762/a2bec1d5-bd47-4f6f-b285-d1bfea0aedbf)
+
 
 ## Outline
 ### 이 프로젝트는 주변 사람들의 반응, 평판, 추천 등을 작성할 수 있는 프로젝트입니다.
@@ -15,6 +17,7 @@
 ![image](https://user-images.githubusercontent.com/89464762/207521709-d00287c2-86d4-4897-b464-4d56906a9336.png)
 
 (디자인 리뉴얼 전)
+
 ![image](https://github.com/JunhOpportunity/Responses-Chat/assets/89464762/c46ffd1f-c5ee-4574-8448-58aed3514c24)
 (디자인 리뉴얼 후)
 
