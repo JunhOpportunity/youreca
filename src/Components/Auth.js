@@ -17,11 +17,10 @@ const AuthBox = styled.div`
   padding: 50px;
   background-color: white;
   box-shadow: #696969 0px 0px 10px;
-  transition-duration: 1s;
+
   width: 60vw;
-  :hover {
-    transition-duration: 1s;
-    box-shadow: 0px 0px 25px #43a047;
+  @media only screen and (min-width: 768px) {
+    width: 400px;
   }
 `;
 
@@ -70,6 +69,12 @@ const InputSubmit = styled.input`
   color: white;
   height: 50px;
   width: 100%;
+  transition-duration: 1s;
+  cursor: pointer;
+  :hover {
+    background-color: #43a047;
+    transition-duration: 1s;
+  }
 `;
 
 const Question = styled.div`
@@ -81,6 +86,9 @@ const Question = styled.div`
   font-weight: bolder;
   padding: 10px;
   cursor: pointer;
+  :hover {
+    color: #66bb6a;
+  }
 `;
 
 const Title = styled.div`
@@ -130,7 +138,7 @@ export default function Auth() {
     // 계정 새로 만드는지 그냥 로그인인지 변경하도록
     setNewaccount((e) => !e);
   };
-  
+
   const contactOnClick = () => {
     Swal.fire({
       title: "CONTACT",
