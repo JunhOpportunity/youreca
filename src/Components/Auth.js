@@ -69,6 +69,12 @@ const InputSubmit = styled.input`
   color: white;
   height: 50px;
   width: 100%;
+  transition-duration: 1s;
+  cursor: pointer;
+  :hover {
+    background-color: #43a047;
+    transition-duration: 1s;
+  }
 `;
 
 const Question = styled.div`
@@ -132,7 +138,7 @@ export default function Auth() {
     // 계정 새로 만드는지 그냥 로그인인지 변경하도록
     setNewaccount((e) => !e);
   };
-  
+
   const contactOnClick = () => {
     Swal.fire({
       title: "CONTACT",
