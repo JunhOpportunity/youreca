@@ -20,6 +20,11 @@ const SocialLoginBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  transition-duration: 0.5s;
+  :hover {
+    transform: scale(1.1);
+    transition-duration: 0.5s;
+  }
 `;
 
 const DivideLineBox = styled.div`
@@ -38,7 +43,7 @@ const SocialIcon = styled.img`
   height: 50px;
 `;
 
-const Text =styled.div`
+const Text = styled.div`
   font-size: 10px;
   font-weight: bolder;
   text-align: center;
@@ -84,10 +89,10 @@ export default function AuthSocialLogin() {
         </SocialLoginBtnBundle>
         <Text>
           보안을 위해 되도록 소셜 로그인을 이용해주세요.
-          <br/>
-          <br/>
-          개발자는 여러분의 이메일을 제외한 
-          <br/>
+          <br />
+          <br />
+          개발자는 여러분의 이메일을 제외한
+          <br />
           어떠한 정보도 수집 또는 열람할 수 없습니다.
         </Text>
       </SocialLogin>
