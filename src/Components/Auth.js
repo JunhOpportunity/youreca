@@ -17,11 +17,10 @@ const AuthBox = styled.div`
   padding: 50px;
   background-color: white;
   box-shadow: #696969 0px 0px 10px;
-  transition-duration: 1s;
+
   width: 60vw;
-  :hover {
-    transition-duration: 1s;
-    box-shadow: 0px 0px 25px #43a047;
+  @media only screen and (min-width: 768px) {
+    width: 400px;
   }
 `;
 
@@ -81,6 +80,9 @@ const Question = styled.div`
   font-weight: bolder;
   padding: 10px;
   cursor: pointer;
+  :hover {
+    color: #66bb6a;
+  }
 `;
 
 const Title = styled.div`
