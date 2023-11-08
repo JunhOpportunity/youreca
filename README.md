@@ -21,6 +21,11 @@
 ![image](https://github.com/JunhOpportunity/Responses-Chat/assets/89464762/c46ffd1f-c5ee-4574-8448-58aed3514c24)
 (디자인 리뉴얼 후)
 
+## Diagram
+### Firebase - Firestore
+![image](https://github.com/JunhOpportunity/youreca/assets/89464762/e30a871d-bfd5-4630-afa1-3f80e3cd5b18)
+
+
 ## Used
 <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white"><img src="https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white"><img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white"><img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white">
 
