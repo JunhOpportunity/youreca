@@ -1,5 +1,6 @@
 import { authService, firebaseInstance } from "../firebase.js";
 import styled from "styled-components";
+import googleicon from "../images/google.png";
 
 const SocialLogin = styled.div``;
 
@@ -76,7 +77,7 @@ export default function AuthSocialLogin() {
             <SocialIcon
               name="google"
               onClick={onClickSocialLogin}
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/640px-Google_%22G%22_Logo.svg.png"
+              src={googleicon}
             ></SocialIcon>
           </SocialLoginBtn>
           <SocialLoginBtn>
